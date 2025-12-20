@@ -68,94 +68,114 @@ The Bootstrap 4 wrapper consists of 5 modules:
 
 #### 2.3 Key Bootstrap 5 Changes to Implement
 
-**Removed Components:**
-- Jumbotron → Replace with utilities
-- Media object → Use flex utilities
-- Card deck/columns → Use grid
+**Bootstrap 4 Component Inventory (121 classes across 17 packages):**
+- **alert/** (9 classes): AbstractBootstrapAlert, BootstrapBox, BootstrapDangerBox, BootstrapErrorBox, BootstrapInfoBox, BootstrapQuestionBox, BootstrapSuccessBox, BootstrapWarnBox, EBootstrapAlertType
+- **badge/** (3 classes): BootstrapBadge, BootstrapBadgeLink, EBootstrapBadgeType
+- **breadcrumb/** (4 classes): BootstrapBreadcrumb, BootstrapBreadcrumbItem, BootstrapBreadcrumbList, BootstrapBreadcrumbProvider
+- **button/** (6 classes): BootstrapButton, BootstrapLinkButton, BootstrapResetButton, BootstrapSubmitButton, EBootstrapButtonSize, EBootstrapButtonType
+- **buttongroup/** (4 classes): BootstrapButtonGroup, BootstrapButtonToolbar, EBootstrapButtonGroupSize, EBootstrapButtonGroupType
+- **card/** (7 classes): BootstrapCard, BootstrapCardBody, BootstrapCardColumns, BootstrapCardDeck, BootstrapCardFooter, BootstrapCardGroup, BootstrapCardHeader
+- **dropdown/** (6 classes): BootstrapDropdownDivider, BootstrapDropdownHeader, BootstrapDropdownItem, BootstrapDropdownMenu, BootstrapDropdownText, EBootstrapDropType
+- **form/** (12 classes): BootstrapForm, BootstrapFormCheck, BootstrapFormCheckInline, BootstrapFormGroup, BootstrapFormGroupRendererTextOnly, BootstrapFormHelper, BootstrapInvalidFeedback, BootstrapViewForm, DefaultBootstrapFormGroupRenderer, EBootstrapFormType, IBootstrapFormGroupContainer, IBootstrapFormGroupRenderer
+- **grid/** (12 classes): BootstrapCol, BootstrapGridSpec, BootstrapRow, EBootstrapColOrder, EBootstrapGridLG, EBootstrapGridMD, EBootstrapGridSM, EBootstrapGridType, EBootstrapGridXL, EBootstrapGridXS, EBootstrapRowVerticalAlign, IBootstrapGridElement
+- **inputgroup/** (2 classes): BootstrapInputGroup, EBootstrapInputGroupSize
+- **jumbotron/** (1 class): BootstrapJumbotron
+- **listgroup/** (1 class): BootstrapListGroup
+- **modal/** (4 classes): BootstrapModal, BootstrapModalCloseButton, EBootstrapModalOptionBackdrop, EBootstrapModalSize
+- **nav/** (5 classes): BootstrapNav, BootstrapNavItem, BootstrapNavLink, BootstrapTabBox, EBootstrapNavType
+- **navbar/** (7 classes): BootstrapNavbar, BootstrapNavbarNav, BootstrapNavbarText, BootstrapNavbarToggleable, BootstrapNavbarToggler, EBootstrapNavbarColorSchemeType, EBootstrapNavbarExpandType
+- **table/** (2 classes): AbstractBootstrapTable, BootstrapTable
+- **tooltip/** (5 classes): BootstrapTooltip, EBootstrapTooltipBoundary, EBootstrapTooltipFallbackPlacement, EBootstrapTooltipPosition, EBootstrapTooltipTrigger
+- **utils/** (29 classes): Utility helpers for borders, spacing, display, colors, etc.
 
-**New Components:**
-- Offcanvas (new sliding sidebar)
-- Floating labels for forms
-- Accordion improvements
-- Updated modal backdrop
+**Bootstrap 5 Migration Changes:**
 
-**Modified Components:**
-- **Forms**: Major restructuring
-  - `.form-control` updates
-  - New floating labels
-  - Updated validation styles
-- **Buttons**: Simplified sizes
-- **Grid**: New `xxl` breakpoint
-- **Dropdowns**: Improved positioning
-- **Navbar**: Simplified classes
+**Components to Remove:**
+- **jumbotron/BootstrapJumbotron** → Document migration to utility classes
+- **card/BootstrapCardDeck** → Use grid system instead
+- **card/BootstrapCardColumns** → Use grid system instead
+
+**New Components to Add:**
+- **offcanvas/** package (NEW)
+  - BootstrapOffcanvas
+  - BootstrapOffcanvasHeader
+  - BootstrapOffcanvasBody
+  - EBootstrapOffcanvasPosition (start, end, top, bottom)
+- **form/** additions
+  - BootstrapFloatingLabel (new form control variant)
+  - BootstrapValidFeedback (counterpart to InvalidFeedback)
+
+**Components Requiring Major Updates:**
+- **Forms** (12 classes → ~14 classes with additions)
+  - Custom form controls merged with native controls
+  - Add floating label support
+  - Update validation feedback styling
+  - Remove custom-* CSS class patterns
+- **Buttons** (6 classes)
+  - Remove `.btn-block` support (deprecated)
+  - Document use of `.d-grid` instead
+- **Grid** (12 classes → add XXL breakpoint)
+  - Add `EBootstrapGridXXL` enum (≥1400px)
+  - Update all grid-related classes to support XXL
+- **Navbar** (7 classes)
+  - Update `EBootstrapNavbarExpandType` to include XXL
+  - Simplify data attributes (data-bs-* prefix)
+
+**Components Requiring Minor Updates:**
+- **Badge** (3 classes) - Replace badge-pill with rounded-pill utility
+- **Dropdown** (6 classes) - Update data attributes (data-bs-* prefix)
+- **Modal** (4 classes) - Update data attributes, add new fullscreen modes
+- **Tooltip** (5 classes) - Update for Popper.js v2, data-bs-* prefix
+- **Alert** (9 classes) - Minimal CSS class updates
+- **Breadcrumb** (4 classes) - Minimal changes
+- **Button Group** (4 classes) - Minimal changes
+- **Input Group** (2 classes) - Simplified markup
+- **List Group** (1 class) - Minimal changes
+- **Nav** (5 classes) - Minor CSS updates, add nav-underline support
+- **Table** (2 classes) - Add new table variants (striped-columns, etc.)
 
 #### 2.4 Update Path Providers
 
-- **EBootstrapCSSPathProvider.java**: Update paths to 5.3.x
-- **EBootstrapJSPathProvider.java**: Update paths to 5.3.x
+- **EBootstrapCSSPathProvider.java**: ✅ Already updated to 5.3.8
+- **EBootstrapJSPathProvider.java**: Create and update paths to 5.3.8
 - Note: Bootstrap 5 dropped jQuery dependency (important!)
 
-#### 2.5 Create/Update Component Classes
+#### 2.5 Migrate Component Classes (Package by Package)
 
-For each component package, update:
+**Migration Priority Order:**
 
-**alert/** - Minimal changes
-- Update CSS class references
+**Phase 2.5.1 - Minimal Changes (Quick Wins)**
+1. **alert/** (9 classes) - Update CSS class references only
+2. **breadcrumb/** (4 classes) - Minimal CSS updates
+3. **buttongroup/** (4 classes) - Minimal changes
+4. **listgroup/** (1 class) - Minimal changes
 
-**badge/** - Minor updates
-- Removed `badge-pill`, now `rounded-pill`
+**Phase 2.5.2 - Minor Updates**
+5. **badge/** (3 classes) - Replace `badge-pill` with `rounded-pill`
+6. **inputgroup/** (2 classes) - Simplified markup patterns
+7. **nav/** (5 classes) - Add `nav-underline` support, minor CSS updates
+8. **table/** (2 classes) - Add new table variants (striped-columns, group-divider)
+9. **tooltip/** (5 classes) - Update for Popper.js v2, data-bs-* attributes
 
-**breadcrumb/** - Minimal changes
+**Phase 2.5.3 - Moderate Updates**
+10. **dropdown/** (6 classes) - Update all data-toggle → data-bs-toggle, data-* → data-bs-*
+11. **modal/** (4 classes) - Update data attributes, add fullscreen responsive modes
+12. **navbar/** (7 classes) - Add XXL breakpoint, update data attributes
+13. **card/** (7 classes → 5 classes) - Remove CardDeck & CardColumns, document grid migration
 
-**button/** - Updates needed
-- Remove `.btn-block` (use grid/flex instead)
-- Update size classes
+**Phase 2.5.4 - Major Updates**  
+14. **button/** (6 classes) - Remove btn-block support, document d-grid alternative
+15. **grid/** (12 classes → 13 classes) - Add EBootstrapGridXXL, update all grid specs
+16. **form/** (12 classes → ~14 classes) - Major restructuring, add floating labels, update validation
 
-**buttongroup/** - Minimal changes
+**Phase 2.5.5 - Deprecations & New Components**
+17. **jumbotron/** (1 class) - Mark @Deprecated, document utility migration path
+18. **offcanvas/** (NEW package, ~4 classes) - Create from scratch
 
-**card/** - Significant changes
-- Remove `card-deck` and `card-columns` classes
-- Update to use grid system instead
-
-**dropdown/** - Updates needed
-- New `data-bs-toggle` (was `data-toggle`)
-- New `data-bs-` prefix for all data attributes
-
-**form/** - Major restructuring needed
-- New form control styling
-- Floating labels support
-- Updated validation classes
-- Switch from custom controls to standard
-
-**grid/** - Updates needed
-- Add `xxl` breakpoint support (≥1400px)
-- Keep existing sm, md, lg, xl
-
-**inputgroup/** - Updates needed
-- Simplified markup
-
-**layout/** - Updates needed
-
-**listgroup/** - Minor updates
-
-**modal/** - Updates needed
-- New `data-bs-` attributes
-- Update JavaScript method calls
-
-**nav/navbar/** - Updates needed
-- Simplified navbar classes
-- Remove unnecessary wrappers
-
-**table/** - Minimal changes
-- New accent colors
-
-**tooltip/popover** - Updates needed
-- New Popper.js v2 integration
-- Bootstrap 5 uses Popper v2
-
-**NEW: offcanvas/** - Add new component
-- Create `BootstrapOffcanvas.java`
-- Handle positioning (start, end, top, bottom)
+**Phase 2.5.6 - Utilities & Base**
+19. **utils/** (29 classes) - Update utility enums for new BS5 utilities
+20. **base/** (2 classes) - Update base classes
+21. **config/** - Update configuration classes
 
 #### 2.6 Update Third-Party Module Provider
 
