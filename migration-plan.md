@@ -50,7 +50,12 @@ The Bootstrap 4 wrapper consists of 5 modules:
 
 - Download Bootstrap 5.3.x (latest stable) CSS and JS files
 - Place in `src/main/resources/external/bootstrap/5.3.x/`
-- Include both regular and minified versions
+- Include both regular version only, as the minified version should be created via the Maven plugin ph-csscompress-maven-plugin
+- Create `MainExtractBootstrap5CSSClasses.java` (based on `MainExtractBootstrap4CSSClasses.java`)
+  - Update the class to read from Bootstrap 5 CSS path
+  - Change `EBootstrapCSSPathProvider.BOOTSTRAP` reference to point to Bootstrap 5 CSS
+  - Run the extraction tool to generate CSS class constants for `CBootstrapCSS.java`
+  - This automated approach ensures all Bootstrap 5 CSS classes are captured systematically
 
 #### 2.2 Update Constants
 
