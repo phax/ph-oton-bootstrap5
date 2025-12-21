@@ -14,35 +14,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.helger.photon.bootstrap5.uictrls.prism;
+package com.helger.photon.bootstrap5.uictrls.typeahead;
+
+import java.util.Locale;
 
 import org.jspecify.annotations.NonNull;
 
 import com.helger.annotation.OverridingMethodsMustInvokeSuper;
 import com.helger.html.hc.IHCConversionSettingsToNode;
+import com.helger.html.request.IHCRequestField;
 import com.helger.photon.app.html.PhotonCSS;
 import com.helger.photon.uictrls.EUICtrlsCSSPathProvider;
-import com.helger.photon.uictrls.prism.EPrismLanguage;
-import com.helger.photon.uictrls.prism.HCPrismJS;
+import com.helger.photon.uictrls.typeahead.TypeaheadEdit;
+import com.helger.url.ISimpleURL;
 
 /**
- * Bootstrap 5 version of prism.
+ * Bootstrap 5 wrapper of {@link TypeaheadEdit}.
  *
  * @author Philip Helger
  */
-public class BootstrapPrismJS extends HCPrismJS
+public class BootstrapTypeahead extends TypeaheadEdit
 {
-  public BootstrapPrismJS (@NonNull final EPrismLanguage eLanguage)
+  public BootstrapTypeahead (@NonNull final IHCRequestField aRFEdit,
+                             @NonNull final IHCRequestField aRFHidden,
+                             @NonNull final ISimpleURL aAjaxInvocationURL,
+                             @NonNull final Locale aDisplayLocale)
   {
-    super (eLanguage);
+    super (aRFEdit, aRFHidden, aAjaxInvocationURL, aDisplayLocale);
   }
 
   @Override
   @OverridingMethodsMustInvokeSuper
   protected void onRegisterExternalResources (@NonNull final IHCConversionSettingsToNode aConversionSettings,
-                                              final boolean bForcedRegistration)
+                                              final boolean bForceRegistration)
   {
-    super.onRegisterExternalResources (aConversionSettings, bForcedRegistration);
-    PhotonCSS.registerCSSIncludeForThisRequest (EUICtrlsCSSPathProvider.PRISMJS_BOOTSTRAP4);
+    super.onRegisterExternalResources (aConversionSettings, bForceRegistration);
+    PhotonCSS.registerCSSIncludeForThisRequest (EUICtrlsCSSPathProvider.TYPEAHEAD_BOOTSTRAP5);
   }
 }
