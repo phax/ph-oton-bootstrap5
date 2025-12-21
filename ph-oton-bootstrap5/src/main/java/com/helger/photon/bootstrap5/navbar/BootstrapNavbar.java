@@ -1,0 +1,151 @@
+/*
+ * Copyright (C) 2018-2025 Philip Helger (www.helger.com)
+ * philip[at]helger[dot]com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.helger.photon.bootstrap5.navbar;
+
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
+
+import com.helger.annotation.Nonempty;
+import com.helger.base.enforce.ValueEnforcer;
+import com.helger.base.id.factory.GlobalIDFactory;
+import com.helger.html.hc.IHCConversionSettingsToNode;
+import com.helger.html.hc.IHCHasChildrenMutable;
+import com.helger.html.hc.IHCNode;
+import com.helger.html.hc.html.IHCElementWithChildren;
+import com.helger.html.hc.html.sections.AbstractHCNav;
+import com.helger.html.hc.html.textlevel.HCA;
+import com.helger.html.hc.html.textlevel.HCSpan;
+import com.helger.photon.bootstrap5.CBootstrapCSS;
+import com.helger.photon.bootstrap5.utils.EBootstrapBackgroundType;
+import com.helger.url.ISimpleURL;
+
+/**
+ * Bootstrap 4 NavBar
+ *
+ * @author Philip Helger
+ */
+public class BootstrapNavbar extends AbstractHCNav <BootstrapNavbar>
+{
+  public static final EBootstrapNavbarExpandType DEFAULT_EXPAND = EBootstrapNavbarExpandType.EXPAND_MD;
+  public static final EBootstrapBackgroundType DEFAULT_BACKGROUND = EBootstrapBackgroundType.LIGHT;
+
+  private EBootstrapNavbarExpandType m_eExpand = DEFAULT_EXPAND;
+  private EBootstrapBackgroundType m_eBackground = DEFAULT_BACKGROUND;
+
+  public BootstrapNavbar ()
+  {}
+
+  @NonNull
+  public final EBootstrapNavbarExpandType getExpand ()
+  {
+    return m_eExpand;
+  }
+
+  @NonNull
+  public final BootstrapNavbar setExpand (@NonNull final EBootstrapNavbarExpandType eExpand)
+  {
+    ValueEnforcer.notNull (eExpand, "Expand");
+    m_eExpand = eExpand;
+    return this;
+  }
+
+  @Nullable
+  public final EBootstrapBackgroundType getBackground ()
+  {
+    return m_eBackground;
+  }
+
+  @NonNull
+  public final BootstrapNavbar setBackground (@Nullable final EBootstrapBackgroundType eBackground)
+  {
+    m_eBackground = eBackground;
+    return this;
+  }
+
+  @NonNull
+  public static IHCElementWithChildren <?> createBrand (@NonNull final IHCNode aLabel, @Nullable final ISimpleURL aURL)
+  {
+    IHCElementWithChildren <?> aBrand;
+    if (aURL != null)
+      aBrand = new HCA ().setHref (aURL).addChild (aLabel);
+    else
+      if (aLabel instanceof IHCElementWithChildren <?>)
+        aBrand = (IHCElementWithChildren <?>) aLabel;
+      else
+        aBrand = new HCSpan ().addChild (aLabel);
+
+    aBrand.addClass (CBootstrapCSS.NAVBAR_BRAND);
+    return aBrand;
+  }
+
+  @NonNull
+  public final BootstrapNavbar addBrand (@NonNull final IHCNode aLabel, @Nullable final ISimpleURL aURL)
+  {
+    addChild (createBrand (aLabel, aURL));
+    return this;
+  }
+
+  @NonNull
+  public final BootstrapNavbar addToggler (@NonNull @Nonempty final String sIDToToggle)
+  {
+    addChild (new BootstrapNavbarToggler (sIDToToggle));
+    return this;
+  }
+
+  /**
+   * Shortcut for {@link #addToggler(String)} and {@link #addAndReturnToggleable(String)} with an
+   * automatically assigned ID.
+   *
+   * @return The toggleable to be filled
+   */
+  @NonNull
+  public BootstrapNavbarToggleable addAndReturnToggleable ()
+  {
+    final String sIDToToggle = GlobalIDFactory.getNewStringID ();
+    addToggler (sIDToToggle);
+    return addAndReturnToggleable (sIDToToggle);
+  }
+
+  @NonNull
+  public BootstrapNavbarToggleable addAndReturnToggleable (@NonNull @Nonempty final String sIDToToggle)
+  {
+    final BootstrapNavbarToggleable ret = new BootstrapNavbarToggleable ().setID (sIDToToggle);
+    return addAndReturnChild (ret);
+  }
+
+  @NonNull
+  public BootstrapNavbarText addAndReturnText ()
+  {
+    return addAndReturnChild (new BootstrapNavbarText ());
+  }
+
+  @NonNull
+  public BootstrapNavbarNav addAndReturnNav ()
+  {
+    return addAndReturnChild (new BootstrapNavbarNav ());
+  }
+
+  @Override
+  protected void onFinalizeNodeState (@NonNull final IHCConversionSettingsToNode aConversionSettings,
+                                      @NonNull final IHCHasChildrenMutable <?, ? super IHCNode> aTargetNode)
+  {
+    super.onFinalizeNodeState (aConversionSettings, aTargetNode);
+    addClass (CBootstrapCSS.NAVBAR);
+    addClass (m_eExpand);
+    addClass (m_eBackground);
+  }
+}

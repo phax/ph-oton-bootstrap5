@@ -30,6 +30,7 @@ public final class CBootstrapCSS
 {
   // Note: all CSS classes were created via MainExtractBootstrap5CSSClasses for
   // 5.3.8
+  public static final ICSSClassProvider ACCORDION = DefaultCSSClassProvider.create ("accordion");
   public static final ICSSClassProvider ACCORDION_BODY = DefaultCSSClassProvider.create ("accordion-body");
   public static final ICSSClassProvider ACCORDION_BUTTON = DefaultCSSClassProvider.create ("accordion-button");
   public static final ICSSClassProvider ACCORDION_COLLAPSE = DefaultCSSClassProvider.create ("accordion-collapse");
