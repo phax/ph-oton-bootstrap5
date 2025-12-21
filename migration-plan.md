@@ -134,11 +134,14 @@ The Bootstrap 4 wrapper consists of 5 modules:
 - **Nav** (5 classes) - Minor CSS updates, add nav-underline support
 - **Table** (2 classes) - Add new table variants (striped-columns, etc.)
 
-#### 2.4 Update Path Providers
+#### 2.4 Update Path Providers ✅ COMPLETED
 
-- **EBootstrapCSSPathProvider.java**: ✅ Already updated to 5.3.8
-- **EBootstrapJSPathProvider.java**: Create and update paths to 5.3.8
-- Note: Bootstrap 5 dropped jQuery dependency (important!)
+- ✅ **EBootstrapCSSPathProvider.java**: Updated to Bootstrap 5.3.8
+- ✅ **EBootstrapJSPathProvider.java**: Created with Bootstrap 5.3.8 paths
+  - ✅ BOOTSTRAP: external/bootstrap/5.3.8/bootstrap.js (requires Popper.js separately)
+  - ✅ BOOTSTRAP_BUNDLE: external/bootstrap/5.3.8/bootstrap.bundle.js (includes Popper.js - recommended)
+  - ✅ BOOTSTRAP_PH: ph-oton/bootstrap5-ph.js (custom extensions)
+- ✅ Note: Bootstrap 5 uses Popper.js v2 (jQuery no longer required!)
 
 #### 2.5 Migrate Component Classes (Package by Package)
 

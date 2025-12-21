@@ -43,8 +43,7 @@ public abstract class AbstractBootstrapAlert <IMPLTYPE extends AbstractBootstrap
    */
   public static final String JS_EVENT_CLOSE = "close.bs.alert";
   /**
-   * This event is fired when the alert has been closed (will wait for CSS
-   * transitions to complete).
+   * This event is fired when the alert has been closed (will wait for CSS transitions to complete).
    */
   public static final String JS_EVENT_CLOSED = "closed.bs.alert";
 
@@ -56,7 +55,6 @@ public abstract class AbstractBootstrapAlert <IMPLTYPE extends AbstractBootstrap
 
   public AbstractBootstrapAlert (@NonNull final EBootstrapAlertType eType)
   {
-    super ();
     setType (eType);
     setRole (EHTMLRole.ALERT);
   }
@@ -114,7 +112,7 @@ public abstract class AbstractBootstrapAlert <IMPLTYPE extends AbstractBootstrap
     if (m_bShowClose)
     {
       addClass (CBootstrapCSS.ALERT_DISMISSIBLE);
-      addChild (new BootstrapCloseIcon ().withCustomAttrs (ca -> ca.setDataAttr ("dismiss", "alert")));
+      addChild (new BootstrapCloseIcon ().withCustomAttrs (ca -> ca.setDataAttr ("bs-dismiss", "alert")));
     }
   }
 

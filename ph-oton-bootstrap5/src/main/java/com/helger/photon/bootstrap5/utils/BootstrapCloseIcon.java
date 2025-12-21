@@ -26,6 +26,5 @@ public class BootstrapCloseIcon extends AbstractHCButton <BootstrapCloseIcon>
     addClass (CBootstrapCSS.BTN_CLOSE);
     // TODO translate
     customAttrs ().setAriaLabel ("Close");
-    customAttrs ().setDataAttr ("bs-dismiss", "modal");
   }
 }

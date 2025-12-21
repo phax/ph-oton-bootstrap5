@@ -14,20 +14,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.helger.photon.bootstrap5.modal;
+package com.helger.photon.bootstrap5;
 
-import com.helger.photon.bootstrap5.utils.BootstrapCloseIcon;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import com.helger.io.resource.ClassPathResource;
+import com.helger.io.resource.IReadableResource;
 
 /**
- * A special button that closes the current modal. This button may only be used within a modal
- * dialog!
+ * Test class for class {@link EBootstrapCSSPathProvider}.
  *
  * @author Philip Helger
  */
-public class BootstrapModalCloseButton extends BootstrapCloseIcon
+public final class EBootstrapCSSPathProviderTest
 {
-  public BootstrapModalCloseButton ()
+  @Test
+  public void testBasic ()
   {
-    customAttrs ().setDataAttr ("bs-dismiss", "modal");
+    for (final EBootstrapCSSPathProvider e : EBootstrapCSSPathProvider.values ())
+    {
+      IReadableResource aRes = new ClassPathResource (e.getCSSItemPath (true));
+      assertTrue (aRes.getPath (), aRes.exists ());
+      aRes = new ClassPathResource (e.getCSSItemPath (false));
+      assertTrue (aRes.getPath (), aRes.exists ());
+    }
   }
 }
