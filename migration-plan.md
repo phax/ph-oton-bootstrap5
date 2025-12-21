@@ -259,30 +259,30 @@ The Bootstrap 4 wrapper consists of 5 modules:
 - Using generic EUICtrlsCSSPathProvider.PRISMJS constant
 - Bootstrap-specific styling is minimal, handled by bootstrap-ext.css
 
-#### 3.2 Select2 Integration (1 class) - EASY
+#### 3.2 Select2 Integration (1 class) - EASY ✅ COMPLETED
 
-**Status:** Select2 is framework-agnostic, but may need Bootstrap 5 theme
+**Status:** Select2 is framework-agnostic; Bootstrap 5 theme applied
 
 **Migration Tasks:**
-1. Copy BootstrapSelect2 class
-2. Update package names
-3. Copy/update Select2 CSS and JS resources from bootstrap4-uictrls
-4. Check for Select2 Bootstrap 5 theme availability
-5. Update CSS class references for Bootstrap 5 form controls
-6. Update resource path providers
-7. Migrate unit tests for BootstrapSelect2
-8. Test dropdown styling with BS5
+1. ✅ Copy BootstrapSelect2 class
+2. ✅ Update package names (bootstrap4 → bootstrap5)
+3. ✅ Use Select2 Bootstrap 5 theme (theme = "bootstrap-5")
+4. ✅ Register CSS resources via ph-oton-uictrls: SELECT2 + SELECT2_BOOTSTRAP5
+5. ✅ Update resource path providers (EUICtrlsCSSPathProvider constants)
+6. ⏭️ Unit tests (none existed in bootstrap4-uictrls)
+7. ✅ Compile with BS5 (BUILD SUCCESS)
+8. ✅ Manual check: dropdown styling with BS5
 
-**Classes to migrate:**
-- BootstrapSelect2
+**Classes migrated:**
+- ✅ BootstrapSelect2
 
-**Resources to migrate:**
-- Select2 CSS files (regular + Bootstrap theme)
-- Select2 JavaScript files
-- Select2 language files
+**Resources used (from ph-oton-uictrls dependency):**
+- Select2 core CSS/JS
+- Select2 Bootstrap 5 theme CSS (select2-bootstrap-5-theme.css)
+- Select2 language files (if needed via dependency)
 
-**Tests to migrate:**
-- BootstrapSelect2Test (if exists)
+**Tests migrated:**
+- N/A (no Select2 tests in bootstrap4-uictrls)
 
 #### 3.3 Typeahead Integration (1 class) - EASY
 
