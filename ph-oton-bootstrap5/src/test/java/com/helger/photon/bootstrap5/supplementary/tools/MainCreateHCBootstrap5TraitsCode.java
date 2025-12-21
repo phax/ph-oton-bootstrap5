@@ -36,7 +36,7 @@ import com.helger.photon.bootstrap5.alert.BootstrapQuestionBox;
 import com.helger.photon.bootstrap5.alert.BootstrapSuccessBox;
 import com.helger.photon.bootstrap5.alert.BootstrapWarnBox;
 import com.helger.photon.bootstrap5.badge.BootstrapBadge;
-import com.helger.photon.bootstrap5.trait.IHCBootstrap5Trait;
+import com.helger.photon.bootstrap5.traits.IHCBootstrap5Trait;
 
 /**
  * Code creator for {@link IHCBootstrap5Trait}.
