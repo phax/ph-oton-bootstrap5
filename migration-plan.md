@@ -343,44 +343,40 @@ The Bootstrap 4 wrapper consists of 5 modules:
 **Tests migrated:**
 - N/A (no DataTables tests in bootstrap4-uictrls)
 
-#### 3.5 Custom Extensions (10 classes) - MODERATE
+#### 3.5 Custom Extensions (10 classes) - MODERATE ✅ COMPLETED
+
+**Status:** All extension classes migrated to Bootstrap 5 syntax and structure.
 
 **Migration Tasks:**
-1. **BootstrapCardCollapsible**: Update for BS5 collapse behavior, data-bs-* attributes
-2. **BootstrapFileUpload**: Verify file input styling in BS5
-3. **BootstrapLoginHTMLProvider**: Update form and card styling
-4. **BootstrapLoginManager**: Update modal/alert styling
-5. **BootstrapMenuItemRenderer**: Update nav/dropdown CSS classes
-6. **BootstrapMenuItemRendererHorz**: Update horizontal nav styling
-7. **BootstrapPageRenderer**: Update page structure and CSS includes
-8. **BootstrapSecurityUI**: Update security-related UI components
-9. **BootstrapSimpleTooltip**: Update for BS5 tooltip API (Popper.js v2)
-10. **BootstrapTechnicalUI**: Update technical UI components
+1. ✅ **BootstrapCardCollapsible**: Updated for BS5 collapse behavior (`data-bs-toggle`, `data-bs-target`), updated icons to FontAwesome 5.
+2. ✅ **BootstrapFileUpload**: Refactored to use standard `.form-control` (BS5 dropped `.custom-file`), added label support.
+3. ✅ **BootstrapLoginHTMLProvider**: Updated form grouping, spacing utilities (`ml` -> `ms`), and package imports.
+4. ✅ **BootstrapLoginManager**: Updated to use new HTML provider.
+5. ✅ **BootstrapMenuItemRenderer**: Verified nav/dropdown classes, updated imports.
+6. ✅ **BootstrapMenuItemRendererHorz**: Verified horizontal nav styling, updated imports.
+7. ✅ **BootstrapPageRenderer**: Updated spacing utilities (`ml-4` -> `ms-4`) for RTL support, updated breadcrumb/system message imports.
+8. ✅ **BootstrapSecurityUI**: Ported with updated imports.
+9. ✅ **BootstrapSimpleTooltip**: Updated to use `EFontAwesome5Icon` and `BootstrapTooltip` (Popper.js v2).
+10. ✅ **BootstrapTechnicalUI**: Ported with updated imports.
+11. ✅ **EBootstrapUICtrlsCSSPathProvider**: Created to provide `bootstrap-ext.css` path.
 
-**Classes to migrate:**
-- BootstrapCardCollapsible (data-toggle → data-bs-toggle)
-- BootstrapFileUpload
-- BootstrapLoginHTMLProvider
-- BootstrapLoginManager
-- BootstrapMenuItemRenderer
-- BootstrapMenuItemRendererHorz
-- BootstrapPageRenderer (update CSS/JS includes)
-- BootstrapSecurityUI
-- BootstrapSimpleTooltip (Popper.js v2)
-- BootstrapTechnicalUI
+**Classes migrated:**
+- ✅ BootstrapCardCollapsible
+- ✅ BootstrapFileUpload
+- ✅ BootstrapLoginHTMLProvider
+- ✅ BootstrapLoginManager
+- ✅ BootstrapMenuItemRenderer
+- ✅ BootstrapMenuItemRendererHorz
+- ✅ BootstrapPageRenderer
+- ✅ BootstrapSecurityUI
+- ✅ BootstrapSimpleTooltip
+- ✅ BootstrapTechnicalUI
 
-**Resources to migrate:**
-- Custom CSS files for extensions (if any in ph-oton resources)
-- Custom JavaScript helpers
+**Resources migrated:**
+- ✅ `bootstrap-ext.css` (via `EBootstrapUICtrlsCSSPathProvider`)
 
-**Tests to migrate:**
-- BootstrapCardCollapsibleTest
-- BootstrapFileUploadTest
-- BootstrapLoginManagerTest
-- BootstrapMenuItemRendererTest
-- BootstrapPageRendererTest
-- BootstrapSimpleTooltipTest
-- Other extension tests (if exist)
+**Tests migrated:**
+- ⏭️ Unit tests (none existed in bootstrap4-uictrls for these specific classes)
 
 #### 3.6 TreeView (2 classes) - MODERATE-HARD
 
