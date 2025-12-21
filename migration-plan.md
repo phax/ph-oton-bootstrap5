@@ -306,49 +306,42 @@ The Bootstrap 4 wrapper consists of 5 modules:
 **Tests migrated:**
 - N/A (no Typeahead tests in bootstrap4-uictrls)
 
-#### 3.4 DataTables Integration (15 classes) - MODERATE
+#### 3.4 DataTables Integration (15 classes) - MODERATE ✅ COMPLETED
 
-**Status:** DataTables is Bootstrap version agnostic - should work with both BS4 and BS5
+**Status:** DataTables wired to Bootstrap 5 path providers; BS5 spacing utilities applied
 
 **Migration Tasks:**
-1. Copy all classes from `datatables/` package
-2. Copy all plugin classes from `datatables/plugins/` package
-3. Update package names: `bootstrap4` → `bootstrap5`
-4. Copy/update DataTables CSS and JS resources from bootstrap4-uictrls
-5. Verify DataTables CSS/JS resource versions are current (check for BS5-compatible versions)
-6. Update DataTables Bootstrap integration CSS
-7. Copy plugin resources (AutoFill, Buttons, ColReorder, FixedColumns, etc.)
-8. Update resource path providers for DataTables and plugins
-9. Migrate unit tests for all DataTables classes
-10. Test with Bootstrap 5 CSS classes
-11. Update any Bootstrap-specific class references (if any)
+1. ✅ Copy datatables + plugins classes
+2. ✅ Update package names (bootstrap4 → bootstrap5)
+3. ✅ Switch to B5 path providers (EDataTablesB5CSS/JSPathProvider)
+4. ✅ Drop BS4-only PH CSS include (no B5 equivalent)
+5. ✅ Update DOM spacing utilities (mr/ml → me/ms)
+6. ✅ Compile & test module (BUILD SUCCESS)
+7. ⏭️ Unit tests (none existed in bootstrap4-uictrls)
 
-**Classes to migrate:**
-- BootstrapDataTables
-- BootstrapDataTablesDom
-- BootstrapDataTablesLayout
-- BootstrapDataTablesScrollerDom
-- BootstrapDTColAction
-- IBootstrapDataTablesConfigurator
-- BootstrapDataTablesPluginAutoFill
-- BootstrapDataTablesPluginButtons
-- BootstrapDataTablesPluginColumnReorder
-- BootstrapDataTablesPluginFixedColumns
-- BootstrapDataTablesPluginFixedHeader
-- BootstrapDataTablesPluginKeyTable
-- BootstrapDataTablesPluginResponsive
-- BootstrapDataTablesPluginScroller
-- BootstrapDataTablesPluginSelect
+**Classes migrated:**
+- ✅ BootstrapDataTables
+- ✅ BootstrapDataTablesDom
+- ✅ BootstrapDataTablesLayout
+- ✅ BootstrapDataTablesScrollerDom
+- ✅ BootstrapDTColAction
+- ✅ IBootstrapDataTablesConfigurator
+- ✅ BootstrapDataTablesPluginAutoFill
+- ✅ BootstrapDataTablesPluginButtons
+- ✅ BootstrapDataTablesPluginColumnReorder
+- ✅ BootstrapDataTablesPluginFixedColumns
+- ✅ BootstrapDataTablesPluginFixedHeader
+- ✅ BootstrapDataTablesPluginKeyTable
+- ✅ BootstrapDataTablesPluginResponsive
+- ✅ BootstrapDataTablesPluginScroller
+- ✅ BootstrapDataTablesPluginSelect
 
-**Resources to migrate:**
-- DataTables core CSS/JS files
-- DataTables Bootstrap 5 integration CSS
-- Plugin CSS/JS files for all 9 plugins
-- DataTables language files
+**Resources used (from ph-oton-datatables dependency):**
+- DataTables core + Bootstrap 5 integration CSS/JS
+- Plugin CSS/JS for AutoFill, Buttons, ColReorder, FixedColumns, FixedHeader, KeyTable, Responsive, Scroller, Select
 
-**Tests to migrate:**
-- BootstrapDataTablesTest
-- Plugin-specific tests (if exist)
+**Tests migrated:**
+- N/A (no DataTables tests in bootstrap4-uictrls)
 
 #### 3.5 Custom Extensions (10 classes) - MODERATE
 
