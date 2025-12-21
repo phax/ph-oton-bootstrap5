@@ -178,12 +178,14 @@ The Bootstrap 4 wrapper consists of 5 modules:
 **Phase 2.5.6 - Utilities & Base** ✅ COMPLETED
 19. ✅ **utils/** (29 classes) - Migrated, updated EBootstrapFontType for BS5 utility class names (fw-*, fst-*)
 20. ✅ **base/** (2 classes) - Migrated (AbstractBootstrapDiv, AbstractBootstrapObject)
-21. **config/** - TO BE UPDATED
+21. ✅ **config/** (1 class) - Migrated (ThirdPartyModuleProvider_ph_oton_bootstrap5)
 
 **Migration Summary:**
 - **Migrated Packages:** 18/18 packages (including base and utils)
 - **Total Classes Migrated:** 121 classes
+- **Additional Files Created:** BootstrapCustomConfig.java, ThirdPartyModuleProvider_ph_oton_bootstrap5.java, SPI service registration
 - **Compilation Status:** ✅ BUILD SUCCESS
+- **Tests Status:** ✅ All path provider tests passing
 - **Known CSS Updates Needed:**
   - EBootstrapFontType: ✅ Updated (FONT_WEIGHT_BOLD → FW_BOLD, TEXT_MONOSPACE → FONT_MONOSPACE, etc.)
   - Badge pill classes: badge-pill → rounded-pill (pending)
@@ -191,9 +193,17 @@ The Bootstrap 4 wrapper consists of 5 modules:
   - Data attributes: data-* → data-bs-* throughout (pending)
   - Grid XXL breakpoint: Add EBootstrapGridXXL enum (pending)
 
-#### 2.6 Update Third-Party Module Provider
+#### 2.6 Configuration & Third-Party Module Provider ✅ COMPLETED
 
-- Update `config/ThirdPartyModuleProvider_ph_oton_bootstrap5.java`
+- ✅ **BootstrapCustomConfig.java**: Created - allows customization of Bootstrap CSS/JS paths
+  - ✅ Updated to use BOOTSTRAP_BUNDLE by default (includes Popper.js v2)
+  - ✅ Removed jQuery dependency (Bootstrap 5 doesn't require it)
+  - ✅ Thread-safe configuration with read-write locks
+- ✅ **config/ThirdPartyModuleProvider_ph_oton_bootstrap5.java**: Created SPI implementation
+  - ✅ Registers Bootstrap 5.3.8 as third-party module
+  - ✅ MIT License declaration
+  - ✅ Documentation link to Bootstrap 5.3 docs
+- ✅ **META-INF/services/com.helger.base.thirdparty.IThirdPartyModuleProviderSPI**: Created SPI registration file
 
 ---
 

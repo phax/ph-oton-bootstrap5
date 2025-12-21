@@ -33,7 +33,7 @@ public enum EBootstrapGridType
   SM ("-sm", 576, 768),
   MD ("-md", 768, 992),
   LG ("-lg", 992, 1200),
-  XL ("-xl", 1200, -1),
+  XL ("-xl", 1200, 1400),
   XXL ("-xxl", 1400, -1);
 
   private final String m_sCSSClassNamePart;
