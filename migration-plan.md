@@ -378,26 +378,27 @@ The Bootstrap 4 wrapper consists of 5 modules:
 **Tests migrated:**
 - ⏭️ Unit tests (none existed in bootstrap4-uictrls for these specific classes)
 
-#### 3.6 TreeView (2 classes) - MODERATE-HARD
+#### 3.6 TreeView (2 classes) ✅ COMPLETED
 
-**Status:** Bootstrap TreeView may need BS5 compatible version
+**Status:** Replaced with Quercus.js (v0.3.1)
 
 **Migration Tasks:**
-1. Find Bootstrap 5 compatible TreeView library
-2. Update BootstrapTreeView and BootstrapTreeViewItem
-3. Copy/update TreeView CSS and JS resources from bootstrap4-uictrls
-4. Update CSS classes for BS5
-5. Update resource path providers
-6. Update icon classes if using FontAwesome
-7. Migrate unit tests for TreeView classes
-8. Test expand/collapse functionality
+1. ✅ Find Bootstrap 5 compatible TreeView library (Selected Quercus.js)
+2. ✅ Update BootstrapTreeView and BootstrapTreeViewItem
+3. ✅ Copy/update TreeView CSS and JS resources (v0.3.1)
+4. ✅ Update CSS classes for BS5
+5. ✅ Update resource path providers
+6. ✅ Update icon classes if using FontAwesome
+7. ✅ Migrate unit tests for TreeView classes
+8. ✅ Test expand/collapse functionality
 
 **Classes to migrate:**
 - BootstrapTreeView
 - BootstrapTreeViewItem
 
 **Resources to migrate:**
-- Bootstrap TreeView CSS files
+- Quercus.js CSS files (v0.3.1)
+- Quercus.js JavaScript files (v0.3.1)
 - Bootstrap TreeView JavaScript files
 - TreeView icons/images
 
@@ -424,27 +425,29 @@ The Bootstrap 4 wrapper consists of 5 modules:
   - Completely new API
 
 **Migration Tasks:**
-1. Download Tempus Dominus v6.10.4 from GitHub releases
-2. Study new API documentation at https://getdatepicker.com/
-3. **Download and integrate Tempus Dominus v6.10.4 CSS/JS resources**
-   - Download from GitHub: tempus-dominus.css, tempus-dominus.js
-   - Remove old Bootstrap DateTimePicker CSS/JS files
-   - Update resource directory structure
-4. **Complete rewrite** of all DateTimePicker classes:
-   - Remove Moment.js dependencies
-   - Update to native Date API
-   - Rewrite format builders for new format system
-   - Update all configuration options (breaking changes)
-   - Update event handlers (new event system)
-5. Create/update resource path providers for Tempus Dominus
-6. Update CSS class references for BS5
-7. Rewrite localization support
-8. **Rewrite all unit tests** for new API:
-   - Update test expectations for native Date API
-   - Test all format builders with new format system
-   - Test localization with new i18n system
-   - Test event handlers with new event system
-9. Extensive testing of all date/time scenarios
+1. **Resources**:
+   - Download Tempus Dominus v6.10.4 (or latest) from GitHub releases.
+   - Files: `tempus-dominus.min.css`, `tempus-dominus.min.js`.
+   - Remove old `bootstrap-datetimepicker` resources.
+   - Update `EBootstrapUICtrlsCSSPathProvider` and `EBootstrapUICtrlsJSPathProvider`.
+2. **Java Implementation (Major Rewrite)**:
+   - **BootstrapDateTimePicker**:
+     - Rewrite initialization to use `new tempusDominus.TempusDominus(element, options)`.
+     - Refactor option generation to match the new **nested JSON structure** (`display`, `restrictions`, `localization`, `hooks`).
+     - **Icons**: Explicitly configure FontAwesome 4 icons (default is FA6).
+   - **BootstrapDateTimePickerJS**:
+     - Update to generate vanilla JS initialization script.
+   - **Format Handling**:
+     - **EMomentsDateTimePickerFormatToken**: Rename to `ETempusDominusFormatToken`.
+     - **CRITICAL**: Map Moment.js tokens to **Intl.DateTimeFormat** tokens (e.g., `YYYY` -> `yyyy`, `DD` -> `dd`).
+     - Update `BootstrapDateTimePickerFormatBuilder` logic.
+   - **Enums**:
+     - Rename `EBootstrap4...` to `EBootstrap5...`.
+     - Update `EBootstrapDateTimePickerViewModeType` (check for changes like `decades`).
+3. **Localization**:
+   - Verify if separate locale files are needed or if `Intl` handles it.
+4. **Testing**:
+   - Rewrite unit tests for the new format builder and option generation.
 
 **Classes to migrate:**
 - Bootstrap4DateTimePickerFormatBuilder → Bootstrap5DateTimePickerFormatBuilder

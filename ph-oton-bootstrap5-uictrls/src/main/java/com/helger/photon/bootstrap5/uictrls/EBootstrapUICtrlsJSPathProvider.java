@@ -25,7 +25,8 @@ import com.helger.html.resource.js.IJSPathProvider;
 
 public enum EBootstrapUICtrlsJSPathProvider implements IJSPathProvider
 {
-  TREE_VIEW ("external/quercusjs/0.3.1/treeview.js");
+  TREE_VIEW ("external/quercusjs/0.3.1/treeview.js"),
+  DATETIMEPICKER ("external/tempusdominus/6.9.4/tempus-dominus.js");
 
   private final ConstantJSPathProvider m_aPP;
 

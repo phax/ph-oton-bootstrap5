@@ -33,6 +33,7 @@ import com.helger.html.resource.css.ICSSPathProvider;
 public enum EBootstrapUICtrlsCSSPathProvider implements ICSSPathProvider
 {
   TREE_VIEW ("external/quercusjs/0.3.1/treeview.css"),
+  DATETIMEPICKER ("external/tempusdominus/6.9.4/tempus-dominus.css"),
   BOOTSTRAP_EXT ("ph-oton/bootstrap-ext.css");
 
   private final ConstantCSSPathProvider m_aPP;
