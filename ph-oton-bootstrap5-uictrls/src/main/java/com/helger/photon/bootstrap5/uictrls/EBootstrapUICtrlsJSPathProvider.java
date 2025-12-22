@@ -20,46 +20,31 @@ import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import com.helger.annotation.Nonempty;
-import com.helger.annotation.style.ReturnsMutableCopy;
-import com.helger.css.media.ICSSMediaList;
-import com.helger.html.resource.css.ConstantCSSPathProvider;
-import com.helger.html.resource.css.ICSSPathProvider;
+import com.helger.html.resource.js.ConstantJSPathProvider;
+import com.helger.html.resource.js.IJSPathProvider;
 
-/**
- * Contains default CSS paths within this library.
- *
- * @author Philip Helger
- */
-public enum EBootstrapUICtrlsCSSPathProvider implements ICSSPathProvider
+public enum EBootstrapUICtrlsJSPathProvider implements IJSPathProvider
 {
-  TREE_VIEW ("external/quercusjs/0.3.1/treeview.css"),
-  BOOTSTRAP_EXT ("ph-oton/bootstrap-ext.css");
+  TREE_VIEW ("external/quercusjs/0.3.1/treeview.js");
 
-  private final ConstantCSSPathProvider m_aPP;
+  private final ConstantJSPathProvider m_aPP;
 
-  EBootstrapUICtrlsCSSPathProvider (@NonNull @Nonempty final String sPath)
+  EBootstrapUICtrlsJSPathProvider (@NonNull @Nonempty final String sPath)
   {
-    m_aPP = ConstantCSSPathProvider.builder ().path (sPath).minifiedPathFromPath ().build ();
+    m_aPP = ConstantJSPathProvider.builder ().path (sPath).minifiedPathFromPath ().build ();
   }
 
   @NonNull
   @Nonempty
-  public String getCSSItemPath (final boolean bRegular)
+  public String getJSItemPath (final boolean bRegular)
   {
-    return m_aPP.getCSSItemPath (bRegular);
+    return m_aPP.getJSItemPath (bRegular);
   }
 
   @Nullable
   public String getConditionalComment ()
   {
     return m_aPP.getConditionalComment ();
-  }
-
-  @NonNull
-  @ReturnsMutableCopy
-  public ICSSMediaList getMediaList ()
-  {
-    return m_aPP.getMediaList ();
   }
 
   public boolean isBundlable ()
