@@ -1,0 +1,124 @@
+/*
+ * Copyright (C) 2018-2025 Philip Helger (www.helger.com)
+ * philip[at]helger[dot]com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.helger.photon.bootstrap5.pages.sysinfo;
+
+import java.util.Locale;
+import java.util.Map;
+
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
+
+import com.helger.annotation.Nonempty;
+import com.helger.annotation.misc.Translatable;
+import com.helger.base.compare.ESortOrder;
+import com.helger.html.hc.html.tabular.HCRow;
+import com.helger.html.hc.html.tabular.HCTable;
+import com.helger.html.hc.impl.HCNodeList;
+import com.helger.photon.bootstrap5.pages.AbstractBootstrapWebPage;
+import com.helger.photon.bootstrap5.uictrls.datatables.BootstrapDataTables;
+import com.helger.photon.uicore.page.EWebPageText;
+import com.helger.photon.uicore.page.IWebPageExecutionContext;
+import com.helger.photon.uictrls.datatables.DataTables;
+import com.helger.photon.uictrls.datatables.column.DTCol;
+import com.helger.text.IMultilingualText;
+import com.helger.text.display.IHasDisplayText;
+import com.helger.text.resolve.DefaultTextResolver;
+import com.helger.text.util.TextHelper;
+
+/**
+ * Page with all environment variables
+ *
+ * @author Philip Helger
+ * @param <WPECTYPE>
+ *        Web Page Execution Context type
+ */
+public class BasePageSysInfoEnvironmentVariables <WPECTYPE extends IWebPageExecutionContext> extends AbstractBootstrapWebPage <WPECTYPE>
+{
+  @Translatable
+  protected enum EText implements IHasDisplayText
+  {
+    MSG_NAME ("Name", "Name"),
+    MSG_VALUE ("Wert", "Value"),
+    MSG_HIDDEN_VALUE ("*versteckt*", "*hidden*");
+
+    private final IMultilingualText m_aTP;
+
+    EText (final String sDE, final String sEN)
+    {
+      m_aTP = TextHelper.create_DE_EN (sDE, sEN);
+    }
+
+    @Nullable
+    public String getDisplayText (@NonNull final Locale aContentLocale)
+    {
+      return DefaultTextResolver.getTextStatic (this, m_aTP, aContentLocale);
+    }
+  }
+
+  public BasePageSysInfoEnvironmentVariables (@NonNull @Nonempty final String sID)
+  {
+    super (sID, EWebPageText.PAGE_NAME_SYSINFO_ENV_VARS.getAsMLT ());
+  }
+
+  public BasePageSysInfoEnvironmentVariables (@NonNull @Nonempty final String sID, @NonNull final String sName)
+  {
+    super (sID, sName);
+  }
+
+  public BasePageSysInfoEnvironmentVariables (@NonNull @Nonempty final String sID,
+                                              @NonNull final String sName,
+                                              @Nullable final String sDescription)
+  {
+    super (sID, sName, sDescription);
+  }
+
+  public BasePageSysInfoEnvironmentVariables (@NonNull @Nonempty final String sID,
+                                              @NonNull final IMultilingualText aName,
+                                              @Nullable final IMultilingualText aDescription)
+  {
+    super (sID, aName, aDescription);
+  }
+
+  @Override
+  protected void fillContent (@NonNull final WPECTYPE aWPEC)
+  {
+    final HCNodeList aNodeList = aWPEC.getNodeList ();
+    final Locale aDisplayLocale = aWPEC.getDisplayLocale ();
+
+    final HCTable aTable = new HCTable (new DTCol (EText.MSG_NAME.getDisplayText (aDisplayLocale)).setInitialSorting (ESortOrder.ASCENDING),
+                                        new DTCol (EText.MSG_VALUE.getDisplayText (aDisplayLocale))).setID (getID ());
+
+    // For all environment variables
+    for (final Map.Entry <String, String> aEntry : System.getenv ().entrySet ())
+    {
+      final String sName = aEntry.getKey ();
+      final String sNameLC = sName.toLowerCase (Locale.ROOT);
+      final String sValue = aEntry.getValue ();
+
+      final HCRow aRow = aTable.addBodyRow ();
+      aRow.addCell (sName);
+      if (sNameLC.startsWith ("secret_"))
+        aRow.addCell (EText.MSG_HIDDEN_VALUE.getDisplayText (aDisplayLocale));
+      else
+        aRow.addCell (sValue);
+    }
+    aNodeList.addChild (aTable);
+
+    final DataTables aDataTables = BootstrapDataTables.createDefaultDataTables (aWPEC, aTable);
+    aNodeList.addChild (aDataTables);
+  }
+}
