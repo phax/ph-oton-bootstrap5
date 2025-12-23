@@ -25,7 +25,6 @@ import java.util.Map;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
-import com.helger.annotation.style.OverrideOnDemand;
 import com.helger.base.enforce.ValueEnforcer;
 import com.helger.base.state.ETriState;
 import com.helger.base.string.StringHelper;
@@ -89,11 +88,6 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
   private ETriState m_eUseCurrent = ETriState.FALSE;
   private IHCNode m_aPrependIcon = DEFAULT_PREPEND_ICON;
   private final ICommonsOrderedMap <String, String> m_aIcons = new CommonsLinkedHashMap <> ();
-
-  public BootstrapDateTimePicker (@NonNull final RequestField aRF, @NonNull final Locale aDisplayLocale)
-  {
-    this (new HCEdit (aRF), aDisplayLocale);
-  }
 
   public BootstrapDateTimePicker (@NonNull final HCEdit aEdit, @NonNull final Locale aDisplayLocale)
   {
@@ -436,10 +430,41 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
     PhotonCSS.registerCSSIncludeForThisRequest (EBootstrapUICtrlsCSSPathProvider.DATETIMEPICKER);
   }
 
-  @Override
-  @OverrideOnDemand
-  public String toString ()
+  @NonNull
+  public static BootstrapDateTimePicker create (@NonNull final String sName,
+                                                @Nullable final LocalDate aInitialValue,
+                                                @NonNull final Locale aDisplayLocale)
   {
-    return super.toString ();
+    return new BootstrapDateTimePicker (new HCEdit (new RequestField (sName)), aDisplayLocale).setInitialDate (
+                                                                                                               aInitialValue)
+                                                                                              .setMode (EBootstrap5DateTimePickerMode.DATE);
+  }
+
+  @NonNull
+  public static BootstrapDateTimePicker create (@NonNull final String sName,
+                                                @Nullable final LocalTime aInitialValue,
+                                                @NonNull final Locale aDisplayLocale)
+  {
+    return new BootstrapDateTimePicker (new HCEdit (new RequestField (sName)), aDisplayLocale).setInitialDate (
+                                                                                                               aInitialValue)
+                                                                                              .setMode (EBootstrap5DateTimePickerMode.TIME);
+  }
+
+  @NonNull
+  public static BootstrapDateTimePicker create (@NonNull final String sName,
+                                                @Nullable final LocalDateTime aInitialValue,
+                                                @NonNull final Locale aDisplayLocale)
+  {
+    return new BootstrapDateTimePicker (new HCEdit (new RequestField (sName)), aDisplayLocale).setInitialDate (
+                                                                                                               aInitialValue)
+                                                                                              .setMode (EBootstrap5DateTimePickerMode.DATE_TIME);
+  }
+
+  @NonNull
+  public static BootstrapDateTimePicker create (@NonNull final String sName,
+                                                @NonNull final Locale aDisplayLocale,
+                                                @NonNull final EBootstrap5DateTimePickerMode eMode)
+  {
+    return new BootstrapDateTimePicker (new HCEdit (new RequestField (sName)), aDisplayLocale).setMode (eMode);
   }
 }

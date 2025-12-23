@@ -501,25 +501,113 @@ The Bootstrap 4 wrapper consists of 5 modules:
 
 ### Phase 4: Pages Module (ph-oton-bootstrap5-pages)
 
-#### 4.1 Update Base Pages
+#### 4.1 Update Base Pages ✅ COMPLETED
 
-- `AbstractBootstrapWebPageForm`
-- `BootstrapPagesMenuConfigurator`
+**Status:** Base page classes and menu configurator created.
 
-#### 4.2 Update System Info Pages
+**Migration Tasks:**
+1. ✅ **Base Classes**:
+   - Created `BootstrapWebPageUIHandler` (updated imports).
+   - Created `AbstractBootstrapWebPage` (updated imports).
+   - Created `AbstractBootstrapWebPageForm` (updated imports).
+   - Created `AbstractBootstrapWebPageSimpleForm` (updated imports).
+2. ✅ **Menu Configurator**:
+   - Created `BootstrapPagesMenuConfigurator` (updated imports).
+   - **Note:** This class currently has compilation errors because the referenced page classes (in subpackages) are not yet created. These will be resolved in subsequent steps.
 
-- All `BasePageSysInfo*` classes
-- Update form layouts for Bootstrap 5
+**Classes created:**
+- ✅ BootstrapWebPageUIHandler
+- ✅ AbstractBootstrapWebPage
+- ✅ AbstractBootstrapWebPageForm
+- ✅ AbstractBootstrapWebPageSimpleForm
+- ✅ BootstrapPagesMenuConfigurator
 
-#### 4.3 Update Application Info Pages
+#### 4.2 Handler Classes (7 classes)
 
-- All `BasePageAppInfo*` classes
-- Update table and card layouts
+**Classes to migrate:**
+- `AbstractBootstrapWebPageActionHandler`
+- `AbstractBootstrapWebPageActionHandlerDelete`
+- `AbstractBootstrapWebPageActionHandlerMulti`
+- `AbstractBootstrapWebPageActionHandlerMultiDelete`
+- `AbstractBootstrapWebPageActionHandlerMultiUndelete`
+- `AbstractBootstrapWebPageActionHandlerUndelete`
+- `AbstractBootstrapWebPageActionHandlerWithQuery`
 
-#### 4.4 Update Utility Pages
+#### 4.3 AppInfo Pages (9 classes)
 
+**Classes to migrate:**
+- `BasePageAppInfoAjaxFunctions`
+- `BasePageAppInfoAPI`
+- `BasePageAppInfoConfigurationFiles`
+- `BasePageAppInfoGlobalScope`
+- `BasePageAppInfoGo`
+- `BasePageAppInfoPathMapper`
+- `BasePageAppInfoScheduler`
+- `BasePageAppInfoServletStatus`
+- `BasePageAppInfoWebSiteResourceBundles`
+
+#### 4.4 Data Pages (4 classes)
+
+**Classes to migrate:**
+- `BasePageDataCountries`
+- `BasePageDataCurrencies`
+- `BasePageDataLanguages`
+- `BasePageDataTimeZones`
+
+#### 4.5 Monitoring Pages (7 classes)
+
+**Classes to migrate:**
+- `BasePageMonitoringAudit`
+- `BasePageMonitoringFailedMails`
+- `BasePageMonitoringLockedObjects`
+- `BasePageMonitoringLoginInfo`
+- `BasePageMonitoringSessions`
+- `BasePageMonitoringStatistics`
+- `BasePageMonitoringSystemMigrations`
+
+#### 4.6 Security Pages (8 classes)
+
+**Classes to migrate:**
+- `AbstractWebPageSecurityObjectWithAttributes`
+- `AbstractWebPageSecurityToken`
+- `BasePageSecurityChangePassword`
+- `BasePageSecurityRoleManagement`
+- `BasePageSecurityUserGroupManagement`
+- `BasePageSecurityUserManagement`
+- `BasePageSecurityUserTokenManagement`
+- `SecurityUIHelper`
+
+#### 4.7 Settings Pages (6 classes)
+
+**Classes to migrate:**
+- `BasePageSettingsGlobal`
+- `BasePageSettingsHTML`
+- `BasePageSettingsLogLevel`
+- `BasePageSettingsSMTP`
+- `BasePageSettingsSystemMessage`
+- `InternalLog4J2Handler`
+
+#### 4.8 SysInfo Pages (10 classes)
+
+**Classes to migrate:**
+- `BasePageSysInfoCACerts`
+- `BasePageSysInfoEnvironmentVariables`
+- `BasePageSysInfoNetwork`
+- `BasePageSysInfoRequest`
+- `BasePageSysInfoSecurity`
+- `BasePageSysInfoServletContext`
+- `BasePageSysInfoSystemProperties`
+- `BasePageSysInfoThirdPartyLibraries`
+- `BasePageSysInfoThreads`
+- `NetworkInterfaceHelper`
+
+#### 4.9 Utils Pages (4 classes)
+
+**Classes to migrate:**
+- `BasePageUtilsBase64Decode`
+- `BasePageUtilsBase64Encode`
+- `BasePageUtilsHttpClient`
 - `BasePageUtilsPortChecker`
-- Others as needed
 
 ---
 

@@ -1,0 +1,202 @@
+/*
+ * Copyright (C) 2018-2025 Philip Helger (www.helger.com)
+ * philip[at]helger[dot]com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.helger.photon.bootstrap5.demo.pub;
+
+import java.util.Locale;
+
+import org.jspecify.annotations.NonNull;
+
+import com.helger.collection.commons.CommonsArrayList;
+import com.helger.collection.commons.ICommonsList;
+import com.helger.html.css.DefaultCSSClassProvider;
+import com.helger.html.css.ICSSClassProvider;
+import com.helger.html.hc.IHCNode;
+import com.helger.html.hc.html.grouping.HCDiv;
+import com.helger.html.hc.html.grouping.HCP;
+import com.helger.html.hc.html.grouping.HCUL;
+import com.helger.html.hc.html.textlevel.HCA;
+import com.helger.html.hc.html.textlevel.HCSpan;
+import com.helger.html.hc.html.textlevel.HCStrong;
+import com.helger.html.hc.impl.HCNodeList;
+import com.helger.photon.app.url.LinkHelper;
+import com.helger.photon.bootstrap5.CBootstrapCSS;
+import com.helger.photon.bootstrap5.breadcrumb.BootstrapBreadcrumb;
+import com.helger.photon.bootstrap5.breadcrumb.BootstrapBreadcrumbProvider;
+import com.helger.photon.bootstrap5.demo.app.CApp;
+import com.helger.photon.bootstrap5.demo.app.ui.AppCommonUI;
+import com.helger.photon.bootstrap5.demo.pub.menu.CMenuPublic;
+import com.helger.photon.bootstrap5.grid.BootstrapCol;
+import com.helger.photon.bootstrap5.grid.BootstrapRow;
+import com.helger.photon.bootstrap5.layout.BootstrapContainer;
+import com.helger.photon.bootstrap5.navbar.BootstrapNavbar;
+import com.helger.photon.bootstrap5.navbar.BootstrapNavbarToggleable;
+import com.helger.photon.bootstrap5.navbar.EBootstrapNavbarExpandType;
+import com.helger.photon.bootstrap5.uictrls.ext.BootstrapMenuItemRenderer;
+import com.helger.photon.bootstrap5.uictrls.ext.BootstrapMenuItemRendererHorz;
+import com.helger.photon.bootstrap5.uictrls.ext.BootstrapPageRenderer;
+import com.helger.photon.core.EPhotonCoreText;
+import com.helger.photon.core.appid.CApplicationID;
+import com.helger.photon.core.appid.PhotonGlobalState;
+import com.helger.photon.core.execcontext.ILayoutExecutionContext;
+import com.helger.photon.core.html.CLayout;
+import com.helger.photon.core.menu.IMenuItemExternal;
+import com.helger.photon.core.menu.IMenuItemPage;
+import com.helger.photon.core.menu.IMenuItemRedirectToPage;
+import com.helger.photon.core.menu.IMenuObject;
+import com.helger.photon.core.menu.IMenuSeparator;
+import com.helger.photon.core.menu.IMenuTree;
+import com.helger.photon.core.menu.MenuItemDeterminatorCallback;
+import com.helger.photon.core.servlet.LogoutServlet;
+import com.helger.photon.security.user.IUser;
+import com.helger.photon.security.util.SecurityHelper;
+import com.helger.url.ISimpleURL;
+import com.helger.url.SimpleURL;
+import com.helger.web.scope.IRequestWebScopeWithoutResponse;
+
+/**
+ * The viewport renderer (menu + content area)
+ *
+ * @author Philip Helger
+ */
+public final class AppRendererPublic
+{
+  private static final ICSSClassProvider CSS_CLASS_FOOTER_LINKS = DefaultCSSClassProvider.create ("footer-links");
+
+  private static final ICommonsList <IMenuObject> FOOTER_OBJS = new CommonsArrayList <> ();
+
+  static
+  {
+    PhotonGlobalState.state (CApplicationID.APP_ID_PUBLIC).getMenuTree ().iterateAllMenuObjects (aCurrentObject -> {
+      if (aCurrentObject.attrs ().containsKey (CMenuPublic.FLAG_FOOTER))
+        FOOTER_OBJS.add (aCurrentObject);
+    });
+  }
+
+  private AppRendererPublic ()
+  {}
+
+  @NonNull
+  private static BootstrapNavbar _getNavbar (@NonNull final ILayoutExecutionContext aLEC)
+  {
+    final Locale aDisplayLocale = aLEC.getDisplayLocale ();
+    final ISimpleURL aLinkToStartPage = aLEC.getLinkToMenuItem (aLEC.getMenuTree ().getDefaultMenuItemID ());
+    final IRequestWebScopeWithoutResponse aRequestScope = aLEC.getRequestScope ();
+    final IUser aUser = aLEC.getLoggedInUser ();
+
+    final BootstrapNavbar aNavbar = new BootstrapNavbar ().setExpand (EBootstrapNavbarExpandType.EXPAND_MD);
+    aNavbar.addBrand (new HCSpan ().addClass (AppCommonUI.CSS_CLASS_LOGO1).addChild (CApp.getApplicationTitle ()),
+                      aLinkToStartPage);
+
+    final BootstrapNavbarToggleable aToggleable = aNavbar.addAndReturnToggleable ();
+    if (aUser != null)
+    {
+      aToggleable.addAndReturnText ()
+                 .addChild ("Logged in as ")
+                 .addChild (new HCStrong ().addChild (SecurityHelper.getUserDisplayName (aUser, aDisplayLocale)));
+
+      aToggleable.addAndReturnNav ()
+                 .addItem ()
+                 .addNavLink (LinkHelper.getURLWithContext (aRequestScope, LogoutServlet.SERVLET_DEFAULT_PATH))
+                 .addChild (EPhotonCoreText.LOGIN_LOGOUT.getDisplayText (aDisplayLocale));
+    }
+
+    return aNavbar;
+  }
+
+  @NonNull
+  public static IHCNode getMenuContent (@NonNull final ILayoutExecutionContext aLEC)
+  {
+    // Main menu
+    final IMenuTree aMenuTree = aLEC.getMenuTree ();
+    final MenuItemDeterminatorCallback aCallback = new MenuItemDeterminatorCallback (aMenuTree,
+                                                                                     aLEC.getSelectedMenuItemID ())
+    {
+      @Override
+      protected boolean isMenuItemValidToBeDisplayed (@NonNull final IMenuObject aMenuObj)
+      {
+        // Don't show items that belong to the footer
+        if (aMenuObj.attrs ().containsKey (CMenuPublic.FLAG_FOOTER))
+          return false;
+
+        // Use default code
+        return super.isMenuItemValidToBeDisplayed (aMenuObj);
+      }
+    };
+    return BootstrapMenuItemRenderer.createSideBarMenu (aLEC, aCallback);
+  }
+
+  @NonNull
+  public static IHCNode getContent (@NonNull final ILayoutExecutionContext aLEC)
+  {
+    final Locale aDisplayLocale = aLEC.getDisplayLocale ();
+    final HCNodeList ret = new HCNodeList ();
+
+    // Header
+    ret.addChild (_getNavbar (aLEC));
+
+    final BootstrapContainer aOuterContainer = ret.addAndReturnChild (new BootstrapContainer ().setFluid (true));
+
+    // Breadcrumbs
+    {
+      final BootstrapBreadcrumb aBreadcrumbs = BootstrapBreadcrumbProvider.createBreadcrumb (aLEC);
+      aBreadcrumbs.addClasses (CBootstrapCSS.D_NONE, CBootstrapCSS.D_SM_BLOCK);
+      aOuterContainer.addChild (aBreadcrumbs);
+    }
+    // Content
+    {
+      final BootstrapRow aRow = aOuterContainer.addAndReturnChild (new BootstrapRow ());
+      final BootstrapCol aCol1 = aRow.createColumn (12, 12, 4, 4, 3, 3);
+      final BootstrapCol aCol2 = aRow.createColumn (12, 12, 8, 8, 9, 9);
+
+      // left
+      // We need a wrapper span for easy AJAX content replacement
+      aCol1.addChild (new HCSpan ().setID (CLayout.LAYOUT_AREAID_MENU).addChild (getMenuContent (aLEC)));
+      aCol1.addChild (new HCDiv ().setID (CLayout.LAYOUT_AREAID_SPECIAL));
+
+      // content
+      aCol2.addChild (BootstrapPageRenderer.getPageContent (aLEC));
+    }
+    // Footer
+    {
+      final BootstrapContainer aDiv = new BootstrapContainer ().setFluid (true).setID (CLayout.LAYOUT_AREAID_FOOTER);
+
+      aDiv.addChild (new HCP ().addChild ("Demo web application for the ")
+                               .addChild (new HCA (new SimpleURL ("https://github.com/phax/ph-oton")).addChild ("ph-oton"))
+                               .addChild (" stack"));
+      aDiv.addChild (new HCP ().addChild ("Created by Philip Helger"));
+
+      final BootstrapMenuItemRendererHorz aRenderer = new BootstrapMenuItemRendererHorz (aDisplayLocale);
+      final HCUL aUL = aDiv.addAndReturnChild (new HCUL ().addClass (CSS_CLASS_FOOTER_LINKS));
+      for (final IMenuObject aMenuObj : FOOTER_OBJS)
+      {
+        if (aMenuObj instanceof IMenuSeparator)
+          aUL.addItem (aRenderer.renderSeparator (aLEC, (IMenuSeparator) aMenuObj));
+        else
+          if (aMenuObj instanceof IMenuItemPage)
+            aUL.addItem (aRenderer.renderMenuItemPage (aLEC, (IMenuItemPage) aMenuObj, false, false, false));
+          else
+            if (aMenuObj instanceof IMenuItemExternal)
+              aUL.addItem (aRenderer.renderMenuItemExternal (aLEC, (IMenuItemExternal) aMenuObj, false, false, false));
+            else
+              if (!(aMenuObj instanceof IMenuItemRedirectToPage))
+                throw new IllegalStateException ("Unsupported menu object type!");
+      }
+      aOuterContainer.addChild (aDiv);
+    }
+    return ret;
+  }
+}

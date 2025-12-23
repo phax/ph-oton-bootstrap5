@@ -31,9 +31,9 @@ import com.helger.html.resource.js.IJSPathProvider;
  * Customize the global Bootstrap JS and CSS to be used. This is helpful when using a custom
  * Bootstrap build.
  * <p>
- * Note: Bootstrap 5 uses Popper.js v2, which is included in bootstrap.bundle.js.
- * If using bootstrap.js (without bundle), Popper.js must be included separately.
- * Unlike Bootstrap 4, jQuery is no longer required.
+ * Note: Bootstrap 5 uses Popper.js v2, which is included in bootstrap.bundle.js. If using
+ * bootstrap.js (without bundle), Popper.js must be included separately. Unlike Bootstrap 4, jQuery
+ * is no longer required.
  *
  * @author Philip Helger
  */
