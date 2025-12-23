@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 /**
- * Test class for class {@link EBootstrapGridType}.
+ * Test class for class {@link EBootstrapBreakpoint}.
  *
  * @author Philip Helger
  */
@@ -31,18 +31,18 @@ public final class EBootstrapGridTypeTest
   @Test
   public void testWidth ()
   {
-    assertNull (EBootstrapGridType.getForWidth (-1));
-    assertEquals (EBootstrapGridType.XS, EBootstrapGridType.getForWidth (0));
-    assertEquals (EBootstrapGridType.XS, EBootstrapGridType.getForWidth (1));
-    assertEquals (EBootstrapGridType.XS, EBootstrapGridType.getForWidth (575));
-    assertEquals (EBootstrapGridType.SM, EBootstrapGridType.getForWidth (576));
-    assertEquals (EBootstrapGridType.SM, EBootstrapGridType.getForWidth (767));
-    assertEquals (EBootstrapGridType.MD, EBootstrapGridType.getForWidth (768));
-    assertEquals (EBootstrapGridType.MD, EBootstrapGridType.getForWidth (991));
-    assertEquals (EBootstrapGridType.LG, EBootstrapGridType.getForWidth (992));
-    assertEquals (EBootstrapGridType.LG, EBootstrapGridType.getForWidth (1199));
-    assertEquals (EBootstrapGridType.XL, EBootstrapGridType.getForWidth (1200));
-    assertEquals (EBootstrapGridType.XXL, EBootstrapGridType.getForWidth (1400));
-    assertEquals (EBootstrapGridType.XXL, EBootstrapGridType.getForWidth (Integer.MAX_VALUE));
+    assertNull (EBootstrapBreakpoint.getForWidth (-1));
+    assertEquals (EBootstrapBreakpoint.XS, EBootstrapBreakpoint.getForWidth (0));
+    assertEquals (EBootstrapBreakpoint.XS, EBootstrapBreakpoint.getForWidth (1));
+    assertEquals (EBootstrapBreakpoint.XS, EBootstrapBreakpoint.getForWidth (575));
+    assertEquals (EBootstrapBreakpoint.SM, EBootstrapBreakpoint.getForWidth (576));
+    assertEquals (EBootstrapBreakpoint.SM, EBootstrapBreakpoint.getForWidth (767));
+    assertEquals (EBootstrapBreakpoint.MD, EBootstrapBreakpoint.getForWidth (768));
+    assertEquals (EBootstrapBreakpoint.MD, EBootstrapBreakpoint.getForWidth (991));
+    assertEquals (EBootstrapBreakpoint.LG, EBootstrapBreakpoint.getForWidth (992));
+    assertEquals (EBootstrapBreakpoint.LG, EBootstrapBreakpoint.getForWidth (1199));
+    assertEquals (EBootstrapBreakpoint.XL, EBootstrapBreakpoint.getForWidth (1200));
+    assertEquals (EBootstrapBreakpoint.XXL, EBootstrapBreakpoint.getForWidth (1400));
+    assertEquals (EBootstrapBreakpoint.XXL, EBootstrapBreakpoint.getForWidth (Integer.MAX_VALUE));
   }
 }

@@ -23,7 +23,7 @@ import com.helger.annotation.Nonempty;
 import com.helger.annotation.Nonnegative;
 import com.helger.html.css.ICSSClassProvider;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
-import com.helger.photon.bootstrap5.grid.EBootstrapGridType;
+import com.helger.photon.bootstrap5.grid.EBootstrapBreakpoint;
 
 /**
  * Bootstrap5 grid gutter XXL
@@ -56,9 +56,9 @@ public enum EBootstrapGutterXXL implements IBootstrapGutterElement
   }
 
   @NonNull
-  public EBootstrapGridType getGridType ()
+  public EBootstrapBreakpoint getGridType ()
   {
-    return EBootstrapGridType.XXL;
+    return EBootstrapBreakpoint.XXL;
   }
 
   @Nonnegative

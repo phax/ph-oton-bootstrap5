@@ -22,17 +22,17 @@ import org.jspecify.annotations.NonNull;
 
 import com.helger.base.enforce.ValueEnforcer;
 import com.helger.html.css.ICSSClassProvider;
-import com.helger.photon.bootstrap5.grid.EBootstrapGridType;
+import com.helger.photon.bootstrap5.grid.EBootstrapBreakpoint;
 
 /**
- * Utility class to build a display class based on {@link EBootstrapGridType}
+ * Utility class to build a display class based on {@link EBootstrapBreakpoint}
  * and {@link EBootstrapDisplayType}.
  *
  * @author Philip Helger
  */
 public class BootstrapDisplayBuilder implements ICSSClassProvider, Serializable
 {
-  private EBootstrapGridType m_eGrid = EBootstrapGridType.XS;
+  private EBootstrapBreakpoint m_eGrid = EBootstrapBreakpoint.XS;
   private EBootstrapDisplayType m_eDisplay = EBootstrapDisplayType.BLOCK;
 
   public BootstrapDisplayBuilder ()
@@ -46,7 +46,7 @@ public class BootstrapDisplayBuilder implements ICSSClassProvider, Serializable
    * @return this for chaining
    */
   @NonNull
-  public BootstrapDisplayBuilder grid (@NonNull final EBootstrapGridType eGrid)
+  public BootstrapDisplayBuilder grid (@NonNull final EBootstrapBreakpoint eGrid)
   {
     ValueEnforcer.notNull (eGrid, "GridType");
     m_eGrid = eGrid;

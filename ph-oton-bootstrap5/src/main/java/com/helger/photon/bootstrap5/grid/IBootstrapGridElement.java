@@ -17,6 +17,7 @@
 package com.helger.photon.bootstrap5.grid;
 
 import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import com.helger.html.css.ICSSClassProvider;
 import com.helger.photon.bootstrap5.CBootstrap;
@@ -37,7 +38,7 @@ public interface IBootstrapGridElement extends ICSSClassProvider
    * @return The grid type. Never <code>null</code>.
    */
   @NonNull
-  EBootstrapGridType getGridType ();
+  EBootstrapBreakpoint getBreakpoint ();
 
   /**
    * @return When in the range 1-12, the parts to span.
@@ -49,7 +50,7 @@ public interface IBootstrapGridElement extends ICSSClassProvider
    */
   boolean isMax ();
 
-  static int getRight (final int nLeft)
+  static int getMatchingOpposite (final int nLeft)
   {
     if (nLeft < 0)
     {
@@ -63,4 +64,7 @@ public interface IBootstrapGridElement extends ICSSClassProvider
     }
     return CBootstrap.GRID_SYSTEM_MAX - nLeft;
   }
+
+  @Nullable
+  ICSSClassProvider getCSSClassOffset ();
 }

@@ -23,7 +23,7 @@ import com.helger.html.css.ICSSClassProvider;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 
 /**
- * Bootstrap4 grid columns. Extra large (&ge;1200px)
+ * Bootstrap5 grid columns. Extra extra large (&ge;1400px)
  *
  * @author Philip Helger
  */
@@ -58,9 +58,9 @@ public enum EBootstrapGridXXL implements IBootstrapGridElement
   }
 
   @NonNull
-  public EBootstrapGridType getGridType ()
+  public EBootstrapBreakpoint getBreakpoint ()
   {
-    return EBootstrapGridType.XL;
+    return EBootstrapBreakpoint.XXL;
   }
 
   public int getParts ()

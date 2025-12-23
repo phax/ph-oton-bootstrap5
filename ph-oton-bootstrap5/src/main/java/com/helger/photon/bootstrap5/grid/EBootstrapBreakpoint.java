@@ -26,7 +26,7 @@ import com.helger.base.lang.EnumHelper;
  *
  * @author Philip Helger
  */
-public enum EBootstrapGridType
+public enum EBootstrapBreakpoint
 {
   // Order should be in ascending size
   XS ("", 0, 576),
@@ -40,7 +40,7 @@ public enum EBootstrapGridType
   private final int m_nMinWidthIncl;
   private final int m_nMaxWidthExcl;
 
-  EBootstrapGridType (@NonNull final String sCSSClassNamePart, final int nMinWidthIncl, final int nMaxWidthExcl)
+  EBootstrapBreakpoint (@NonNull final String sCSSClassNamePart, final int nMinWidthIncl, final int nMaxWidthExcl)
   {
     m_sCSSClassNamePart = sCSSClassNamePart;
     m_nMinWidthIncl = nMinWidthIncl;
@@ -59,10 +59,10 @@ public enum EBootstrapGridType
   }
 
   @Nullable
-  public static EBootstrapGridType getForWidth (final int nPixels)
+  public static EBootstrapBreakpoint getForWidth (final int nPixels)
   {
     if (nPixels < 0)
       return null;
-    return EnumHelper.findFirst (EBootstrapGridType.class, x -> x.isForWidth (nPixels));
+    return EnumHelper.findFirst (EBootstrapBreakpoint.class, x -> x.isForWidth (nPixels));
   }
 }

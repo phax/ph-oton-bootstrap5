@@ -23,7 +23,7 @@ import org.jspecify.annotations.NonNull;
 import com.helger.annotation.style.ReturnsMutableCopy;
 import com.helger.base.enforce.ValueEnforcer;
 import com.helger.html.css.ICSSClassProvider;
-import com.helger.photon.bootstrap5.grid.EBootstrapGridType;
+import com.helger.photon.bootstrap5.grid.EBootstrapBreakpoint;
 
 /**
  * Utility class to build a generic spacing.
@@ -34,7 +34,7 @@ public class BootstrapSpacingBuilder implements ICSSClassProvider, Serializable
 {
   private EBootstrapSpacingPropertyType m_eProperty = EBootstrapSpacingPropertyType.MARGIN;
   private EBootstrapSpacingSideType m_eSide = EBootstrapSpacingSideType.ALL;
-  private EBootstrapGridType m_eGrid = EBootstrapGridType.XS;
+  private EBootstrapBreakpoint m_eGrid = EBootstrapBreakpoint.XS;
   private int m_nSize = -1;
 
   public BootstrapSpacingBuilder ()
@@ -78,7 +78,7 @@ public class BootstrapSpacingBuilder implements ICSSClassProvider, Serializable
    * @return this for chaining
    */
   @NonNull
-  public BootstrapSpacingBuilder grid (@NonNull final EBootstrapGridType eGrid)
+  public BootstrapSpacingBuilder grid (@NonNull final EBootstrapBreakpoint eGrid)
   {
     ValueEnforcer.notNull (eGrid, "Grid");
     m_eGrid = eGrid;

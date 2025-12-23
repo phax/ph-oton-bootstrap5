@@ -4,14 +4,14 @@ import org.jspecify.annotations.NonNull;
 
 import com.helger.annotation.Nonnegative;
 import com.helger.html.css.ICSSClassProvider;
-import com.helger.photon.bootstrap5.grid.EBootstrapGridType;
+import com.helger.photon.bootstrap5.grid.EBootstrapBreakpoint;
 
 public interface IBootstrapGutterElement extends ICSSClassProvider
 {
   int PARTS_NONE = -1;
 
   @NonNull
-  EBootstrapGridType getGridType ();
+  EBootstrapBreakpoint getGridType ();
 
   @Nonnegative
   int getParts ();

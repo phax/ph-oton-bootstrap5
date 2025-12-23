@@ -21,7 +21,7 @@ import org.jspecify.annotations.NonNull;
 import com.helger.annotation.Nonempty;
 import com.helger.html.css.ICSSClassProvider;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
-import com.helger.photon.bootstrap5.grid.EBootstrapGridType;
+import com.helger.photon.bootstrap5.grid.EBootstrapBreakpoint;
 
 /**
  * Text alignment. See https://getbootstrap.com/docs/4.1/utilities/text/
@@ -30,29 +30,29 @@ import com.helger.photon.bootstrap5.grid.EBootstrapGridType;
  */
 public enum EBootstrapTextAlignType implements ICSSClassProvider
 {
-  START (CBootstrapCSS.TEXT_START, EBootstrapGridType.XS),
-  CENTER (CBootstrapCSS.TEXT_CENTER, EBootstrapGridType.XS),
-  END (CBootstrapCSS.TEXT_END, EBootstrapGridType.XS),
-  SM_START (CBootstrapCSS.TEXT_SM_START, EBootstrapGridType.SM),
-  SM_CENTER (CBootstrapCSS.TEXT_SM_CENTER, EBootstrapGridType.SM),
-  SM_END (CBootstrapCSS.TEXT_SM_END, EBootstrapGridType.SM),
-  MD_START (CBootstrapCSS.TEXT_MD_START, EBootstrapGridType.MD),
-  MD_CENTER (CBootstrapCSS.TEXT_MD_CENTER, EBootstrapGridType.MD),
-  MD_END (CBootstrapCSS.TEXT_MD_END, EBootstrapGridType.MD),
-  LG_START (CBootstrapCSS.TEXT_LG_START, EBootstrapGridType.LG),
-  LG_CENTER (CBootstrapCSS.TEXT_LG_CENTER, EBootstrapGridType.LG),
-  LG_END (CBootstrapCSS.TEXT_LG_END, EBootstrapGridType.LG),
-  XL_START (CBootstrapCSS.TEXT_XL_START, EBootstrapGridType.XL),
-  XL_CENTER (CBootstrapCSS.TEXT_XL_CENTER, EBootstrapGridType.XL),
-  XL_END (CBootstrapCSS.TEXT_XL_END, EBootstrapGridType.XL),
-  XXL_START (CBootstrapCSS.TEXT_XXL_START, EBootstrapGridType.XXL),
-  XXL_CENTER (CBootstrapCSS.TEXT_XXL_CENTER, EBootstrapGridType.XXL),
-  XXL_END (CBootstrapCSS.TEXT_XXL_END, EBootstrapGridType.XXL);
+  START (CBootstrapCSS.TEXT_START, EBootstrapBreakpoint.XS),
+  CENTER (CBootstrapCSS.TEXT_CENTER, EBootstrapBreakpoint.XS),
+  END (CBootstrapCSS.TEXT_END, EBootstrapBreakpoint.XS),
+  SM_START (CBootstrapCSS.TEXT_SM_START, EBootstrapBreakpoint.SM),
+  SM_CENTER (CBootstrapCSS.TEXT_SM_CENTER, EBootstrapBreakpoint.SM),
+  SM_END (CBootstrapCSS.TEXT_SM_END, EBootstrapBreakpoint.SM),
+  MD_START (CBootstrapCSS.TEXT_MD_START, EBootstrapBreakpoint.MD),
+  MD_CENTER (CBootstrapCSS.TEXT_MD_CENTER, EBootstrapBreakpoint.MD),
+  MD_END (CBootstrapCSS.TEXT_MD_END, EBootstrapBreakpoint.MD),
+  LG_START (CBootstrapCSS.TEXT_LG_START, EBootstrapBreakpoint.LG),
+  LG_CENTER (CBootstrapCSS.TEXT_LG_CENTER, EBootstrapBreakpoint.LG),
+  LG_END (CBootstrapCSS.TEXT_LG_END, EBootstrapBreakpoint.LG),
+  XL_START (CBootstrapCSS.TEXT_XL_START, EBootstrapBreakpoint.XL),
+  XL_CENTER (CBootstrapCSS.TEXT_XL_CENTER, EBootstrapBreakpoint.XL),
+  XL_END (CBootstrapCSS.TEXT_XL_END, EBootstrapBreakpoint.XL),
+  XXL_START (CBootstrapCSS.TEXT_XXL_START, EBootstrapBreakpoint.XXL),
+  XXL_CENTER (CBootstrapCSS.TEXT_XXL_CENTER, EBootstrapBreakpoint.XXL),
+  XXL_END (CBootstrapCSS.TEXT_XXL_END, EBootstrapBreakpoint.XXL);
 
   private final ICSSClassProvider m_aCSSClass;
-  private final EBootstrapGridType m_eGridType;
+  private final EBootstrapBreakpoint m_eGridType;
 
-  EBootstrapTextAlignType (@NonNull final ICSSClassProvider aCSSClass, @NonNull final EBootstrapGridType eGridType)
+  EBootstrapTextAlignType (@NonNull final ICSSClassProvider aCSSClass, @NonNull final EBootstrapBreakpoint eGridType)
   {
     m_aCSSClass = aCSSClass;
     m_eGridType = eGridType;
@@ -69,7 +69,7 @@ public enum EBootstrapTextAlignType implements ICSSClassProvider
    * @return The grid type on which this text alignment is applied.
    */
   @NonNull
-  public EBootstrapGridType getGridType ()
+  public EBootstrapBreakpoint getGridType ()
   {
     return m_eGridType;
   }

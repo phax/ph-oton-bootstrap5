@@ -25,7 +25,7 @@ import com.helger.html.css.ICSSClassProvider;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 
 /**
- * Bootstrap4 grid columns. Small (&ge;576px)
+ * Bootstrap5 grid columns. Small (&ge;576px)
  *
  * @author Philip Helger
  */
@@ -60,9 +60,9 @@ public enum EBootstrapGridSM implements IBootstrapGridElement
   }
 
   @NonNull
-  public EBootstrapGridType getGridType ()
+  public EBootstrapBreakpoint getBreakpoint ()
   {
-    return EBootstrapGridType.SM;
+    return EBootstrapBreakpoint.SM;
   }
 
   @Nonnegative

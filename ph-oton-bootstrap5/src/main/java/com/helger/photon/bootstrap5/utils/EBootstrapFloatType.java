@@ -21,7 +21,7 @@ import org.jspecify.annotations.NonNull;
 import com.helger.annotation.Nonempty;
 import com.helger.html.css.ICSSClassProvider;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
-import com.helger.photon.bootstrap5.grid.EBootstrapGridType;
+import com.helger.photon.bootstrap5.grid.EBootstrapBreakpoint;
 
 /**
  * Floating. See https://getbootstrap.com/docs/4.1/utilities/float/
@@ -30,29 +30,29 @@ import com.helger.photon.bootstrap5.grid.EBootstrapGridType;
  */
 public enum EBootstrapFloatType implements ICSSClassProvider
 {
-  START (CBootstrapCSS.FLOAT_START, EBootstrapGridType.XS),
-  END (CBootstrapCSS.FLOAT_END, EBootstrapGridType.XS),
-  NONE (CBootstrapCSS.FLOAT_NONE, EBootstrapGridType.XS),
-  SM_START (CBootstrapCSS.FLOAT_SM_START, EBootstrapGridType.SM),
-  SM_END (CBootstrapCSS.FLOAT_SM_END, EBootstrapGridType.SM),
-  SM_NONE (CBootstrapCSS.FLOAT_SM_NONE, EBootstrapGridType.SM),
-  MD_START (CBootstrapCSS.FLOAT_MD_START, EBootstrapGridType.MD),
-  MD_END (CBootstrapCSS.FLOAT_MD_END, EBootstrapGridType.MD),
-  MD_NONE (CBootstrapCSS.FLOAT_MD_NONE, EBootstrapGridType.MD),
-  LG_START (CBootstrapCSS.FLOAT_LG_START, EBootstrapGridType.LG),
-  LG_END (CBootstrapCSS.FLOAT_LG_END, EBootstrapGridType.LG),
-  LG_NONE (CBootstrapCSS.FLOAT_LG_NONE, EBootstrapGridType.LG),
-  XL_START (CBootstrapCSS.FLOAT_XL_START, EBootstrapGridType.XL),
-  XL_END (CBootstrapCSS.FLOAT_XL_END, EBootstrapGridType.XL),
-  XL_NONE (CBootstrapCSS.FLOAT_XL_NONE, EBootstrapGridType.XL),
-  XXL_START (CBootstrapCSS.FLOAT_XXL_START, EBootstrapGridType.XXL),
-  XXL_END (CBootstrapCSS.FLOAT_XXL_END, EBootstrapGridType.XXL),
-  XXL_NONE (CBootstrapCSS.FLOAT_XXL_NONE, EBootstrapGridType.XXL);
+  START (CBootstrapCSS.FLOAT_START, EBootstrapBreakpoint.XS),
+  END (CBootstrapCSS.FLOAT_END, EBootstrapBreakpoint.XS),
+  NONE (CBootstrapCSS.FLOAT_NONE, EBootstrapBreakpoint.XS),
+  SM_START (CBootstrapCSS.FLOAT_SM_START, EBootstrapBreakpoint.SM),
+  SM_END (CBootstrapCSS.FLOAT_SM_END, EBootstrapBreakpoint.SM),
+  SM_NONE (CBootstrapCSS.FLOAT_SM_NONE, EBootstrapBreakpoint.SM),
+  MD_START (CBootstrapCSS.FLOAT_MD_START, EBootstrapBreakpoint.MD),
+  MD_END (CBootstrapCSS.FLOAT_MD_END, EBootstrapBreakpoint.MD),
+  MD_NONE (CBootstrapCSS.FLOAT_MD_NONE, EBootstrapBreakpoint.MD),
+  LG_START (CBootstrapCSS.FLOAT_LG_START, EBootstrapBreakpoint.LG),
+  LG_END (CBootstrapCSS.FLOAT_LG_END, EBootstrapBreakpoint.LG),
+  LG_NONE (CBootstrapCSS.FLOAT_LG_NONE, EBootstrapBreakpoint.LG),
+  XL_START (CBootstrapCSS.FLOAT_XL_START, EBootstrapBreakpoint.XL),
+  XL_END (CBootstrapCSS.FLOAT_XL_END, EBootstrapBreakpoint.XL),
+  XL_NONE (CBootstrapCSS.FLOAT_XL_NONE, EBootstrapBreakpoint.XL),
+  XXL_START (CBootstrapCSS.FLOAT_XXL_START, EBootstrapBreakpoint.XXL),
+  XXL_END (CBootstrapCSS.FLOAT_XXL_END, EBootstrapBreakpoint.XXL),
+  XXL_NONE (CBootstrapCSS.FLOAT_XXL_NONE, EBootstrapBreakpoint.XXL);
 
   private final ICSSClassProvider m_aCSSClass;
-  private final EBootstrapGridType m_eGridType;
+  private final EBootstrapBreakpoint m_eGridType;
 
-  EBootstrapFloatType (@NonNull final ICSSClassProvider aCSSClass, @NonNull final EBootstrapGridType eGridType)
+  EBootstrapFloatType (@NonNull final ICSSClassProvider aCSSClass, @NonNull final EBootstrapBreakpoint eGridType)
   {
     m_aCSSClass = aCSSClass;
     m_eGridType = eGridType;
@@ -69,7 +69,7 @@ public enum EBootstrapFloatType implements ICSSClassProvider
    * @return The grid type to be used. Never <code>null</code>.
    */
   @NonNull
-  public EBootstrapGridType getGridType ()
+  public EBootstrapBreakpoint getGridType ()
   {
     return m_eGridType;
   }

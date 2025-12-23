@@ -20,7 +20,7 @@ import org.jspecify.annotations.NonNull;
 
 import com.helger.html.css.ICSSClassProvider;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
-import com.helger.photon.bootstrap5.grid.EBootstrapGridType;
+import com.helger.photon.bootstrap5.grid.EBootstrapBreakpoint;
 
 /**
  * Navbar expansion type. See
@@ -30,16 +30,16 @@ import com.helger.photon.bootstrap5.grid.EBootstrapGridType;
  */
 public enum EBootstrapNavbarExpandType implements ICSSClassProvider
 {
-  EXPAND_XS (CBootstrapCSS.NAVBAR_EXPAND, EBootstrapGridType.XS),
-  EXPAND_SM (CBootstrapCSS.NAVBAR_EXPAND_SM, EBootstrapGridType.SM),
-  EXPAND_MD (CBootstrapCSS.NAVBAR_EXPAND_MD, EBootstrapGridType.MD),
-  EXPAND_LG (CBootstrapCSS.NAVBAR_EXPAND_LG, EBootstrapGridType.LG),
-  EXPAND_XL (CBootstrapCSS.NAVBAR_EXPAND_XL, EBootstrapGridType.XL);
+  EXPAND_XS (CBootstrapCSS.NAVBAR_EXPAND, EBootstrapBreakpoint.XS),
+  EXPAND_SM (CBootstrapCSS.NAVBAR_EXPAND_SM, EBootstrapBreakpoint.SM),
+  EXPAND_MD (CBootstrapCSS.NAVBAR_EXPAND_MD, EBootstrapBreakpoint.MD),
+  EXPAND_LG (CBootstrapCSS.NAVBAR_EXPAND_LG, EBootstrapBreakpoint.LG),
+  EXPAND_XL (CBootstrapCSS.NAVBAR_EXPAND_XL, EBootstrapBreakpoint.XL);
 
   private final ICSSClassProvider m_aCSSClass;
-  private final EBootstrapGridType m_eGridType;
+  private final EBootstrapBreakpoint m_eGridType;
 
-  EBootstrapNavbarExpandType (@NonNull final ICSSClassProvider aCSSClass, @NonNull final EBootstrapGridType eGridType)
+  EBootstrapNavbarExpandType (@NonNull final ICSSClassProvider aCSSClass, @NonNull final EBootstrapBreakpoint eGridType)
   {
     m_aCSSClass = aCSSClass;
     m_eGridType = eGridType;
@@ -55,7 +55,7 @@ public enum EBootstrapNavbarExpandType implements ICSSClassProvider
    * @return The grid type to be used. Never <code>null</code>.
    */
   @NonNull
-  public EBootstrapGridType getGridType ()
+  public EBootstrapBreakpoint getGridType ()
   {
     return m_eGridType;
   }

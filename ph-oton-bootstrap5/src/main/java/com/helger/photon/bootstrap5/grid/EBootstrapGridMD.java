@@ -23,7 +23,7 @@ import com.helger.html.css.ICSSClassProvider;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 
 /**
- * Bootstrap4 grid columns. Medium (&ge;768px)
+ * Bootstrap5 grid columns. Medium (&ge;768px)
  *
  * @author Philip Helger
  */
@@ -58,9 +58,9 @@ public enum EBootstrapGridMD implements IBootstrapGridElement
   }
 
   @NonNull
-  public EBootstrapGridType getGridType ()
+  public EBootstrapBreakpoint getBreakpoint ()
   {
-    return EBootstrapGridType.MD;
+    return EBootstrapBreakpoint.MD;
   }
 
   public int getParts ()

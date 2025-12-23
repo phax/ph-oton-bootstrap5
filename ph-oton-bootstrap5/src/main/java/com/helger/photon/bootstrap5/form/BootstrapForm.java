@@ -138,12 +138,12 @@ public class BootstrapForm extends AbstractHCForm <BootstrapForm> implements
                                                                  nLeftPartsLG,
                                                                  nLeftPartsXL,
                                                                  nLeftPartsXXL);
-    final BootstrapGridSpec aNewRight = BootstrapGridSpec.create (IBootstrapGridElement.getRight (nLeftPartsXS),
-                                                                  IBootstrapGridElement.getRight (nLeftPartsSM),
-                                                                  IBootstrapGridElement.getRight (nLeftPartsMD),
-                                                                  IBootstrapGridElement.getRight (nLeftPartsLG),
-                                                                  IBootstrapGridElement.getRight (nLeftPartsXL),
-                                                                  IBootstrapGridElement.getRight (nLeftPartsXXL));
+    final BootstrapGridSpec aNewRight = BootstrapGridSpec.create (IBootstrapGridElement.getMatchingOpposite (nLeftPartsXS),
+                                                                  IBootstrapGridElement.getMatchingOpposite (nLeftPartsSM),
+                                                                  IBootstrapGridElement.getMatchingOpposite (nLeftPartsMD),
+                                                                  IBootstrapGridElement.getMatchingOpposite (nLeftPartsLG),
+                                                                  IBootstrapGridElement.getMatchingOpposite (nLeftPartsXL),
+                                                                  IBootstrapGridElement.getMatchingOpposite (nLeftPartsXXL));
     return setSplitting (aNewLeft, aNewRight);
   }
 
