@@ -78,7 +78,7 @@ public class BootstrapNavItem extends AbstractHCLI <BootstrapNavItem>
   {
     final BootstrapNavLink aLabel = new BootstrapNavLink ();
     aLabel.addClass (CBootstrapCSS.DROPDOWN_TOGGLE).ensureID ().setRole (EHTMLRole.BUTTON);
-    aLabel.customAttrs ().setDataAttr ("toggle", "dropdown");
+    aLabel.customAttrs ().setDataAttr ("bs-toggle", "dropdown");
     aLabel.customAttrs ().setAriaHasPopup (true);
     aLabel.customAttrs ().setAriaExpanded (true);
     aLabel.addChild (aLabelText);

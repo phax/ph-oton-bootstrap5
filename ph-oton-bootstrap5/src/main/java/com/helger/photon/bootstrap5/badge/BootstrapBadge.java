@@ -26,7 +26,7 @@ import com.helger.html.hc.html.textlevel.AbstractHCSpan;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 
 /**
- * Bootstrap4 badge.
+ * Bootstrap5 badge.
  *
  * @author Philip Helger
  */

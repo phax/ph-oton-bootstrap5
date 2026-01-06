@@ -26,7 +26,7 @@ import com.helger.photon.bootstrap5.CBootstrapCSS;
 import com.helger.photon.bootstrap5.nav.BootstrapNavItem;
 
 /**
- * Bootstrap 4 Navbar nav
+ * Bootstrap 5 Navbar nav
  *
  * @author Philip Helger
  */

@@ -43,6 +43,6 @@ public class BootstrapPrismJS extends HCPrismJS
                                               final boolean bForcedRegistration)
   {
     super.onRegisterExternalResources (aConversionSettings, bForcedRegistration);
-    PhotonCSS.registerCSSIncludeForThisRequest (EUICtrlsCSSPathProvider.PRISMJS_BOOTSTRAP4);
+    PhotonCSS.registerCSSIncludeForThisRequest (EUICtrlsCSSPathProvider.PRISMJS_BOOTSTRAP5);
   }
 }

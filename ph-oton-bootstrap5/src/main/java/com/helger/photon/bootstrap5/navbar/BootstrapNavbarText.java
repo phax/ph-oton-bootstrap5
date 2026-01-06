@@ -25,7 +25,7 @@ import com.helger.html.hc.html.textlevel.AbstractHCSpan;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 
 /**
- * Bootstrap 4 nav
+ * Bootstrap 5 nav
  *
  * @author Philip Helger
  */

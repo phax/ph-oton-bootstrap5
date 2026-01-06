@@ -25,7 +25,7 @@ import com.helger.html.hc.html.grouping.AbstractHCDiv;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 
 /**
- * Bootstrap 4 Navbar toggleable
+ * Bootstrap 5 Navbar toggleable
  *
  * @author Philip Helger
  */

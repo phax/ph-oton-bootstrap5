@@ -35,8 +35,8 @@ public final class BootstrapCollapseHelper
   public static void makeCollapsible (@NonNull final IHCElement <?> aToggle, @NonNull final IHCElement <?> aCollapsible)
   {
     aCollapsible.ensureID ().addClass (CBootstrapCSS.COLLAPSE);
-    aToggle.customAttrs ().setDataAttr ("toggle", "collapse");
-    aToggle.customAttrs ().setDataAttr ("target", "#" + aCollapsible.getID ());
+    aToggle.customAttrs ().setDataAttr ("bs-toggle", "collapse");
+    aToggle.customAttrs ().setDataAttr ("bs-target", "#" + aCollapsible.getID ());
     aToggle.customAttrs ().setAriaExpanded (false);
     aToggle.customAttrs ().setAriaControls (aCollapsible.getID ());
   }

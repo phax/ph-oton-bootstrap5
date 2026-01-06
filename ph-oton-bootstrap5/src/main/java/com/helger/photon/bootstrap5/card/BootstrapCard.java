@@ -26,7 +26,7 @@ import com.helger.photon.bootstrap5.CBootstrapCSS;
 import com.helger.photon.bootstrap5.base.AbstractBootstrapDiv;
 
 /**
- * Bootstrap 4 card (replaces B3 panel, well and thumbnail).
+ * Bootstrap 5 card (replaces B3 panel, well and thumbnail).
  *
  * @author Philip Helger
  */

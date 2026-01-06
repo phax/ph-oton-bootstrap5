@@ -26,7 +26,7 @@ import com.helger.html.hc.html.AbstractHCElementWithChildren;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 
 /**
- * Bootstrap 4 page header.
+ * Bootstrap 5 page header.
  *
  * @author Philip Helger
  */

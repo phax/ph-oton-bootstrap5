@@ -21,7 +21,7 @@ import org.jspecify.annotations.Nullable;
 import com.helger.html.css.ICSSClassProvider;
 
 /**
- * Bootstrap4 form type
+ * Bootstrap5 form type
  *
  * @author Philip Helger
  */

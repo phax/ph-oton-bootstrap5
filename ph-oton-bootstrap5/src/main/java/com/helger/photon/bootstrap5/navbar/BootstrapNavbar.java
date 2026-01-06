@@ -34,7 +34,7 @@ import com.helger.photon.bootstrap5.utils.EBootstrapBackgroundType;
 import com.helger.url.ISimpleURL;
 
 /**
- * Bootstrap 4 NavBar
+ * Bootstrap 5 NavBar
  *
  * @author Philip Helger
  */

@@ -37,28 +37,27 @@ import com.helger.photon.uicore.html.tabbox.Tab;
 public class BootstrapTabBox extends AbstractTabBox <BootstrapTabBox>
 {
   /**
-   * This event fires on tab show, but before the new tab has been shown. Use
-   * event.target and event.relatedTarget to target the active tab and the
-   * previous active tab (if available) respectively.
+   * This event fires on tab show, but before the new tab has been shown. Use event.target and
+   * event.relatedTarget to target the active tab and the previous active tab (if available)
+   * respectively.
    */
   public static final String JS_EVENT_SHOW = "show.bs.tab";
   /**
-   * This event fires on tab show after a tab has been shown. Use event.target
-   * and event.relatedTarget to target the active tab and the previous active
-   * tab (if available) respectively.
+   * This event fires on tab show after a tab has been shown. Use event.target and
+   * event.relatedTarget to target the active tab and the previous active tab (if available)
+   * respectively.
    */
   public static final String JS_EVENT_SHOWN = "shown.bs.tab";
   /**
-   * This event fires when a new tab is to be shown (and thus the previous
-   * active tab is to be hidden). Use event.target and event.relatedTarget to
-   * target the current active tab and the new soon-to-be-active tab,
-   * respectively.
+   * This event fires when a new tab is to be shown (and thus the previous active tab is to be
+   * hidden). Use event.target and event.relatedTarget to target the current active tab and the new
+   * soon-to-be-active tab, respectively.
    */
   public static final String JS_EVENT_HIDE = "hide.bs.tab";
   /**
-   * This event fires after a new tab is shown (and thus the previous active tab
-   * is hidden). Use event.target and event.relatedTarget to target the previous
-   * active tab and the new active tab, respectively.
+   * This event fires after a new tab is shown (and thus the previous active tab is hidden). Use
+   * event.target and event.relatedTarget to target the previous active tab and the new active tab,
+   * respectively.
    */
   public static final String JS_EVENT_HIDDEN = "hidden.bs.tab";
 
@@ -68,8 +67,7 @@ public class BootstrapTabBox extends AbstractTabBox <BootstrapTabBox>
   {}
 
   /**
-   * @return The ID of the {@link BootstrapNav} to be created. May be
-   *         <code>null</code>.
+   * @return The ID of the {@link BootstrapNav} to be created. May be <code>null</code>.
    * @since 8.3.1
    */
   @Nullable
@@ -80,8 +78,7 @@ public class BootstrapTabBox extends AbstractTabBox <BootstrapTabBox>
 
   /**
    * @param sNavID
-   *        The ID of the {@link BootstrapNav} to be created. May be
-   *        <code>null</code>.
+   *        The ID of the {@link BootstrapNav} to be created. May be <code>null</code>.
    * @return this for chaining
    * @since 8.3.1
    */
@@ -130,7 +127,7 @@ public class BootstrapTabBox extends AbstractTabBox <BootstrapTabBox>
       if (aTab.isDisabled ())
         aToggleLI.addClass (CBootstrapCSS.DISABLED);
       else
-        aLink.customAttrs ().setDataAttr ("toggle", "tab");
+        aLink.customAttrs ().setDataAttr ("bs-toggle", "tab");
       aToggleLI.addChild (aLink);
 
       // content

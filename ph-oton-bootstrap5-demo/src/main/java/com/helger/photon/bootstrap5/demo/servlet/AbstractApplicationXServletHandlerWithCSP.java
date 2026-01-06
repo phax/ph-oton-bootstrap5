@@ -58,7 +58,7 @@ public abstract class AbstractApplicationXServletHandlerWithCSP extends Abstract
                                                             .addKeywordReportSample ();
     // Required for data tables
     final CSPSourceList aStyleSrcAttrList = new CSPSourceList ().addKeywordSelf ().addKeywordUnsafeInline ();
-    // Allow data images for Bootstrap 4
+    // Allow data images for Bootstrap 5
     final CSPSourceList aImgSrcList = new CSPSourceList ().addKeywordSelf ().addHost ("data:");
     final CSPSourceList aConnectSrcList = new CSPSourceList ().addKeywordSelf ();
     final CSPSourceList aFontSrcList = new CSPSourceList ().addKeywordSelf ();

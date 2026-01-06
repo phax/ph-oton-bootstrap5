@@ -28,7 +28,7 @@ import com.helger.html.hc.html.textlevel.HCSpan;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 
 /**
- * Bootstrap 4 NavBar toggler
+ * Bootstrap 5 NavBar toggler
  *
  * @author Philip Helger
  */
@@ -55,9 +55,9 @@ public class BootstrapNavbarToggler extends AbstractHCButton <BootstrapNavbarTog
   {
     super.onFinalizeNodeState (aConversionSettings, aTargetNode);
     addClass (CBootstrapCSS.NAVBAR_TOGGLER);
-    customAttrs ().setDataAttr ("toggle", "collapse");
+    customAttrs ().setDataAttr ("bs-toggle", "collapse");
     // With hash sign
-    customAttrs ().setDataAttr ("target", "#" + m_sIDToToggle);
+    customAttrs ().setDataAttr ("bs-target", "#" + m_sIDToToggle);
     // without hash sign!
     customAttrs ().setAriaControls (m_sIDToToggle);
     customAttrs ().setAriaExpanded (false);

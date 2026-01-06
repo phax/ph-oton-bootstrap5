@@ -27,7 +27,7 @@ import com.helger.photon.bootstrap5.CBootstrapCSS;
 import com.helger.photon.bootstrap5.base.AbstractBootstrapDiv;
 
 /**
- * Special Bootstrap 4 card body.
+ * Special Bootstrap 5 card body.
  *
  * @author Philip Helger
  */
