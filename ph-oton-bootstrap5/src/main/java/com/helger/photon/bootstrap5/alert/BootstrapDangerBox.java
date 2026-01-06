@@ -17,7 +17,7 @@
 package com.helger.photon.bootstrap5.alert;
 
 /**
- * Bootstrap3 danger box
+ * Bootstrap5 danger box
  *
  * @author Philip Helger
  */

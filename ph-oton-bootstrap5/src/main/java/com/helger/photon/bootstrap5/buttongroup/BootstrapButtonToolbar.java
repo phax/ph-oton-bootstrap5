@@ -21,6 +21,9 @@ import org.jspecify.annotations.Nullable;
 
 import com.helger.base.enforce.ValueEnforcer;
 import com.helger.html.EHTMLRole;
+import com.helger.html.hc.IHCConversionSettingsToNode;
+import com.helger.html.hc.IHCHasChildrenMutable;
+import com.helger.html.hc.IHCNode;
 import com.helger.html.js.IHasJSCode;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 import com.helger.photon.bootstrap5.base.AbstractBootstrapDiv;
@@ -33,14 +36,15 @@ import com.helger.url.ISimpleURL;
 import com.helger.url.SimpleURL;
 
 /**
- * Bootstrap3 button toolbar. Should only be used to group button groups and not
- * simple buttons.
+ * Bootstrap5 button toolbar. Should only be used to group button groups and not simple buttons.
  *
  * @author Philip Helger
  */
-public class BootstrapButtonToolbar extends AbstractBootstrapDiv <BootstrapButtonToolbar> implements IButtonToolbar <BootstrapButtonToolbar>
+public class BootstrapButtonToolbar extends AbstractBootstrapDiv <BootstrapButtonToolbar> implements
+                                    IButtonToolbar <BootstrapButtonToolbar>
 {
   private final SimpleURL m_aSelfHref;
+  private boolean m_bForBottom = false;
 
   public BootstrapButtonToolbar (@NonNull final ILayoutExecutionContext aLEC)
   {
@@ -50,22 +54,36 @@ public class BootstrapButtonToolbar extends AbstractBootstrapDiv <BootstrapButto
   public BootstrapButtonToolbar (@NonNull final SimpleURL aSelfHref)
   {
     m_aSelfHref = ValueEnforcer.notNull (aSelfHref, "SelfHref");
-    addClass (CBootstrapCSS.BTN_TOOLBAR);
+    addClass (CBootstrapCSS.D_INLINE_FLEX);
+    addClass (CBootstrapCSS.GAP_2);
+    addClass (CBootstrapCSS.MY_2);
     setRole (EHTMLRole.TOOLBAR);
   }
 
   @NonNull
-  public ISimpleURL getSelfHref ()
+  public final ISimpleURL getSelfHref ()
   {
     return m_aSelfHref;
   }
 
+  public boolean isForBottom ()
+  {
+    return m_bForBottom;
+  }
+
+  @NonNull
+  public final BootstrapButtonToolbar setForBottom (final boolean b)
+  {
+    m_bForBottom = b;
+    return this;
+  }
+
   @NonNull
   public final BootstrapButton addAndReturnButton (@Nullable final String sCaption,
-                                                   @Nullable final IHasJSCode aJSCode,
+                                                   @Nullable final IHasJSCode aOnClick,
                                                    @Nullable final IIcon aIcon)
   {
-    return addAndReturnChild (new BootstrapButton ().setIcon (aIcon).addChild (sCaption).setOnClick (aJSCode));
+    return addAndReturnChild (new BootstrapButton ().setIcon (aIcon).addChild (sCaption).setOnClick (aOnClick));
   }
 
   @NonNull
@@ -73,6 +91,15 @@ public class BootstrapButtonToolbar extends AbstractBootstrapDiv <BootstrapButto
                                                          @Nullable final IHasJSCode aOnClick,
                                                          @Nullable final IIcon aIcon)
   {
-    return addAndReturnChild (new BootstrapSubmitButton ().setIcon (aIcon).setOnClick (aOnClick).addChild (sCaption));
+    return addAndReturnChild (new BootstrapSubmitButton ().setIcon (aIcon).addChild (sCaption).setOnClick (aOnClick));
+  }
+
+  @Override
+  protected void onFinalizeNodeState (@NonNull final IHCConversionSettingsToNode aConversionSettings,
+                                      @NonNull final IHCHasChildrenMutable <?, ? super IHCNode> aTargetNode)
+  {
+    super.onFinalizeNodeState (aConversionSettings, aTargetNode);
+    if (m_bForBottom)
+      addClass (CBootstrapCSS.STICKY_BOTTOM);
   }
 }

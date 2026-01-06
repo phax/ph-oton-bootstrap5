@@ -17,7 +17,7 @@
 package com.helger.photon.bootstrap5.alert;
 
 /**
- * Bootstrap3 question box
+ * Bootstrap5 question box
  *
  * @author Philip Helger
  */

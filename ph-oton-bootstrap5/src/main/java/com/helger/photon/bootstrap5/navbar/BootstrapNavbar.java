@@ -41,7 +41,7 @@ import com.helger.url.ISimpleURL;
 public class BootstrapNavbar extends AbstractHCNav <BootstrapNavbar>
 {
   public static final EBootstrapNavbarExpandType DEFAULT_EXPAND = EBootstrapNavbarExpandType.EXPAND_MD;
-  public static final EBootstrapBackgroundType DEFAULT_BACKGROUND = EBootstrapBackgroundType.LIGHT;
+  public static final EBootstrapBackgroundType DEFAULT_BACKGROUND = EBootstrapBackgroundType.BODY_TERTIARY;
 
   private EBootstrapNavbarExpandType m_eExpand = DEFAULT_EXPAND;
   private EBootstrapBackgroundType m_eBackground = DEFAULT_BACKGROUND;
@@ -79,12 +79,12 @@ public class BootstrapNavbar extends AbstractHCNav <BootstrapNavbar>
   @NonNull
   public static IHCElementWithChildren <?> createBrand (@NonNull final IHCNode aLabel, @Nullable final ISimpleURL aURL)
   {
-    IHCElementWithChildren <?> aBrand;
+    final IHCElementWithChildren <?> aBrand;
     if (aURL != null)
       aBrand = new HCA ().setHref (aURL).addChild (aLabel);
     else
-      if (aLabel instanceof IHCElementWithChildren <?>)
-        aBrand = (IHCElementWithChildren <?>) aLabel;
+      if (aLabel instanceof final IHCElementWithChildren <?> aLabelWC)
+        aBrand = aLabelWC;
       else
         aBrand = new HCSpan ().addChild (aLabel);
 

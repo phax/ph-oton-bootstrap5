@@ -28,6 +28,9 @@ import com.helger.photon.bootstrap5.CBootstrapCSS;
  */
 public enum EBootstrapBackgroundType implements ICSSClassProvider
 {
+  BODY (CBootstrapCSS.BG_BODY),
+  BODY_SECONDARY (CBootstrapCSS.BG_BODY_SECONDARY),
+  BODY_TERTIARY (CBootstrapCSS.BG_BODY_TERTIARY),
   PRIMARY (CBootstrapCSS.BG_PRIMARY),
   SECONDARY (CBootstrapCSS.BG_SECONDARY),
   SUCCESS (CBootstrapCSS.BG_SUCCESS),
