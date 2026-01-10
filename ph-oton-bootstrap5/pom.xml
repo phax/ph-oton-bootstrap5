@@ -51,6 +51,7 @@
       <url>https://www.helger.com</url>
     </developer>
   </developers>
+  
   <dependencies>
     <dependency>
       <groupId>com.helger.photon</groupId>
@@ -60,12 +61,14 @@
       <groupId>com.helger.photon</groupId>
       <artifactId>ph-oton-jquery</artifactId>
     </dependency>
+    
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
   <build>
     <plugins>
       <plugin>
