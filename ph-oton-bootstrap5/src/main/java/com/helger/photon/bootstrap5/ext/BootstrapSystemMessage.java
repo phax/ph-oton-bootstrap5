@@ -27,8 +27,8 @@ import com.helger.photon.bootstrap5.alert.AbstractBootstrapAlert;
 import com.helger.photon.bootstrap5.alert.EBootstrapAlertType;
 import com.helger.photon.core.systemmsg.ISystemMessageRenderer;
 import com.helger.photon.mgrs.PhotonBasicManager;
-import com.helger.photon.mgrs.systemmsg.ESystemMessageType;
-import com.helger.photon.mgrs.systemmsg.ISystemMessageManager;
+import com.helger.photon.mgrs.sysmsg.ESystemMessageType;
+import com.helger.photon.mgrs.sysmsg.ISystemMessageManager;
 import com.helger.photon.uicore.systemmsg.SystemMessageRendererMarkdown;
 import com.helger.photon.uicore.systemmsg.SystemMessageRendererPlainText;
 
