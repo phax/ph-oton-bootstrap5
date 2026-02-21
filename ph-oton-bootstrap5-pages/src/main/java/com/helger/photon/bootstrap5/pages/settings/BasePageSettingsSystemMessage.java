@@ -37,9 +37,9 @@ import com.helger.photon.bootstrap5.form.BootstrapFormGroup;
 import com.helger.photon.bootstrap5.pages.AbstractBootstrapWebPage;
 import com.helger.photon.core.EPhotonCoreText;
 import com.helger.photon.core.form.RequestField;
-import com.helger.photon.core.mgr.PhotonBasicManager;
-import com.helger.photon.core.systemmsg.ESystemMessageType;
-import com.helger.photon.core.systemmsg.SystemMessageManager;
+import com.helger.photon.mgrs.PhotonBasicManager;
+import com.helger.photon.mgrs.systemmsg.ESystemMessageType;
+import com.helger.photon.mgrs.systemmsg.ISystemMessageManager;
 import com.helger.photon.uicore.css.CPageParam;
 import com.helger.photon.uicore.html.select.HCSystemMessageTypeSelect;
 import com.helger.photon.uicore.icon.EDefaultIcon;
@@ -123,7 +123,7 @@ public class BasePageSettingsSystemMessage <WPECTYPE extends IWebPageExecutionCo
   {
     final Locale aDisplayLocale = aWPEC.getDisplayLocale ();
     final HCNodeList aNodeList = aWPEC.getNodeList ();
-    final SystemMessageManager aSystemMsgMgr = PhotonBasicManager.getSystemMessageMgr ();
+    final ISystemMessageManager aSystemMsgMgr = PhotonBasicManager.getSystemMessageMgr ();
 
     boolean bShowList = true;
     if (aWPEC.hasAction (CPageParam.ACTION_EDIT))

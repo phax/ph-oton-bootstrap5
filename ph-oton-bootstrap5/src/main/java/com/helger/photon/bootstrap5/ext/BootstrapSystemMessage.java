@@ -25,10 +25,10 @@ import com.helger.base.enforce.ValueEnforcer;
 import com.helger.base.string.StringHelper;
 import com.helger.photon.bootstrap5.alert.AbstractBootstrapAlert;
 import com.helger.photon.bootstrap5.alert.EBootstrapAlertType;
-import com.helger.photon.core.mgr.PhotonBasicManager;
-import com.helger.photon.core.systemmsg.ESystemMessageType;
 import com.helger.photon.core.systemmsg.ISystemMessageRenderer;
-import com.helger.photon.core.systemmsg.SystemMessageManager;
+import com.helger.photon.mgrs.PhotonBasicManager;
+import com.helger.photon.mgrs.systemmsg.ESystemMessageType;
+import com.helger.photon.mgrs.systemmsg.ISystemMessageManager;
 import com.helger.photon.uicore.systemmsg.SystemMessageRendererMarkdown;
 import com.helger.photon.uicore.systemmsg.SystemMessageRendererPlainText;
 
@@ -112,7 +112,7 @@ public class BootstrapSystemMessage extends AbstractBootstrapAlert <BootstrapSys
   @Nullable
   public static BootstrapSystemMessage createDefault ()
   {
-    final SystemMessageManager aSystemMsgMgr = PhotonBasicManager.getSystemMessageMgr ();
+    final ISystemMessageManager aSystemMsgMgr = PhotonBasicManager.getSystemMessageMgr ();
     return create (aSystemMsgMgr.getMessageType (), aSystemMsgMgr.getSystemMessage ());
   }
 
