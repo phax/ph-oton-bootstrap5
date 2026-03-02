@@ -83,10 +83,6 @@ public abstract class AbstractApplicationXServletHandlerWithCSP extends Abstract
     aUnifiedResponse.addCustomResponseHeader (m_eCSPMode.isReportingOnly () ? CHttpHeader.CONTENT_SECURITY_POLICY_REPORT_ONLY
                                                                             : CHttpHeader.CONTENT_SECURITY_POLICY,
                                               aPolicy.getAsString ());
-    // IE specific
-    aUnifiedResponse.addCustomResponseHeader (m_eCSPMode.isReportingOnly () ? CHttpHeader.X_CONTENT_SECURITY_POLICY_REPORT_ONLY
-                                                                            : CHttpHeader.X_CONTENT_SECURITY_POLICY,
-                                              aPolicy.getAsString ());
 
     super.handleRequest (aRequestScope, aUnifiedResponse);
   }
