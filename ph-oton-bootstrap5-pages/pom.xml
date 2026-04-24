@@ -25,7 +25,7 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>ph-oton-bootstrap5-pages</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>ph-oton-bootstrap5-pages</name>
   <description>Default web pages for the ph-oton stack</description>
   <url>https://github.com/phax/ph-oton-bootstrap5/ph-oton-bootstrap5-pages</url>
@@ -71,21 +71,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Automatic-Module-Name>com.helger.photon.bootstrap5.pages</Automatic-Module-Name>
-            <Export-Package>com.helger.photon.bootstrap5.pages.*</Export-Package>
-            <Import-Package>!org.jspecify.annotations.*,*</Import-Package>
-          </instructions>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>

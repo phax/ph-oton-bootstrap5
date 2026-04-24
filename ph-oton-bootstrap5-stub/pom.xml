@@ -25,7 +25,7 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>ph-oton-bootstrap5-stub</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>ph-oton-bootstrap5-stub</name>
   <description>Web application stub with Bootstrap5 for the ph-oton stack</description>
   <url>https://github.com/phax/ph-oton-bootstrap5/ph-oton-bootstrap5-stub</url>
@@ -49,6 +49,7 @@
       <url>https://www.helger.com</url>
     </developer>
   </developers>
+  
   <dependencies>
     <dependency>
       <groupId>com.helger.photon</groupId>
@@ -71,23 +72,4 @@
       <artifactId>jul-to-slf4j</artifactId>
     </dependency>
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Automatic-Module-Name>com.helger.photon.bootstrap5.stub</Automatic-Module-Name>
-            <Export-Package>com.helger.photon.bootstrap5.stub.*</Export-Package>
-            <Import-Package>!org.jspecify.annotations.*,*</Import-Package>
-            <Require-Capability>osgi.extender; filter:="(osgi.extender=osgi.serviceloader.registrar)"</Require-Capability>
-            <Provide-Capability>osgi.serviceloader; osgi.serviceloader=com.helger.base.thirdparty.IThirdPartyModuleProviderSPI,
-osgi.serviceloader; osgi.serviceloader=jakarta.servlet.ServletContainerInitializer</Provide-Capability>
-          </instructions>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>
