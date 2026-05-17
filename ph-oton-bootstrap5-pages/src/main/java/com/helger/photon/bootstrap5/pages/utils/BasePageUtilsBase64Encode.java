@@ -163,7 +163,7 @@ public class BasePageUtilsBase64Encode <WPECTYPE extends IWebPageExecutionContex
       byte [] aBytesToEncode = null;
       if (bFileSelected)
       {
-        if (aFile == null || StringHelper.isEmpty (aFile.getName ()))
+        if (aFile == null || StringHelper.isEmpty (aFile.getNameSecure ()))
           aFormErrors.addFieldError (FIELD_FILE, "No file was selected");
         else
           aBytesToEncode = aFile.directGet ();
@@ -193,7 +193,7 @@ public class BasePageUtilsBase64Encode <WPECTYPE extends IWebPageExecutionContex
         {
           sEncoded = "";
         }
-        aNodeList.addChild (success ((aFile != null ? "File '" + aFile.getName () + "'" : "Uploaded text") +
+        aNodeList.addChild (success ((aFile != null ? "File '" + aFile.getNameSecure () + "'" : "Uploaded text") +
                                      " was encoded from " +
                                      aBytesToEncode.length +
                                      " bytes to " +
