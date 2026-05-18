@@ -153,7 +153,7 @@
         <plugin>
           <groupId>com.helger.maven</groupId>
           <artifactId>ph-csscompress-maven-plugin</artifactId>
-          <version>8.2.0</version>
+          <version>8.2.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
