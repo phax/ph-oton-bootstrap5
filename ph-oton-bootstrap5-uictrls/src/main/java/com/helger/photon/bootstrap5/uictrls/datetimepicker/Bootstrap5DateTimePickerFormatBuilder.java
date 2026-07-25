@@ -26,7 +26,7 @@ import org.jspecify.annotations.Nullable;
 import com.helger.annotation.style.ReturnsMutableCopy;
 import com.helger.base.enforce.ValueEnforcer;
 import com.helger.base.tostring.ToStringGenerator;
-import com.helger.cache.impl.Cache;
+import com.helger.cache.impl.ProviderCache;
 import com.helger.collection.commons.CommonsArrayList;
 import com.helger.collection.commons.ICommonsList;
 import com.helger.datetime.format.PDTFromString;
@@ -111,15 +111,14 @@ public class Bootstrap5DateTimePickerFormatBuilder implements IDateFormatBuilder
   }
 
   // Cache for standard patterns
-  private static final class PatternCache extends Cache <String, Bootstrap5DateTimePickerFormatBuilder>
+  private static final ProviderCache <String, Bootstrap5DateTimePickerFormatBuilder> CACHE;
+  static
   {
-    public PatternCache ()
-    {
-      super (Bootstrap5DateTimePickerFormatBuilder::fromJavaPattern, "BS5DTPickerFormatCache");
-    }
+    CACHE = ProviderCache.<String, Bootstrap5DateTimePickerFormatBuilder> builder ()
+                         .name ("BS5DTPickerFormatCache")
+                         .valueProvider (Bootstrap5DateTimePickerFormatBuilder::fromJavaPattern)
+                         .build ();
   }
-
-  private static final PatternCache CACHE = new PatternCache ();
 
   @NonNull
   public static Bootstrap5DateTimePickerFormatBuilder fromJavaPattern (@NonNull final String sJavaPattern)

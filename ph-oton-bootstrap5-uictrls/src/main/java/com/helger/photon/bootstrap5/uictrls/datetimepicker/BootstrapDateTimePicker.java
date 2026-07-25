@@ -51,7 +51,7 @@ import com.helger.photon.bootstrap5.inputgroup.BootstrapInputGroup;
 import com.helger.photon.bootstrap5.uictrls.EBootstrapUICtrlsCSSPathProvider;
 import com.helger.photon.bootstrap5.uictrls.EBootstrapUICtrlsJSPathProvider;
 import com.helger.photon.core.form.RequestField;
-import com.helger.photon.icon.fontawesome.EFontAwesome4Icon;
+import com.helger.photon.icon.fontawesome5.EFontAwesome5Icon;
 
 /**
  * This class represents a wrapper around the DateTime Picker for Bootstrap 5 from
@@ -70,7 +70,7 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
   public static final EBootstrap5DateTimePickerViewModeType DEFAULT_VIEW_MODE = EBootstrap5DateTimePickerViewModeType.CALENDAR;
 
   // Use the calendar icon as default prefix
-  public static final IHCNode DEFAULT_PREPEND_ICON = EFontAwesome4Icon.CALENDAR.getAsNode ();
+  public static final IHCNode DEFAULT_PREPEND_ICON = EFontAwesome5Icon.CALENDAR.getAsNode ();
 
   private final HCEdit m_aEdit;
   private final Locale m_aDisplayLocale;

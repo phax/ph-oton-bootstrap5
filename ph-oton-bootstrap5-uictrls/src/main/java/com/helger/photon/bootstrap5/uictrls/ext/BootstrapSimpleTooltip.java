@@ -22,7 +22,7 @@ import com.helger.html.hc.IHCNode;
 import com.helger.html.hc.html.IHCElement;
 import com.helger.html.hc.impl.HCNodeList;
 import com.helger.photon.bootstrap5.tooltip.BootstrapTooltip;
-import com.helger.photon.icon.fontawesome.EFontAwesome5Icon;
+import com.helger.photon.icon.fontawesome5.EFontAwesome5Icon;
 
 public class BootstrapSimpleTooltip
 {

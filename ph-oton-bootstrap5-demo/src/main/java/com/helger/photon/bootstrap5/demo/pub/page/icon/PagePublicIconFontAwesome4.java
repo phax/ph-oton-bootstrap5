@@ -20,7 +20,7 @@ import org.jspecify.annotations.NonNull;
 
 import com.helger.annotation.Nonempty;
 import com.helger.html.hc.impl.HCNodeList;
-import com.helger.photon.icon.fontawesome.EFontAwesome4Icon;
+import com.helger.photon.icon.fontawesome4.EFontAwesome4Icon;
 import com.helger.photon.uicore.page.WebPageExecutionContext;
 
 /**

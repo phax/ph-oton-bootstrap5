@@ -87,7 +87,14 @@
       <dependency>
         <groupId>com.helger.photon</groupId>
         <artifactId>ph-oton-parent-pom</artifactId>
-        <version>10.2.3</version>
+        <version>10.3.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon.icon</groupId>
+        <artifactId>ph-oton-icon-parent-pom</artifactId>
+        <version>1.0.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>

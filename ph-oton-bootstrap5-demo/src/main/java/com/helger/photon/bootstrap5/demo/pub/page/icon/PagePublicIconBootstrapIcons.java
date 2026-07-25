@@ -20,7 +20,7 @@ import org.jspecify.annotations.NonNull;
 
 import com.helger.annotation.Nonempty;
 import com.helger.html.hc.impl.HCNodeList;
-import com.helger.photon.icon.bootstrapicons.EBootstrapIcon;
+import com.helger.photon.icon.bootstrap.EBootstrapIcon;
 import com.helger.photon.uicore.page.WebPageExecutionContext;
 
 /**
