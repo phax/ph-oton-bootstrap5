@@ -20,11 +20,13 @@ import org.jspecify.annotations.NonNull;
 
 import com.helger.annotation.Nonempty;
 
+/**
+ * Overflow constraint boundary of the tooltip, as understood by Popper v2's "preventOverflow"
+ * modifier. The Popper v1 values (viewport, window, scrollParent) no longer exist.
+ */
 public enum EBootstrapTooltipBoundary
 {
-  VIEWPORT ("viewport"),
-  WINDOW ("window"),
-  SCROLL_PARENT ("scrollParent");
+  CLIPPING_PARENTS ("clippingParents");
 
   private final String m_sValue;
 

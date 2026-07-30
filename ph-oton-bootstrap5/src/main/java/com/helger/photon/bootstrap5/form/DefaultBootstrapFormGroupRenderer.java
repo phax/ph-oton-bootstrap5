@@ -348,7 +348,11 @@ public class DefaultBootstrapFormGroupRenderer implements IBootstrapFormGroupRen
           }
 
           if (!bIsInline)
+          {
+            // Vertically center the label relative to the control in the grid row
+            aLabel.addClass (CBootstrapCSS.COL_FORM_LABEL);
             aForm.getLeft ().applyTo (aLabel);
+          }
 
           aFinalNode.addChild (aLabel).addChild (aDivRight);
         }

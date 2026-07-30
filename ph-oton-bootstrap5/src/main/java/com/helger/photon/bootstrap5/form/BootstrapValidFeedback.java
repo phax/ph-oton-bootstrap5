@@ -14,29 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.helger.photon.bootstrap5.tooltip;
+package com.helger.photon.bootstrap5.form;
 
-import org.jspecify.annotations.NonNull;
+import com.helger.photon.bootstrap5.CBootstrapCSS;
+import com.helger.photon.bootstrap5.base.AbstractBootstrapDiv;
 
-import com.helger.annotation.Nonempty;
-
-public enum EBootstrapTooltipFallbackPlacement
+public class BootstrapValidFeedback extends AbstractBootstrapDiv <BootstrapValidFeedback>
 {
-  FLIP ("flip"),
-  CLOCK_WISE ("clockwise"),
-  COUNTER_CLOCK_WISE ("counterclockwise");
-
-  private final String m_sValue;
-
-  EBootstrapTooltipFallbackPlacement (@NonNull @Nonempty final String sValue)
+  public BootstrapValidFeedback ()
   {
-    m_sValue = sValue;
-  }
-
-  @NonNull
-  @Nonempty
-  public String getValue ()
-  {
-    return m_sValue;
+    addClass (CBootstrapCSS.VALID_FEEDBACK);
   }
 }

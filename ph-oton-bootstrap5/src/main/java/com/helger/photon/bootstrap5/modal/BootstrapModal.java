@@ -21,7 +21,6 @@ import org.jspecify.annotations.Nullable;
 
 import com.helger.annotation.Nonempty;
 import com.helger.base.enforce.ValueEnforcer;
-import com.helger.base.string.StringHelper;
 import com.helger.html.EHTMLRole;
 import com.helger.html.hc.IHCConversionSettingsToNode;
 import com.helger.html.hc.IHCHasChildrenMutable;
@@ -31,10 +30,10 @@ import com.helger.html.hc.html.grouping.HCDiv;
 import com.helger.html.hc.html.sections.HCH5;
 import com.helger.html.hc.impl.HCNodeList;
 import com.helger.html.hc.impl.HCTextNode;
-import com.helger.html.jquery.JQuery;
 import com.helger.html.jscode.JSAssocArray;
+import com.helger.html.jscode.JSExpr;
 import com.helger.html.jscode.JSInvocation;
-import com.helger.html.jscode.JSPackage;
+import com.helger.html.jscode.html.JSHtml;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 import com.helger.photon.bootstrap5.utils.BootstrapCloseIcon;
 
@@ -61,9 +60,10 @@ public class BootstrapModal extends AbstractHCDiv <BootstrapModal>
    */
   public static final String JS_EVENT_HIDDEN = "hidden.bs.modal";
   /**
-   * This event is fired when the modal has loaded content using the remote option.
+   * This event is fired when the modal is shown, its backdrop is static and a click outside of the
+   * modal or an escape key press is performed with the keyboard option or backdrop set to static.
    */
-  public static final String JS_EVENT_LOADED = "loaded.bs.modal";
+  public static final String JS_EVENT_HIDE_PREVENTED = "hidePrevented.bs.modal";
 
   public static final boolean DEFAULT_FADE = true;
   public static final boolean DEFAULT_VERTICALLY_CENTERED = true;
@@ -281,16 +281,19 @@ public class BootstrapModal extends AbstractHCDiv <BootstrapModal>
   }
 
   /**
-   * @return JS invocation to open this modal dialog.
+   * @return The JS invocation returning the modal instance for this dialog:
+   *         <code>bootstrap.Modal.getOrCreateInstance (document.getElementById (id))</code>
    */
   @NonNull
   public JSInvocation jsModal ()
   {
-    return JQuery.idRef (this).invoke ("modal");
+    return JSExpr.ref (JSExpr.ref ("bootstrap"), "Modal")
+                 .invoke ("getOrCreateInstance")
+                 .arg (JSHtml.documentGetElementById (getID ()));
   }
 
   /**
-   * Activates your content as a modal. Accepts an optional options object.
+   * Creates the modal instance with the specified options and shows it.
    *
    * @param aBackdrop
    *        Includes a modal-backdrop element. Alternatively, specify static for a backdrop which
@@ -299,22 +302,13 @@ public class BootstrapModal extends AbstractHCDiv <BootstrapModal>
    *        Closes the modal when escape key is pressed
    * @param aFocus
    *        Puts the focus on the modal when initialized.
-   * @param aShow
-   *        Shows the modal when initialized.
-   * @param sRemotePath
-   *        If a remote URL is provided, content will be loaded one time via jQuery's load method
-   *        and injected into the .modal-content div.
    * @return JS invocation to open this modal dialog with the specified options.
    */
   @NonNull
-  public JSPackage openModal (@Nullable final EBootstrapModalOptionBackdrop aBackdrop,
-                              @Nullable final Boolean aKeyboard,
-                              @Nullable final Boolean aFocus,
-                              @Nullable final Boolean aShow,
-                              @Nullable final String sRemotePath)
+  public JSInvocation openModal (@Nullable final EBootstrapModalOptionBackdrop aBackdrop,
+                                 @Nullable final Boolean aKeyboard,
+                                 @Nullable final Boolean aFocus)
   {
-    final JSPackage ret = new JSPackage ();
-
     final JSAssocArray aOptions = new JSAssocArray ();
     if (aBackdrop != null)
       aOptions.add ("backdrop", aBackdrop.getJSExpression ());
@@ -322,16 +316,10 @@ public class BootstrapModal extends AbstractHCDiv <BootstrapModal>
       aOptions.add ("focus", aFocus.booleanValue ());
     if (aKeyboard != null)
       aOptions.add ("keyboard", aKeyboard.booleanValue ());
-    if (aShow != null)
-      aOptions.add ("show", aShow.booleanValue ());
-    ret.add (jsModal ().arg (aOptions));
 
-    if (StringHelper.isNotEmpty (sRemotePath))
-    {
-      // Load content into modal
-      ret.add (JQuery.idRef (_getContentID ()).load (sRemotePath));
-    }
-    return ret;
+    return new JSInvocation (JSExpr.ref (JSExpr.ref ("bootstrap"), "Modal")).arg (JSHtml.documentGetElementById (getID ()))
+                                                                            .arg (aOptions)
+                                                                            .invoke ("show");
   }
 
   /**
@@ -343,7 +331,7 @@ public class BootstrapModal extends AbstractHCDiv <BootstrapModal>
   @NonNull
   public JSInvocation jsModalToggle ()
   {
-    return jsModal ().arg ("toggle");
+    return jsModal ().invoke ("toggle");
   }
 
   /**
@@ -355,7 +343,7 @@ public class BootstrapModal extends AbstractHCDiv <BootstrapModal>
   @NonNull
   public JSInvocation jsModalShow ()
   {
-    return jsModal ().arg ("show");
+    return jsModal ().invoke ("show");
   }
 
   /**
@@ -367,7 +355,7 @@ public class BootstrapModal extends AbstractHCDiv <BootstrapModal>
   @NonNull
   public JSInvocation jsModalHide ()
   {
-    return jsModal ().arg ("hide");
+    return jsModal ().invoke ("hide");
   }
 
   /**
@@ -380,12 +368,12 @@ public class BootstrapModal extends AbstractHCDiv <BootstrapModal>
   @NonNull
   public JSInvocation jsModalHandleUpdate ()
   {
-    return jsModal ().arg ("handleUpdate");
+    return jsModal ().invoke ("handleUpdate");
   }
 
   @NonNull
   public JSInvocation jsModalDispose ()
   {
-    return jsModal ().arg ("dispose");
+    return jsModal ().invoke ("dispose");
   }
 }

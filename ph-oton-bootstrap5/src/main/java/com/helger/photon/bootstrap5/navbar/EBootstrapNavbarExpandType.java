@@ -34,7 +34,8 @@ public enum EBootstrapNavbarExpandType implements ICSSClassProvider
   EXPAND_SM (CBootstrapCSS.NAVBAR_EXPAND_SM, EBootstrapBreakpoint.SM),
   EXPAND_MD (CBootstrapCSS.NAVBAR_EXPAND_MD, EBootstrapBreakpoint.MD),
   EXPAND_LG (CBootstrapCSS.NAVBAR_EXPAND_LG, EBootstrapBreakpoint.LG),
-  EXPAND_XL (CBootstrapCSS.NAVBAR_EXPAND_XL, EBootstrapBreakpoint.XL);
+  EXPAND_XL (CBootstrapCSS.NAVBAR_EXPAND_XL, EBootstrapBreakpoint.XL),
+  EXPAND_XXL (CBootstrapCSS.NAVBAR_EXPAND_XXL, EBootstrapBreakpoint.XXL);
 
   private final ICSSClassProvider m_aCSSClass;
   private final EBootstrapBreakpoint m_eGridType;

@@ -43,11 +43,14 @@ import com.helger.html.hc.render.HCRenderer;
 import com.helger.html.jquery.IJQuerySelector;
 import com.helger.html.jquery.JQuerySelector;
 import com.helger.html.jscode.JSAnonymousFunction;
+import com.helger.html.jscode.JSArray;
 import com.helger.html.jscode.JSAssocArray;
+import com.helger.html.jscode.JSExpr;
 import com.helger.html.jscode.JSInvocation;
+import com.helger.html.jscode.JSParam;
 
 /**
- * Bootstrap Tooltip
+ * Bootstrap 5 Tooltip. Uses the native <code>bootstrap.Tooltip</code> JS API - no jQuery involved.
  *
  * @author Philip Helger
  */
@@ -84,8 +87,6 @@ public class BootstrapTooltip extends HCScriptInlineOnDocumentReady
   @CodingStyleguideUnaware
   public static final Set <EBootstrapTooltipTrigger> DEFAULT_TRIGGER = new CommonsLinkedHashSet <> (EBootstrapTooltipTrigger.HOVER,
                                                                                                     EBootstrapTooltipTrigger.FOCUS).getAsUnmodifiable ();
-  public static final EBootstrapTooltipFallbackPlacement DEFAULT_FALLBACK_PLACEMENT = EBootstrapTooltipFallbackPlacement.FLIP;
-  public static final EBootstrapTooltipBoundary DEFAULT_BOUNDARY = EBootstrapTooltipBoundary.SCROLL_PARENT;
 
   private final IJQuerySelector m_aSelector;
   private boolean m_bAnimation = DEFAULT_ANIMATION;
@@ -101,8 +102,9 @@ public class BootstrapTooltip extends HCScriptInlineOnDocumentReady
   @CodingStyleguideUnaware
   private Set <EBootstrapTooltipTrigger> m_aTrigger = DEFAULT_TRIGGER;
   private String m_sOffset;
-  private EBootstrapTooltipFallbackPlacement m_eFallbackPlacement = DEFAULT_FALLBACK_PLACEMENT;
-  private EBootstrapTooltipBoundary m_eBoundary = DEFAULT_BOUNDARY;
+  private final ICommonsList <EBootstrapTooltipPosition> m_aFallbackPlacements = new CommonsArrayList <> ();
+  private EBootstrapTooltipBoundary m_eBoundary;
+  private String m_sCustomClass;
 
   public BootstrapTooltip (@NonNull final IHCElement <?> aElement)
   {
@@ -324,16 +326,38 @@ public class BootstrapTooltip extends HCScriptInlineOnDocumentReady
     return setOffset (Integer.toString (nOffset));
   }
 
-  @Nullable
-  public EBootstrapTooltipFallbackPlacement getFallbackPlacement ()
+  @NonNull
+  @ReturnsMutableCopy
+  public ICommonsList <EBootstrapTooltipPosition> getFallbackPlacements ()
   {
-    return m_eFallbackPlacement;
+    return m_aFallbackPlacements.getClone ();
+  }
+
+  /**
+   * Define the placements Popper v2 may fall back to, if the tooltip does not fit in the desired
+   * placement. If none is set, the Bootstrap default (top, right, bottom, left) is used.
+   *
+   * @param aFallbackPlacements
+   *        The fallback placements in the order of preference. May be <code>null</code>.
+   * @return this
+   */
+  @NonNull
+  public BootstrapTooltip setFallbackPlacements (@Nullable final EBootstrapTooltipPosition... aFallbackPlacements)
+  {
+    m_aFallbackPlacements.setAll (aFallbackPlacements);
+    return this;
+  }
+
+  @Nullable
+  public String getCustomClass ()
+  {
+    return m_sCustomClass;
   }
 
   @NonNull
-  public BootstrapTooltip setFallbackPlacement (@Nullable final EBootstrapTooltipFallbackPlacement eFallbackPlacement)
+  public BootstrapTooltip setCustomClass (@Nullable final String sCustomClass)
   {
-    m_eFallbackPlacement = eFallbackPlacement;
+    m_sCustomClass = sCustomClass;
     return this;
   }
 
@@ -382,69 +406,109 @@ public class BootstrapTooltip extends HCScriptInlineOnDocumentReady
       aOptions.add ("trigger", StringImplode.getImplodedMapped (' ', m_aTrigger, EBootstrapTooltipTrigger::getValue));
     if (StringHelper.isNotEmpty (m_sOffset))
       aOptions.add ("offset", m_sOffset);
+    if (m_aFallbackPlacements.isNotEmpty ())
+    {
+      final JSArray aFallbacks = new JSArray ();
+      for (final EBootstrapTooltipPosition ePosition : m_aFallbackPlacements)
+        aFallbacks.add (ePosition.getValue ());
+      aOptions.add ("fallbackPlacements", aFallbacks);
+    }
     if (m_eBoundary != null)
       aOptions.add ("boundary", m_eBoundary.getValue ());
+    if (StringHelper.isNotEmpty (m_sCustomClass))
+      aOptions.add ("customClass", m_sCustomClass);
     return aOptions;
   }
 
+  /**
+   * @return The JS expression selecting all matching elements:
+   *         <code>document.querySelectorAll (selector)</code>
+   */
   @NonNull
-  public JSInvocation jsInvoke ()
+  public JSInvocation jsQuerySelectorAll ()
   {
-    return m_aSelector.invoke ().invoke ("tooltip");
+    return JSExpr.ref ("document").invoke ("querySelectorAll").arg (m_aSelector.getExpression ());
   }
 
   @NonNull
+  private JSInvocation _jsForEachElement (@NonNull final JSAnonymousFunction aCallback)
+  {
+    return jsQuerySelectorAll ().invoke ("forEach").arg (aCallback);
+  }
+
+  /**
+   * @return The JS invocation that creates a <code>new bootstrap.Tooltip</code> for each matching
+   *         element, using the options of this object.
+   */
+  @NonNull
   public JSInvocation jsAttach ()
   {
-    return jsInvoke ().arg (getJSOptions ());
+    final JSAnonymousFunction aFn = new JSAnonymousFunction ();
+    final JSParam aElem = aFn.param ("el");
+    aFn.body ()
+       .add (new JSInvocation (JSExpr.ref (JSExpr.ref ("bootstrap"), "Tooltip")).arg (aElem).arg (getJSOptions ()));
+    return _jsForEachElement (aFn);
+  }
+
+  @NonNull
+  private JSInvocation _jsInstanceCall (@NonNull final String sMethod)
+  {
+    final JSAnonymousFunction aFn = new JSAnonymousFunction ();
+    final JSParam aElem = aFn.param ("el");
+    aFn.body ()
+       .add (JSExpr.ref (JSExpr.ref ("bootstrap"), "Tooltip")
+                   .invoke ("getOrCreateInstance")
+                   .arg (aElem)
+                   .invoke (sMethod));
+    return _jsForEachElement (aFn);
   }
 
   @NonNull
   public JSInvocation jsShow ()
   {
-    return jsInvoke ().arg ("show");
+    return _jsInstanceCall ("show");
   }
 
   @NonNull
   public JSInvocation jsHide ()
   {
-    return jsInvoke ().arg ("hide");
+    return _jsInstanceCall ("hide");
   }
 
   @NonNull
   public JSInvocation jsToggle ()
   {
-    return jsInvoke ().arg ("toggle");
+    return _jsInstanceCall ("toggle");
   }
 
   @NonNull
   public JSInvocation jsDispose ()
   {
-    return jsInvoke ().arg ("dispose");
+    return _jsInstanceCall ("dispose");
   }
 
   @NonNull
   public JSInvocation jsEnable ()
   {
-    return jsInvoke ().arg ("enable");
+    return _jsInstanceCall ("enable");
   }
 
   @NonNull
   public JSInvocation jsDisable ()
   {
-    return jsInvoke ().arg ("disable");
+    return _jsInstanceCall ("disable");
   }
 
   @NonNull
   public JSInvocation jsToggleEnabled ()
   {
-    return jsInvoke ().arg ("toggleEnabled");
+    return _jsInstanceCall ("toggleEnabled");
   }
 
   @NonNull
   public JSInvocation jsUpdate ()
   {
-    return jsInvoke ().arg ("update");
+    return _jsInstanceCall ("update");
   }
 
   @Override

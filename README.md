@@ -88,6 +88,10 @@ This library wraps **Bootstrap 5.3.x**, which includes:
 * Reworked `BootstrapInputGroup` to use the flat Bootstrap 5 markup (no more `input-group-prepend`/`input-group-append` wrappers)
 * Made the DateTimePicker based on Tempus Dominus v6.9.4 work: fixed initialization (`new tempusDominus.TempusDominus`), format token mapping, icon configuration (FontAwesome 5) and initial value handling; clicking into the input opens the picker as well (as in the Bootstrap 4 version)
 * Added Popper v2.11.8 as a contained resource, as it is required by Tempus Dominus for popup positioning
+* Migrated `BootstrapTooltip` and `BootstrapModal` from the removed jQuery plugin API to the native `bootstrap.Tooltip`/`bootstrap.Modal` JS API
+* Horizontal form labels now use the `col-form-label` class for correct alignment
+* Added new components: `BootstrapOffcanvas`, `BootstrapFormFloating` (floating labels) and `BootstrapValidFeedback`
+* Added the missing `EXPAND_XXL` entry to `EBootstrapNavbarExpandType`
 
 ## Migration from Bootstrap 4
 
