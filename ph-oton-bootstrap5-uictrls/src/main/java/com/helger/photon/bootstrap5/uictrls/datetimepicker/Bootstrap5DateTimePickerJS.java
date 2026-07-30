@@ -38,7 +38,7 @@ public class Bootstrap5DateTimePickerJS extends AbstractHCScriptInline <Bootstra
 
   public Bootstrap5DateTimePickerJS (@NonNull final BootstrapDateTimePicker aDTP)
   {
-    super (aDTP.getJSInitCode ());
+    super (aDTP.invoke ());
     m_aDTP = aDTP;
   }
 

@@ -21,21 +21,20 @@ import org.jspecify.annotations.NonNull;
 import com.helger.annotation.Nonempty;
 
 /**
- * Defines the possible tokens for the Tempus Dominus v6 format.
- * <p>
- * Note: Tempus Dominus v6 uses Intl.DateTimeFormat tokens (similar to Java) instead of Moment.js
- * tokens.
- * </p>
+ * Defines the possible tokens for the Tempus Dominus v6 format.<br>
+ * Tempus Dominus v6 uses its own format tokens (see the <code>formattingTokens</code> regular
+ * expression in tempus-dominus.js):
+ * <code>T, t, yyyy, yy, y, MMMM, MMM, MM, M, dddd, ddd, dd, d, hh, h, HH, H, mm, m, ss, s</code>.
+ * The meridiem token is <code>T</code>/<code>t</code> (not <code>a</code> as in Java) and the day
+ * of week tokens are <code>ddd</code>/<code>dddd</code> (not <code>E</code> as in Java).
  *
  * @author Philip Helger
  */
 public enum ETempusDominusFormatToken
 {
-  // Era
-  ERA ("G", "G"),
-
   // Year
-  YEAR ("y", "u"),
+  YEAR ("y", "y"),
+  YEAR_PROLEPTIC ("y", "u"),
   YEAR_2_DIGITS ("yy", "yy"),
   YEAR_4_DIGITS ("yyyy", "yyyy"),
 
@@ -45,31 +44,18 @@ public enum ETempusDominusFormatToken
   MONTH_ABBR ("MMM", "MMM"),
   MONTH_FULL ("MMMM", "MMMM"),
 
-  // Day
+  // Day of month
   DAY_OF_MONTH ("d", "d"),
   DAY_OF_MONTH_2_DIGITS ("dd", "dd"),
 
-  // Day of Week
-  DAY_OF_WEEK_ABBR ("E", "E"),
-  DAY_OF_WEEK_FULL ("EEEE", "EEEE"),
+  // Day of week - Java "E", "EE" and "EEE" are all abbreviated
+  DAY_OF_WEEK_ABBR ("ddd", "E"),
+  DAY_OF_WEEK_ABBR_2 ("ddd", "EE"),
+  DAY_OF_WEEK_ABBR_3 ("ddd", "EEE"),
+  DAY_OF_WEEK_FULL ("dddd", "EEEE"),
 
   // AM/PM
-  // Java 'a' maps to 'a' or 't' in Intl? TD6 docs say 't' for short, 'tt' for long?
-  // Actually TD6 supports 'T' for uppercase T/F?
-  // Let's stick to standard Java/Intl mapping if possible.
-  // TD6 uses `Intl.DateTimeFormat` options under the hood if no custom format is provided.
-  // But for `customDateFormat`, it parses tokens.
-  // According to TD6 docs:
-  // t: a/p
-  // T: A/P
-  // h: 1-12
-  // H: 0-23
-  // m: 0-59
-  // s: 0-59
-  // y: year
-  // M: month
-  // d: day
-  AMPM ("a", "a"),
+  AMPM ("T", "a"),
 
   // Time
   HOUR_1_12 ("h", "h"),

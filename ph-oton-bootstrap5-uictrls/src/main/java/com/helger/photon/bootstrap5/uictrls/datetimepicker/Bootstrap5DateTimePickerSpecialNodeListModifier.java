@@ -24,12 +24,14 @@ import com.helger.annotation.style.ReturnsMutableCopy;
 import com.helger.collection.commons.CommonsArrayList;
 import com.helger.collection.commons.ICommonsList;
 import com.helger.html.hc.IHCNode;
-import com.helger.html.hc.html.script.HCScriptInlineOnDocumentReady;
+import com.helger.html.hc.html.script.HCScriptInline;
 import com.helger.html.hc.special.IHCSpecialNodeListModifier;
-import com.helger.html.jquery.IJQuerySelector;
-import com.helger.html.jquery.JQuerySelector;
 import com.helger.html.js.CollectingJSCodeProvider;
+import com.helger.html.jscode.JSAnonymousFunction;
+import com.helger.html.jscode.JSArray;
 import com.helger.html.jscode.JSAssocArray;
+import com.helger.html.jscode.JSParam;
+import com.helger.html.jscode.html.JSHtml;
 
 public final class Bootstrap5DateTimePickerSpecialNodeListModifier implements IHCSpecialNodeListModifier
 {
@@ -89,18 +91,22 @@ public final class Bootstrap5DateTimePickerSpecialNodeListModifier implements IH
       }
       else
       {
-        // We have multiple objects with the same options
-        // Create a common selector
-        IJQuerySelector aJQI = JQuerySelector.id (aCurrent.getDateTimePicker ());
+        // We have multiple objects with the same options.
+        // Tempus Dominus needs one instance per element, so loop over all IDs
+        final JSArray aIDs = new JSArray ();
+        aIDs.add (aCurrent.getDateTimePicker ().getID ());
         for (final Bootstrap5DateTimePickerJS aSameOption : aSameOptions)
-          aJQI = aJQI.multiple (JQuerySelector.id (aSameOption.getDateTimePicker ()));
-        // And apply once
-        aMergedJS.append (BootstrapDateTimePicker.invoke (aJQI.invoke (), aCurrentJSOptions));
+          aIDs.add (aSameOption.getDateTimePicker ().getID ());
+
+        final JSAnonymousFunction aFn = new JSAnonymousFunction ();
+        final JSParam aParam = aFn.param ("sID");
+        aFn.body ().add (BootstrapDateTimePicker.invoke (JSHtml.documentGetElementById (aParam), aCurrentJSOptions));
+        aMergedJS.append (aIDs.invoke ("forEach").arg (aFn));
       }
     }
 
     // Add at the first index, where it was in the source list
-    ret.add (nFirstIndex, new HCScriptInlineOnDocumentReady (aMergedJS).setNonce (sScriptNonce));
+    ret.add (nFirstIndex, new HCScriptInline (aMergedJS).setNonce (sScriptNonce));
     return ret;
   }
 }

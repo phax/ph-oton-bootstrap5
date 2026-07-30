@@ -19,35 +19,33 @@ package com.helger.photon.bootstrap5.inputgroup;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
-import com.helger.annotation.style.OverrideOnDemand;
 import com.helger.base.enforce.ValueEnforcer;
 import com.helger.base.string.StringHelper;
-import com.helger.html.css.DefaultCSSClassProvider;
-import com.helger.html.css.ICSSClassProvider;
+import com.helger.collection.commons.CommonsArrayList;
+import com.helger.collection.commons.ICommonsList;
 import com.helger.html.hc.IHCConversionSettingsToNode;
 import com.helger.html.hc.IHCHasChildrenMutable;
 import com.helger.html.hc.IHCNode;
 import com.helger.html.hc.html.forms.AbstractHCButton;
 import com.helger.html.hc.html.grouping.AbstractHCDiv;
-import com.helger.html.hc.html.grouping.HCDiv;
 import com.helger.html.hc.html.textlevel.HCSpan;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 import com.helger.photon.bootstrap5.dropdown.BootstrapDropdownMenu;
 
 /**
- * Bootstrap input group. Children must be added in the correct order. Use
- * {@link #addChildPrefix(String)}, {@link #addChildPrefix(IHCNode)},
- * {@link #addChildSuffix(String)} and {@link #addChildSuffix(IHCNode)} for the prepends and
- * appends.
+ * Bootstrap input group. In Bootstrap 5 all prefix and suffix elements are direct children of the
+ * input group - the Bootstrap 4 "input-group-prepend" and "input-group-append" wrapper elements
+ * were removed. Use {@link #addChildPrefix(String)}, {@link #addChildPrefix(IHCNode)},
+ * {@link #addChildSuffix(String)} and {@link #addChildSuffix(IHCNode)} for the prefixes and
+ * suffixes - they are emitted before respectively after the regular children.
  *
  * @author Philip Helger
  */
 public class BootstrapInputGroup extends AbstractHCDiv <BootstrapInputGroup>
 {
-  private static final ICSSClassProvider CSS_CLASS_IG_PREPEND = DefaultCSSClassProvider.create ("input-group-prepend");
-  private static final ICSSClassProvider CSS_CLASS_IG_APPEND = DefaultCSSClassProvider.create ("input-group-append");
-
   private EBootstrapInputGroupSize m_eSize;
+  private final ICommonsList <IHCNode> m_aPrefixes = new CommonsArrayList <> ();
+  private final ICommonsList <IHCNode> m_aSuffixes = new CommonsArrayList <> ();
 
   public BootstrapInputGroup ()
   {
@@ -73,59 +71,6 @@ public class BootstrapInputGroup extends AbstractHCDiv <BootstrapInputGroup>
     return this;
   }
 
-  /**
-   * @return The DIV with class "input-group-prepend". Never <code>null</code>.
-   */
-  @NonNull
-  @OverrideOnDemand
-  public HCDiv createGroupPrepend ()
-  {
-    return new HCDiv ().addClass (CSS_CLASS_IG_PREPEND);
-  }
-
-  /**
-   * @return The DIV with class "input-group-append". Never <code>null</code>.
-   */
-  @NonNull
-  @OverrideOnDemand
-  public HCDiv createGroupAppend ()
-  {
-    return new HCDiv ().addClass (CSS_CLASS_IG_APPEND);
-  }
-
-  /**
-   * If an existing DIV with class "input-group-prepend" is present, reuse it. Else create a new one
-   * and append it. Elements in here are prepended to the date edit.
-   *
-   * @return Never <code>null</code>.
-   * @see #createGroupPrepend()
-   */
-  @NonNull
-  public HCDiv getOrCreateGroupPrepend ()
-  {
-    // Existing "prepend" present?
-    final HCDiv aDiv = (HCDiv) findFirstChild (x -> x instanceof final HCDiv xd &&
-                                                    xd.containsClass (CSS_CLASS_IG_PREPEND));
-    // Prepend group MUST always be the first child, so before any control
-    return aDiv != null ? aDiv : addAndReturnChildAt (0, createGroupPrepend ());
-  }
-
-  /**
-   * If an existing DIV with class "input-group-append" is present, reuse it. Else create a new one
-   * and append it. Elements in here are appended to the date edit.
-   *
-   * @return Never <code>null</code>.
-   * @see #createGroupAppend()
-   */
-  @NonNull
-  public HCDiv getOrCreateGroupAppend ()
-  {
-    // Existing "append" present?
-    final HCDiv aDiv = (HCDiv) findFirstChild (x -> x instanceof final HCDiv xd &&
-                                                    xd.containsClass (CSS_CLASS_IG_APPEND));
-    return aDiv != null ? aDiv : addAndReturnChild (createGroupAppend ());
-  }
-
   @NonNull
   public static HCSpan getWrapped (@NonNull final String sText)
   {
@@ -135,78 +80,99 @@ public class BootstrapInputGroup extends AbstractHCDiv <BootstrapInputGroup>
   @NonNull
   public static IHCNode getWrapped (@NonNull final IHCNode aNode)
   {
-    // Buttons and dropdowns don't need a surrounding div
+    // Buttons and dropdowns don't need a surrounding span
     if (aNode instanceof AbstractHCButton <?> || aNode instanceof BootstrapDropdownMenu)
       return aNode;
-    return new HCDiv ().addClass (CBootstrapCSS.INPUT_GROUP_TEXT).addChild (aNode);
+    return new HCSpan ().addClass (CBootstrapCSS.INPUT_GROUP_TEXT).addChild (aNode);
   }
 
   /**
-   * Add a new text element to the prepend group.
+   * Add a new text element before the contained control.
    *
    * @param sText
    *        The text to be added. May be <code>null</code>.
    * @return this for chaining
-   * @see #getOrCreateGroupPrepend()
    * @see #getWrapped(String)
    */
   @NonNull
   public final BootstrapInputGroup addChildPrefix (@Nullable final String sText)
   {
     if (StringHelper.isNotEmpty (sText))
-      getOrCreateGroupPrepend ().addChild (getWrapped (sText));
+      m_aPrefixes.add (getWrapped (sText));
     return this;
   }
 
   /**
-   * Add a new node to the prepend group.
+   * Add a new node before the contained control.
    *
    * @param aNode
    *        The node to be added. May be <code>null</code>.
    * @return this for chaining
-   * @see #getOrCreateGroupPrepend()
    * @see #getWrapped(IHCNode)
    */
   @NonNull
   public final BootstrapInputGroup addChildPrefix (@Nullable final IHCNode aNode)
   {
     if (aNode != null)
-      getOrCreateGroupPrepend ().addChild (getWrapped (aNode));
+      m_aPrefixes.add (getWrapped (aNode));
     return this;
   }
 
   /**
-   * Add a new text element to the append group.
+   * Add an already wrapped node before the contained control and before all other prefixes.
+   *
+   * @param aNode
+   *        The node to be added as-is. May not be <code>null</code>.
+   * @return this for chaining
+   */
+  @NonNull
+  protected final BootstrapInputGroup addChildPrefixAtFront (@NonNull final IHCNode aNode)
+  {
+    ValueEnforcer.notNull (aNode, "Node");
+    m_aPrefixes.add (0, aNode);
+    return this;
+  }
+
+  /**
+   * Add a new text element after the contained control.
    *
    * @param sText
    *        The text to be added. May be <code>null</code>.
    * @return this for chaining
-   * @see #getOrCreateGroupAppend()
    * @see #getWrapped(String)
    */
   @NonNull
   public final BootstrapInputGroup addChildSuffix (@Nullable final String sText)
   {
     if (StringHelper.isNotEmpty (sText))
-      getOrCreateGroupAppend ().addChild (getWrapped (sText));
+      m_aSuffixes.add (getWrapped (sText));
     return this;
   }
 
   /**
-   * Add a new node to the append group.
+   * Add a new node after the contained control.
    *
    * @param aNode
    *        The node to be added. May be <code>null</code>.
    * @return this for chaining
-   * @see #getOrCreateGroupAppend()
    * @see #getWrapped(IHCNode)
    */
   @NonNull
   public final BootstrapInputGroup addChildSuffix (@Nullable final IHCNode aNode)
   {
     if (aNode != null)
-      getOrCreateGroupAppend ().addChild (getWrapped (aNode));
+      m_aSuffixes.add (getWrapped (aNode));
     return this;
+  }
+
+  public final boolean hasPrefixes ()
+  {
+    return m_aPrefixes.isNotEmpty ();
+  }
+
+  public final boolean hasSuffixes ()
+  {
+    return m_aSuffixes.isNotEmpty ();
   }
 
   @Override
@@ -215,5 +181,11 @@ public class BootstrapInputGroup extends AbstractHCDiv <BootstrapInputGroup>
   {
     super.onFinalizeNodeState (aConversionSettings, aTargetNode);
     addClasses (CBootstrapCSS.INPUT_GROUP, m_eSize);
+
+    int nPrefixIndex = 0;
+    for (final IHCNode aPrefix : m_aPrefixes)
+      addChildAt (nPrefixIndex++, aPrefix);
+    for (final IHCNode aSuffix : m_aSuffixes)
+      addChild (aSuffix);
   }
 }

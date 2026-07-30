@@ -39,6 +39,12 @@ public final class ThirdPartyModuleProvider_ph_oton_bootstrap5_uictrls implement
                                                                                new Version (6, 9, 4),
                                                                                "https://getdatepicker.com/");
 
+  public static final IThirdPartyModule POPPER = new ThirdPartyModule ("Popper",
+                                                                       "Federico Zivolo",
+                                                                       ELicense.MIT,
+                                                                       new Version (2, 11, 8),
+                                                                       "https://popper.js.org/");
+
   public static final IThirdPartyModule QUERCUS_JS = new ThirdPartyModule ("Quercus.js",
                                                                            "Diware",
                                                                            ELicense.MIT,
@@ -48,6 +54,6 @@ public final class ThirdPartyModuleProvider_ph_oton_bootstrap5_uictrls implement
   @Nullable
   public IThirdPartyModule [] getAllThirdPartyModules ()
   {
-    return new IThirdPartyModule [] { TEMPUS_DOMINUS, QUERCUS_JS };
+    return new IThirdPartyModule [] { TEMPUS_DOMINUS, POPPER, QUERCUS_JS };
   }
 }

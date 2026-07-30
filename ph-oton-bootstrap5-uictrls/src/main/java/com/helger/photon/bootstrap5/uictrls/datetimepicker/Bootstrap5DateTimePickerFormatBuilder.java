@@ -19,6 +19,8 @@ package com.helger.photon.bootstrap5.uictrls.datetimepicker;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Comparator;
+import java.util.Map;
 
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
@@ -28,9 +30,12 @@ import com.helger.base.enforce.ValueEnforcer;
 import com.helger.base.tostring.ToStringGenerator;
 import com.helger.cache.impl.ProviderCache;
 import com.helger.collection.commons.CommonsArrayList;
+import com.helger.collection.commons.CommonsHashMap;
 import com.helger.collection.commons.ICommonsList;
+import com.helger.collection.commons.ICommonsMap;
 import com.helger.datetime.format.PDTFromString;
 import com.helger.photon.uicore.datetime.IDateFormatBuilder;
+import com.helger.text.compare.ComparatorHelper;
 
 public class Bootstrap5DateTimePickerFormatBuilder implements IDateFormatBuilder
 {
@@ -110,175 +115,86 @@ public class Bootstrap5DateTimePickerFormatBuilder implements IDateFormatBuilder
     return new ToStringGenerator (this).append ("List", m_aList).getToString ();
   }
 
-  // Cache for standard patterns
+  private static final class Searcher
+  {
+    private String m_sRest;
+    private final ICommonsMap <String, ETempusDominusFormatToken> m_aAllMatching = new CommonsHashMap <> ();
+    private final Comparator <String> m_aComp = ComparatorHelper.getComparatorStringLongestFirst ();
+
+    public Searcher (@NonNull final String sRest)
+    {
+      ValueEnforcer.notNull (sRest, "Rest");
+      m_sRest = sRest;
+    }
+
+    public boolean hasMore ()
+    {
+      return m_sRest.length () > 0;
+    }
+
+    @Nullable
+    public ETempusDominusFormatToken getNextToken ()
+    {
+      m_aAllMatching.clear ();
+      for (final ETempusDominusFormatToken eToken : ETempusDominusFormatToken.values ())
+      {
+        final String sJavaToken = eToken.getJavaToken ();
+        if (m_sRest.startsWith (sJavaToken))
+          m_aAllMatching.put (sJavaToken, eToken);
+      }
+      if (m_aAllMatching.isEmpty ())
+        return null;
+
+      Map.Entry <String, ETempusDominusFormatToken> aEntry;
+      if (m_aAllMatching.size () == 1)
+        aEntry = m_aAllMatching.getFirstEntry ();
+      else
+        aEntry = m_aAllMatching.getSortedByKey (m_aComp).getFirstEntry ();
+      m_sRest = m_sRest.substring (aEntry.getKey ().length ());
+      return aEntry.getValue ();
+    }
+
+    public char getNextChar ()
+    {
+      final char ret = m_sRest.charAt (0);
+      m_sRest = m_sRest.substring (1);
+      return ret;
+    }
+  }
+
   private static final ProviderCache <String, Bootstrap5DateTimePickerFormatBuilder> CACHE;
   static
   {
     CACHE = ProviderCache.<String, Bootstrap5DateTimePickerFormatBuilder> builder ()
-                         .name ("BS5DTPickerFormatCache")
-                         .valueProvider (Bootstrap5DateTimePickerFormatBuilder::fromJavaPattern)
+                         .name ("Bootstrap5DateTimePickerFormatBuilder.PatternCache")
+                         .valueProvider (sJavaPattern -> {
+                           ValueEnforcer.notNull (sJavaPattern, "JavaPattern");
+
+                           // Do parsing
+                           final Bootstrap5DateTimePickerFormatBuilder aDFB = new Bootstrap5DateTimePickerFormatBuilder ();
+                           final Searcher aSearcher = new Searcher (sJavaPattern);
+                           while (aSearcher.hasMore ())
+                           {
+                             final ETempusDominusFormatToken eToken = aSearcher.getNextToken ();
+                             if (eToken != null)
+                               aDFB.append (eToken);
+                             else
+                             {
+                               // It's not a token -> use a single char and check for the next
+                               // token
+                               aDFB.append (aSearcher.getNextChar ());
+                             }
+                           }
+                           return aDFB;
+                         })
                          .build ();
   }
 
   @NonNull
-  public static Bootstrap5DateTimePickerFormatBuilder fromJavaPattern (@NonNull final String sJavaPattern)
+  public static IDateFormatBuilder fromJavaPattern (@NonNull final String sJavaPattern)
   {
-    final Bootstrap5DateTimePickerFormatBuilder aBuilder = new Bootstrap5DateTimePickerFormatBuilder ();
-    final int nLen = sJavaPattern.length ();
-    for (int i = 0; i < nLen; ++i)
-    {
-      final char c = sJavaPattern.charAt (i);
-      // TODO: This parsing logic needs to be robust enough to handle Java patterns
-      // and map them to ETempusDominusFormatToken.
-      // For now, we assume a simple mapping or direct character append if no token matches.
-      // This is a simplified implementation and might need improvement.
+    ValueEnforcer.notEmpty (sJavaPattern, "JavaPattern");
 
-      // Check for multi-char tokens first
-      boolean bFound = false;
-
-      // Try to match longest tokens first
-      // This requires a reverse lookup map or iterating through tokens
-      // For simplicity in this migration step, we might need a more robust parser later.
-
-      // Fallback: just append char if not a known token start
-      // Ideally we should use a proper parser here.
-
-      // Let's try to match simple tokens
-      if (c == 'y')
-      {
-        if (i + 3 < nLen && sJavaPattern.startsWith ("yyyy", i))
-        {
-          aBuilder.append (ETempusDominusFormatToken.YEAR_4_DIGITS);
-          i += 3;
-          bFound = true;
-        }
-        else
-          if (i + 1 < nLen && sJavaPattern.startsWith ("yy", i))
-          {
-            aBuilder.append (ETempusDominusFormatToken.YEAR_2_DIGITS);
-            i += 1;
-            bFound = true;
-          }
-          else
-          {
-            aBuilder.append (ETempusDominusFormatToken.YEAR);
-            bFound = true;
-          }
-      }
-      else
-        if (c == 'M')
-        {
-          if (i + 3 < nLen && sJavaPattern.startsWith ("MMMM", i))
-          {
-            aBuilder.append (ETempusDominusFormatToken.MONTH_FULL);
-            i += 3;
-            bFound = true;
-          }
-          else
-            if (i + 2 < nLen && sJavaPattern.startsWith ("MMM", i))
-            {
-              aBuilder.append (ETempusDominusFormatToken.MONTH_ABBR);
-              i += 2;
-              bFound = true;
-            }
-            else
-              if (i + 1 < nLen && sJavaPattern.startsWith ("MM", i))
-              {
-                aBuilder.append (ETempusDominusFormatToken.MONTH_2_DIGITS);
-                i += 1;
-                bFound = true;
-              }
-              else
-              {
-                aBuilder.append (ETempusDominusFormatToken.MONTH_NUMBER);
-                bFound = true;
-              }
-        }
-        else
-          if (c == 'd')
-          {
-            if (i + 1 < nLen && sJavaPattern.startsWith ("dd", i))
-            {
-              aBuilder.append (ETempusDominusFormatToken.DAY_OF_MONTH_2_DIGITS);
-              i += 1;
-              bFound = true;
-            }
-            else
-            {
-              aBuilder.append (ETempusDominusFormatToken.DAY_OF_MONTH);
-              bFound = true;
-            }
-          }
-          else
-            if (c == 'H')
-            {
-              if (i + 1 < nLen && sJavaPattern.startsWith ("HH", i))
-              {
-                aBuilder.append (ETempusDominusFormatToken.HOUR_0_23_2_DIGITS);
-                i += 1;
-                bFound = true;
-              }
-              else
-              {
-                aBuilder.append (ETempusDominusFormatToken.HOUR_0_23);
-                bFound = true;
-              }
-            }
-            else
-              if (c == 'h')
-              {
-                if (i + 1 < nLen && sJavaPattern.startsWith ("hh", i))
-                {
-                  aBuilder.append (ETempusDominusFormatToken.HOUR_1_12_2_DIGITS);
-                  i += 1;
-                  bFound = true;
-                }
-                else
-                {
-                  aBuilder.append (ETempusDominusFormatToken.HOUR_1_12);
-                  bFound = true;
-                }
-              }
-              else
-                if (c == 'm')
-                {
-                  if (i + 1 < nLen && sJavaPattern.startsWith ("mm", i))
-                  {
-                    aBuilder.append (ETempusDominusFormatToken.MINUTE_2_DIGITS);
-                    i += 1;
-                    bFound = true;
-                  }
-                  else
-                  {
-                    aBuilder.append (ETempusDominusFormatToken.MINUTE);
-                    bFound = true;
-                  }
-                }
-                else
-                  if (c == 's')
-                  {
-                    if (i + 1 < nLen && sJavaPattern.startsWith ("ss", i))
-                    {
-                      aBuilder.append (ETempusDominusFormatToken.SECOND_2_DIGITS);
-                      i += 1;
-                      bFound = true;
-                    }
-                    else
-                    {
-                      aBuilder.append (ETempusDominusFormatToken.SECOND);
-                      bFound = true;
-                    }
-                  }
-                  else
-                    if (c == 'a')
-                    {
-                      aBuilder.append (ETempusDominusFormatToken.AMPM);
-                      bFound = true;
-                    }
-
-      if (!bFound)
-        aBuilder.append (c);
-    }
-    return aBuilder;
+    return CACHE.getFromCache (sJavaPattern);
   }
 }

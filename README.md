@@ -85,6 +85,9 @@ This library wraps **Bootstrap 5.3.x**, which includes:
 * Migration from Bootstrap 4 wrapper
 * Full support for Bootstrap 5 components
 * Updated for JakartaEE 10
+* Reworked `BootstrapInputGroup` to use the flat Bootstrap 5 markup (no more `input-group-prepend`/`input-group-append` wrappers)
+* Made the DateTimePicker based on Tempus Dominus v6.9.4 work: fixed initialization (`new tempusDominus.TempusDominus`), format token mapping, icon configuration (FontAwesome 5) and initial value handling; clicking into the input opens the picker as well (as in the Bootstrap 4 version)
+* Added Popper v2.11.8 as a contained resource, as it is required by Tempus Dominus for popup positioning
 
 ## Migration from Bootstrap 4
 
