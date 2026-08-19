@@ -184,7 +184,7 @@ public final class BootstrapGridSpec
   @NonNull
   public BootstrapGridSpec getInverse ()
   {
-    final IBootstrapGridElement [] aSrc = new IBootstrapGridElement [] { m_eXS, m_eSM, m_eMD, m_eLG, m_eXL, m_eXXL };
+    final IBootstrapGridElement [] aSrc = { m_eXS, m_eSM, m_eMD, m_eLG, m_eXL, m_eXXL };
     final int [] aInverseParts = new int [aSrc.length];
 
     // Nothing set means "0 parts" so far
