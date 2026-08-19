@@ -95,6 +95,7 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
   private LocalDateTime m_aMinDate;
   private LocalDateTime m_aMaxDate;
   private ETriState m_eUseCurrent = ETriState.FALSE;
+  private ETriState m_eKeyboardNavigation = ETriState.UNDEFINED;
   private IHCNode m_aPrependIcon = DEFAULT_PREPEND_ICON;
   private final ICommonsOrderedMap <String, String> m_aIcons = new CommonsLinkedHashMap <> ();
 
@@ -476,6 +477,32 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
   }
 
   /**
+   * Is the keyboard navigation inside the picker enabled? Requires Tempus Dominus 6.10 or later.
+   * If undefined, the Tempus Dominus default (enabled) applies.
+   *
+   * @return Never <code>null</code>
+   */
+  @NonNull
+  public final ETriState getKeyboardNavigation ()
+  {
+    return m_eKeyboardNavigation;
+  }
+
+  @NonNull
+  public final BootstrapDateTimePicker setKeyboardNavigation (final boolean bKeyboardNavigation)
+  {
+    return setKeyboardNavigation (ETriState.valueOf (bKeyboardNavigation));
+  }
+
+  @NonNull
+  public final BootstrapDateTimePicker setKeyboardNavigation (@NonNull final ETriState eKeyboardNavigation)
+  {
+    ValueEnforcer.notNull (eKeyboardNavigation, "KeyboardNavigation");
+    m_eKeyboardNavigation = eKeyboardNavigation;
+    return this;
+  }
+
+  /**
    * @return The icon that is by default prepended to each date time picker input group. By default
    *         it is {@link #DEFAULT_PREPEND_ICON}. May also be <code>null</code>.
    */
@@ -572,6 +599,8 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
     _add (ret, "toggleMeridiem", EBootstrap5DateTimePickerTexts.TOGGLE_MERIDIEM);
     _add (ret, "selectTime", EBootstrap5DateTimePickerTexts.SELECT_TIME);
     _add (ret, "selectDate", EBootstrap5DateTimePickerTexts.SELECT_DATE);
+    // Since Tempus Dominus 6.10 - aria label of the toggle element
+    _add (ret, "toggleAriaLabel", EBootstrap5DateTimePickerTexts.TOGGLE_ARIA_LABEL);
     return ret;
   }
 
@@ -618,6 +647,10 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
 
     if (m_eViewMode != null)
       aDisplay.add ("viewMode", m_eViewMode.getJSValueString ());
+
+    // Since Tempus Dominus 6.10
+    if (m_eKeyboardNavigation.isDefined ())
+      aDisplay.add ("keyboardNavigation", m_eKeyboardNavigation.getAsBooleanValue ());
 
     final JSAssocArray aComponents = new JSAssocArray ();
     aComponents.add ("calendar", m_eMode.isDateContained ());

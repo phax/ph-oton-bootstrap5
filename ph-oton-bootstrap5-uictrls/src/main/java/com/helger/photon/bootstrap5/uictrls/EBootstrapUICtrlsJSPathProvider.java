@@ -28,7 +28,7 @@ public enum EBootstrapUICtrlsJSPathProvider implements IJSPathProvider
   TREE_VIEW ("external/quercusjs/0.3.1/treeview.js"),
   /** Popper v2 is required by the DateTimePicker for positioning the popup */
   POPPER ("external/popperjs/2.11.8/popper.js"),
-  DATETIMEPICKER ("external/tempusdominus/6.9.4/tempus-dominus.js");
+  DATETIMEPICKER ("external/tempusdominus/6.10.4/tempus-dominus.js");
 
   private final ConstantJSPathProvider m_aPP;
 

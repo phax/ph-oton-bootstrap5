@@ -61,7 +61,8 @@ public enum EBootstrap5DateTimePickerTexts implements IHasDisplayTextWithArgs
   DECREMENT_SECOND ("Vorherige Sekunde", "Decrement Second"),
   TOGGLE_MERIDIEM ("Tageszeit umschalten", "Toggle Meridiem"),
   SELECT_TIME ("Zeit wählen", "Select Time"),
-  SELECT_DATE ("Datum wählen", "Select Date");
+  SELECT_DATE ("Datum wählen", "Select Date"),
+  TOGGLE_ARIA_LABEL ("Datum ändern", "Change date");
 
   private final IMultilingualText m_aTP;
 

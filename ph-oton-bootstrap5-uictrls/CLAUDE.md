@@ -15,13 +15,16 @@ Those calls need a request scope, so **rendering tests in this module must insta
 
 ## DateTimePicker (Tempus Dominus)
 
-`BootstrapDateTimePicker` wraps Tempus Dominus 6.9.4 (`external/tempusdominus/6.9.4/`), which needs Popper 2 (`external/popperjs/2.11.8/`) for popup positioning — both are registered through `EBootstrapUICtrlsJSPathProvider`.
+`BootstrapDateTimePicker` wraps Tempus Dominus 6.10.4 (`external/tempusdominus/6.10.4/`), which needs Popper 2 (`external/popperjs/2.11.8/`) for popup positioning — both are registered through `EBootstrapUICtrlsJSPathProvider`.
+
+**Read `src/main/resources/external/tempusdominus/README.md` before touching the picker or upgrading Tempus Dominus.** The vendored files are unmodified upstream copies; every ph-oton customization (D1–D11) lives in the Java wrapper and is listed there together with the upgrade checklist. `BootstrapDateTimePickerTest` pins that contract.
 
 Version 6 is a full rewrite of the version 4 widget used by ph-oton-bootstrap4; do not port code from there. Specifics that are easy to get wrong:
 
 * Initialization is `new tempusDominus.TempusDominus (element, options)` — not a jQuery plugin call.
 * Java `DateTimeFormatter` patterns are translated to Tempus Dominus tokens by `Bootstrap5DateTimePickerFormatBuilder` / `ETempusDominusFormatToken` (e.g. Java `EEEE` → `dddd`, Java `a` → `T`). Add new tokens to the enum, and `ETempusDominusFormatTokenTest` verifies each one still round-trips through the builder.
 * `Bootstrap5DateTimePickerSpecialNodeListModifier` merges the init code of all pickers on a page that share the same options, so that initialization JS is emitted once instead of per control.
+* Tempus Dominus rejects unknown option keys with a `TdError` at runtime, so the option object built in `getJSOptions ()` must match the shipped version's schema exactly.
 
 ## Third-party registration
 

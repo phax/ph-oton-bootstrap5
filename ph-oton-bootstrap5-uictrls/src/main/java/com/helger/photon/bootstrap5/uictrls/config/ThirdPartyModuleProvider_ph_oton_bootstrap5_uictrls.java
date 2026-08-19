@@ -36,7 +36,7 @@ public final class ThirdPartyModuleProvider_ph_oton_bootstrap5_uictrls implement
   public static final IThirdPartyModule TEMPUS_DOMINUS = new ThirdPartyModule ("Tempus Dominus",
                                                                                "Eonasdan",
                                                                                ELicense.MIT,
-                                                                               new Version (6, 9, 4),
+                                                                               new Version (6, 10, 4),
                                                                                "https://getdatepicker.com/");
 
   public static final IThirdPartyModule POPPER = new ThirdPartyModule ("Popper",
