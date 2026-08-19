@@ -89,16 +89,85 @@ public final class BootstrapGridSpecTest
   public void testBuilderAll ()
   {
     final BootstrapGridSpec aSpec = BootstrapGridSpec.builder ().all (6).build ();
+    // Only XS is set - the larger breakpoints inherit from it
     assertEquals (EBootstrapGridXS.XS_6, aSpec.getXS ());
-    assertEquals (EBootstrapGridSM.SM_6, aSpec.getSM ());
-    assertEquals (EBootstrapGridMD.MD_6, aSpec.getMD ());
-    assertEquals (EBootstrapGridLG.LG_6, aSpec.getLG ());
-    assertEquals (EBootstrapGridXL.XL_6, aSpec.getXL ());
-    assertEquals (EBootstrapGridXXL.XXL_6, aSpec.getXXL ());
+    assertNull (aSpec.getSM ());
+    assertNull (aSpec.getMD ());
+    assertNull (aSpec.getLG ());
+    assertNull (aSpec.getXL ());
+    assertNull (aSpec.getXXL ());
 
-    // All have the same part count, so only the smallest one is emitted
+    // Only the smallest one is emitted
     final HCDiv aDiv = aSpec.applyTo (new HCDiv ());
     assertEquals ("col-6", aDiv.getAllClassesAsString ());
+  }
+
+  @Test
+  public void testGetInverse ()
+  {
+    final BootstrapGridSpec aSpec = BootstrapGridSpec.builder ().xs (12).sm (6).md (4).lg (3).xl (2).xxl (1).build ();
+    final BootstrapGridSpec aInverse = aSpec.getInverse ();
+    // 12 has no counterpart and stays 12
+    assertEquals (EBootstrapGridXS.XS_12, aInverse.getXS ());
+    assertEquals (EBootstrapGridSM.SM_6, aInverse.getSM ());
+    assertEquals (EBootstrapGridMD.MD_8, aInverse.getMD ());
+    assertEquals (EBootstrapGridLG.LG_9, aInverse.getLG ());
+    assertEquals (EBootstrapGridXL.XL_10, aInverse.getXL ());
+    assertEquals (EBootstrapGridXXL.XXL_11, aInverse.getXXL ());
+
+    final HCDiv aDiv = aInverse.applyTo (new HCDiv ());
+    assertEquals ("col-12 col-sm-6 col-md-8 col-lg-9 col-xl-10 col-xxl-11", aDiv.getAllClassesAsString ());
+
+    // The inverse of the inverse is the original one again
+    final BootstrapGridSpec aInverse2 = aInverse.getInverse ();
+    assertEquals (aSpec.getXS (), aInverse2.getXS ());
+    assertEquals (aSpec.getSM (), aInverse2.getSM ());
+    assertEquals (aSpec.getMD (), aInverse2.getMD ());
+    assertEquals (aSpec.getLG (), aInverse2.getLG ());
+    assertEquals (aSpec.getXL (), aInverse2.getXL ());
+    assertEquals (aSpec.getXXL (), aInverse2.getXXL ());
+  }
+
+  @Test
+  public void testGetInverseUnset ()
+  {
+    // XS and SM are not set at all, so they count as "0 parts" and the inverse is the maximum;
+    // LG, XL and XXL inherit from MD, so their inverse inherits as well
+    final BootstrapGridSpec aInverse = BootstrapGridSpec.builder ().md (5).build ().getInverse ();
+    assertEquals (EBootstrapGridXS.XS_12, aInverse.getXS ());
+    assertNull (aInverse.getSM ());
+    assertEquals (EBootstrapGridMD.MD_7, aInverse.getMD ());
+    assertNull (aInverse.getLG ());
+    assertNull (aInverse.getXL ());
+    assertNull (aInverse.getXXL ());
+
+    final HCDiv aDiv = aInverse.applyTo (new HCDiv ());
+    assertEquals ("col-12 col-md-7", aDiv.getAllClassesAsString ());
+
+    // Nothing set at all means "0 parts" everywhere
+    final BootstrapGridSpec aNone = BootstrapGridSpec.NONE.getInverse ();
+    assertEquals (EBootstrapGridXS.XS_12, aNone.getXS ());
+    assertNull (aNone.getSM ());
+    assertNull (aNone.getMD ());
+    assertNull (aNone.getLG ());
+    assertNull (aNone.getXL ());
+    assertNull (aNone.getXXL ());
+
+    // 0 parts is the same as "not set"
+    assertEquals (EBootstrapGridXS.XS_12, BootstrapGridSpec.builder ().xs (0).build ().getInverse ().getXS ());
+  }
+
+  @Test
+  public void testGetInverseSpecialValues ()
+  {
+    // "auto" and "evenly" have no numeric counterpart and are kept as-is
+    final BootstrapGridSpec aAuto = BootstrapGridSpec.builder ().xs (EBootstrapGridXS.AUTO).build ().getInverse ();
+    assertEquals (EBootstrapGridXS.AUTO, aAuto.getXS ());
+    assertNull (aAuto.getSM ());
+
+    final BootstrapGridSpec aEvenly = BootstrapGridSpec.EVENLY.getInverse ();
+    assertEquals (EBootstrapGridXS.EVENLY, aEvenly.getXS ());
+    assertNull (aEvenly.getSM ());
   }
 
   @Test

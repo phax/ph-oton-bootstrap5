@@ -129,15 +129,8 @@ public class BootstrapViewForm extends AbstractBootstrapDiv <BootstrapViewForm> 
                                                         .xl (nLeftPartsXL)
                                                         .xxl (nLeftPartsXXL)
                                                         .build ();
-    final BootstrapGridSpec aNewRight = BootstrapGridSpec.builder ()
-                                                         .xs (IBootstrapGridElement.getMatchingOpposite (nLeftPartsXS))
-                                                         .sm (IBootstrapGridElement.getMatchingOpposite (nLeftPartsSM))
-                                                         .md (IBootstrapGridElement.getMatchingOpposite (nLeftPartsMD))
-                                                         .lg (IBootstrapGridElement.getMatchingOpposite (nLeftPartsLG))
-                                                         .xl (IBootstrapGridElement.getMatchingOpposite (nLeftPartsXL))
-                                                         .xxl (IBootstrapGridElement.getMatchingOpposite (nLeftPartsXXL))
-                                                         .build ();
-    return setSplitting (aNewLeft, aNewRight);
+    // The right side is the complement of the left side
+    return setSplitting (aNewLeft, aNewLeft.getInverse ());
   }
 
   @NonNull

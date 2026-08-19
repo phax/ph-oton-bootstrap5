@@ -169,6 +169,48 @@ public final class BootstrapGridSpec
     return aElement;
   }
 
+  /**
+   * Create the "inverse" grid specification of <code>this</code>, so that the two grid
+   * specifications complement each other to the maximum number of parts per breakpoint. So the
+   * inverse of <code>col-4</code> is <code>col-8</code> and vice versa. A breakpoint that is not
+   * set inherits the value of the next smaller breakpoint - if no smaller breakpoint is set at all,
+   * it counts as "0 parts" and therefore the inverse is the maximum part count. The special values
+   * "auto" and "evenly" as well as the maximum part count are kept as-is, because they have no
+   * numeric counterpart.
+   *
+   * @return A new {@link BootstrapGridSpec} object and never <code>null</code>.
+   * @since 0.9.1
+   */
+  @NonNull
+  public BootstrapGridSpec getInverse ()
+  {
+    final IBootstrapGridElement [] aSrc = new IBootstrapGridElement [] { m_eXS, m_eSM, m_eMD, m_eLG, m_eXL, m_eXXL };
+    final int [] aInverseParts = new int [aSrc.length];
+
+    // Nothing set means "0 parts" so far
+    int nParts = 0;
+    int nLastInverseParts = IBootstrapGridElement.PARTS_NONE;
+    for (int i = 0; i < aSrc.length; ++i)
+    {
+      // Unset breakpoints inherit the value of the next smaller breakpoint
+      if (aSrc[i] != null)
+        nParts = aSrc[i].getParts ();
+
+      final int nInverseParts = IBootstrapGridElement.getMatchingOpposite (nParts);
+      // Set only if different from the previous breakpoint, so that the inheritance is retained
+      aInverseParts[i] = nInverseParts == nLastInverseParts ? IBootstrapGridElement.PARTS_NONE : nInverseParts;
+      nLastInverseParts = nInverseParts;
+    }
+
+    return builder ().xs (aInverseParts[0])
+                     .sm (aInverseParts[1])
+                     .md (aInverseParts[2])
+                     .lg (aInverseParts[3])
+                     .xl (aInverseParts[4])
+                     .xxl (aInverseParts[5])
+                     .build ();
+  }
+
   @Override
   public String toString ()
   {

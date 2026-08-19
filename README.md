@@ -90,6 +90,9 @@ Licensed under the Apache License, Version 2.0.
 
 v0.9.1 - 2026-08-19
 * Added `BootstrapGridSpec.Builder` incl. the static factory methods `BootstrapGridSpec.builder ()` and `BootstrapGridSpec.builder (BootstrapGridSpec)` for easier creation of grid specifications
+* Added `BootstrapGridSpec.getInverse ()` to create the complementary grid specification, so that two grid specifications add up to the maximum number of parts per breakpoint
+* `BootstrapForm.setLeft (...)` and `BootstrapViewForm.setLeft (...)` now derive the right grid via `BootstrapGridSpec.getInverse ()`.
+  For breakpoints that are not set at all (as in `setLeft (-1, -1, 3, 3, 2, 2)`) the right side now gets `col-12` instead of no grid class at all
 * The `BootstrapDateTimePicker` calendar headline now shows the four digit year (e.g. "August 2026") instead of the Tempus Dominus default two digit year (e.g. "August 26"), as in the Bootstrap 4 version.
   Added `BootstrapDateTimePicker.dayViewHeaderFormat ()`, `setDayViewHeaderFormat (JSAssocArray)` and `createDefaultDayViewHeaderFormat ()` to customize the new `localization.dayViewHeaderFormat` option
 
