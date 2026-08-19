@@ -50,38 +50,22 @@ public interface IBootstrapFormGroupContainer <IMPLTYPE extends IBootstrapFormGr
   @NonNull
   default IMPLTYPE setLeft (@Nonnegative final int nLeftParts)
   {
-    return setLeft (nLeftParts, nLeftParts, nLeftParts, nLeftParts, nLeftParts, nLeftParts);
+    return setLeft (BootstrapGridSpec.builder ().all (nLeftParts).build ());
   }
 
   /**
    * Set the left part of a horizontal form. This implicitly sets the correct right parts (=
    * CBootstrap.GRID_SYSTEM_MAX - left).
    *
-   * @param nLeftPartsXS
-   *        The left parts XS. Must be &ge; 1 and &le; 12!
-   * @param nLeftPartsSM
-   *        The left parts SM. Must be &ge; 1 and &le; 12!
-   * @param nLeftPartsMD
-   *        The left parts MD. Must be &ge; 1 and &le; 12!
-   * @param nLeftPartsLG
-   *        The left parts LG. Must be &ge; 1 and &le; 12!
-   * @param nLeftPartsXL
-   *        The left parts XL. Must be &ge; 1 and &le; 12!
-   * @param nLeftPartsXXL
-   *        The left parts XXL. Must be &ge; 1 and &le; 12!
+   * @param aNewLeft
+   *        The new left. May not be <code>null</code>.
    * @return this
    */
   @NonNull
-  IMPLTYPE setLeft (@Nonnegative int nLeftPartsXS,
-                    @Nonnegative int nLeftPartsSM,
-                    @Nonnegative int nLeftPartsMD,
-                    @Nonnegative int nLeftPartsLG,
-                    @Nonnegative int nLeftPartsXL,
-                    @Nonnegative int nLeftPartsXXL);
+  IMPLTYPE setLeft (@NonNull BootstrapGridSpec aNewLeft);
 
   /**
-   * @return The left parts. Always &ge; 1 and &le; CBootstrap.GRID_SYSTEM_MAX. Never
-   *         <code>null</code>.
+   * @return The left parts. Never <code>null</code>.
    */
   @NonNull
   BootstrapGridSpec getLeft ();

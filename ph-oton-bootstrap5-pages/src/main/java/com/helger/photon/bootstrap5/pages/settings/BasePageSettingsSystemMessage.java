@@ -34,6 +34,7 @@ import com.helger.photon.bootstrap5.buttongroup.BootstrapButtonToolbar;
 import com.helger.photon.bootstrap5.ext.BootstrapSystemMessage;
 import com.helger.photon.bootstrap5.form.BootstrapForm;
 import com.helger.photon.bootstrap5.form.BootstrapFormGroup;
+import com.helger.photon.bootstrap5.grid.BootstrapGridSpec;
 import com.helger.photon.bootstrap5.pages.AbstractBootstrapWebPage;
 import com.helger.photon.core.EPhotonCoreText;
 import com.helger.photon.core.form.RequestField;
@@ -147,7 +148,7 @@ public class BasePageSettingsSystemMessage <WPECTYPE extends IWebPageExecutionCo
       {
         // Show input form
         final BootstrapForm aForm = aNodeList.addAndReturnChild (getUIHandler ().createFormSelf (aWPEC));
-        aForm.setLeft (-1, -1, -1, 2, 1, 1);
+        aForm.setLeft (BootstrapGridSpec.builder ().lg (2).xl (1).build ());
 
         final String sSystemMessage = aSystemMsgMgr.getSystemMessage ();
         aForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.LABEL_SEVERITY.getDisplayText (aDisplayLocale))

@@ -20,7 +20,6 @@ import java.util.Locale;
 
 import org.jspecify.annotations.NonNull;
 
-import com.helger.annotation.Nonnegative;
 import com.helger.annotation.OverridingMethodsMustInvokeSuper;
 import com.helger.annotation.concurrent.NotThreadSafe;
 import com.helger.annotation.style.OverrideOnDemand;
@@ -34,7 +33,6 @@ import com.helger.html.hc.html.IHCElementWithChildren;
 import com.helger.photon.bootstrap5.CBootstrap;
 import com.helger.photon.bootstrap5.base.AbstractBootstrapDiv;
 import com.helger.photon.bootstrap5.grid.BootstrapGridSpec;
-import com.helger.photon.bootstrap5.grid.IBootstrapGridElement;
 
 @NotThreadSafe
 public class BootstrapViewForm extends AbstractBootstrapDiv <BootstrapViewForm> implements
@@ -85,50 +83,6 @@ public class BootstrapViewForm extends AbstractBootstrapDiv <BootstrapViewForm> 
   public final BootstrapGridSpec getRight ()
   {
     return m_aRightGrid;
-  }
-
-  @NonNull
-  @OverridingMethodsMustInvokeSuper
-  public final BootstrapViewForm setLeft (@Nonnegative final int nLeftPartsXS,
-                                          @Nonnegative final int nLeftPartsSM,
-                                          @Nonnegative final int nLeftPartsMD,
-                                          @Nonnegative final int nLeftPartsLG,
-                                          @Nonnegative final int nLeftPartsXL,
-                                          @Nonnegative final int nLeftPartsXXL)
-  {
-    ValueEnforcer.isBetweenInclusive (nLeftPartsXS,
-                                      "LeftPartsXS",
-                                      IBootstrapGridElement.MIN,
-                                      CBootstrap.GRID_SYSTEM_MAX);
-    ValueEnforcer.isBetweenInclusive (nLeftPartsSM,
-                                      "LeftPartsSM",
-                                      IBootstrapGridElement.MIN,
-                                      CBootstrap.GRID_SYSTEM_MAX);
-    ValueEnforcer.isBetweenInclusive (nLeftPartsMD,
-                                      "LeftPartsMD",
-                                      IBootstrapGridElement.MIN,
-                                      CBootstrap.GRID_SYSTEM_MAX);
-    ValueEnforcer.isBetweenInclusive (nLeftPartsLG,
-                                      "LeftPartsLG",
-                                      IBootstrapGridElement.MIN,
-                                      CBootstrap.GRID_SYSTEM_MAX);
-    ValueEnforcer.isBetweenInclusive (nLeftPartsXL,
-                                      "LeftPartsXL",
-                                      IBootstrapGridElement.MIN,
-                                      CBootstrap.GRID_SYSTEM_MAX);
-    ValueEnforcer.isBetweenInclusive (nLeftPartsXXL,
-                                      "LeftPartsXXL",
-                                      IBootstrapGridElement.MIN,
-                                      CBootstrap.GRID_SYSTEM_MAX);
-
-    return setLeft (BootstrapGridSpec.builder ()
-                                     .xs (nLeftPartsXS)
-                                     .sm (nLeftPartsSM)
-                                     .md (nLeftPartsMD)
-                                     .lg (nLeftPartsLG)
-                                     .xl (nLeftPartsXL)
-                                     .xxl (nLeftPartsXXL)
-                                     .build ());
   }
 
   @NonNull

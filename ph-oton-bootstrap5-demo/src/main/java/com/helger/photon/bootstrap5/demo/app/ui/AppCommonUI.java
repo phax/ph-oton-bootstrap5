@@ -33,6 +33,7 @@ import com.helger.photon.bootstrap5.buttongroup.BootstrapButtonToolbar;
 import com.helger.photon.bootstrap5.form.BootstrapForm;
 import com.helger.photon.bootstrap5.form.BootstrapFormGroup;
 import com.helger.photon.bootstrap5.form.EBootstrapFormType;
+import com.helger.photon.bootstrap5.grid.BootstrapGridSpec;
 import com.helger.photon.core.EPhotonCoreText;
 import com.helger.photon.core.execcontext.ILayoutExecutionContext;
 import com.helger.photon.core.form.RequestField;
@@ -56,7 +57,7 @@ public final class AppCommonUI
     final Locale aDisplayLocale = aLEC.getDisplayLocale ();
 
     final BootstrapForm aForm = new BootstrapForm (aLEC).setAction (aLEC.getSelfHref ()).setFormType (eFormType);
-    aForm.setLeft (-1, -1, 3, 3, 2, 2);
+    aForm.setLeft (BootstrapGridSpec.builder ().md (3).xl (2).build ());
 
     // Note: all the IDs are used in the default.js file
 

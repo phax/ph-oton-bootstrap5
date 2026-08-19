@@ -49,7 +49,10 @@ public final class BootstrapViewFormTest
   public void testSetLeftSomeBreakpoints ()
   {
     // XS and SM are not set, so the left side has 0 parts and the right side takes the maximum
-    final BootstrapViewForm aForm = new BootstrapViewForm ().setLeft (-1, -1, 3, 3, 2, 2);
+    final BootstrapViewForm aForm = new BootstrapViewForm ().setLeft (BootstrapGridSpec.builder ()
+                                                                                       .md (3)
+                                                                                       .xl (2)
+                                                                                       .build ());
     assertEquals ("col-md-3 col-xl-2", _getClasses (aForm.getLeft ()));
     assertEquals ("col-12 col-md-9 col-xl-10", _getClasses (aForm.getRight ()));
   }
