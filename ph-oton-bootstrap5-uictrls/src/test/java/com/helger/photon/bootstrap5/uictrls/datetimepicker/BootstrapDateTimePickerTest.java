@@ -27,6 +27,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import com.helger.base.state.ETriState;
+import com.helger.base.string.StringRemove;
 import com.helger.html.hc.IHCNode;
 import com.helger.html.hc.config.HCConversionSettings;
 import com.helger.html.hc.config.HCSettings;
@@ -60,6 +61,18 @@ public final class BootstrapDateTimePickerTest
   private static BootstrapDateTimePicker _createDate ()
   {
     return BootstrapDateTimePicker.create ("dt", LocalDate.of (2026, Month.AUGUST, 19), LOCALE);
+  }
+
+  /**
+   * @param aDTP
+   *        The picker to take the options of.
+   * @return The JS options without the pretty printing, so that nested objects can be asserted as a
+   *         whole.
+   */
+  @NonNull
+  private static String _getUnindentedJSOptions (@NonNull final BootstrapDateTimePicker aDTP)
+  {
+    return StringRemove.removeAll (StringRemove.removeAll (aDTP.getJSOptions ().getJSCode (), ' '), '\n');
   }
 
   @Test
@@ -110,6 +123,7 @@ public final class BootstrapDateTimePickerTest
                                              "localization",
                                              "format",
                                              "locale",
+                                             "dayViewHeaderFormat",
                                              "defaultDate",
                                              "allowInputToggle" })
       assertTrue (sKey + " is missing in " + sOptions, sOptions.contains (sKey));
@@ -127,6 +141,25 @@ public final class BootstrapDateTimePickerTest
     assertTrue (!_createDate ().getJSOptions ().getJSCode ().contains ("keyboardNavigation"));
     final String sOptions = _createDate ().setKeyboardNavigation (ETriState.FALSE).getJSOptions ().getJSCode ();
     assertTrue (sOptions, sOptions.contains ("keyboardNavigation"));
+  }
+
+  @Test
+  public void testDayViewHeaderFormatOption ()
+  {
+    // The Tempus Dominus default is a two digit year ("August 26") - the calendar headline must
+    // show the four digit year ("August 2026") instead
+    final String sOptions = _getUnindentedJSOptions (_createDate ());
+    assertTrue (sOptions, sOptions.contains ("dayViewHeaderFormat:{month:'long',year:'numeric'}"));
+
+    // Explicitly set to null - the Tempus Dominus default applies again
+    final String sNone = _getUnindentedJSOptions (_createDate ().setDayViewHeaderFormat (null));
+    assertTrue (sNone, !sNone.contains ("dayViewHeaderFormat"));
+
+    // Customizable
+    final BootstrapDateTimePicker aDTP = _createDate ();
+    aDTP.dayViewHeaderFormat ().add ("year", "2-digit");
+    final String sCustom = _getUnindentedJSOptions (aDTP);
+    assertTrue (sCustom, sCustom.contains ("dayViewHeaderFormat:{month:'long',year:'2-digit'}"));
   }
 
   @Test

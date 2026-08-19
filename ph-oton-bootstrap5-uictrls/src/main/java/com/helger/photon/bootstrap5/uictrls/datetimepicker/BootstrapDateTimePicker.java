@@ -26,6 +26,7 @@ import java.util.Map;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
+import com.helger.annotation.style.ReturnsMutableCopy;
 import com.helger.annotation.style.ReturnsMutableObject;
 import com.helger.base.enforce.ValueEnforcer;
 import com.helger.base.state.ETriState;
@@ -99,6 +100,20 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
   private ETriState m_eKeyboardNavigation = ETriState.UNDEFINED;
   private IHCNode m_aPrependIcon = DEFAULT_PREPEND_ICON;
   private final ICommonsOrderedMap <String, String> m_aIcons = new CommonsLinkedHashMap <> ();
+  private JSAssocArray m_aDayViewHeaderFormat = createDefaultDayViewHeaderFormat ();
+
+  /**
+   * @return The default "dayViewHeaderFormat" of the calendar view - the full month name and the
+   *         four digit year (e.g. "August 2026"). The Tempus Dominus default only uses a two digit
+   *         year. Always a new object.
+   */
+  @NonNull
+  @ReturnsMutableCopy
+  public static JSAssocArray createDefaultDayViewHeaderFormat ()
+  {
+    // The value is an "Intl.DateTimeFormat" options object
+    return new JSAssocArray ().add ("month", "long").add ("year", "numeric");
+  }
 
   @NonNull
   private static String _fa (@NonNull final ICSSClassProvider aIcon)
@@ -506,6 +521,34 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
   }
 
   /**
+   * @return The format of the month and year headline of the calendar view, as an
+   *         "Intl.DateTimeFormat" options object. By default it is
+   *         {@link #createDefaultDayViewHeaderFormat()}. If it is <code>null</code>, the Tempus
+   *         Dominus default (full month name and two digit year) applies.
+   */
+  @Nullable
+  @ReturnsMutableObject
+  public final JSAssocArray dayViewHeaderFormat ()
+  {
+    return m_aDayViewHeaderFormat;
+  }
+
+  /**
+   * Set the format of the month and year headline of the calendar view.
+   *
+   * @param aDayViewHeaderFormat
+   *        An "Intl.DateTimeFormat" options object. May be <code>null</code> to use the Tempus
+   *        Dominus default.
+   * @return this for chaining
+   */
+  @NonNull
+  public final BootstrapDateTimePicker setDayViewHeaderFormat (@Nullable final JSAssocArray aDayViewHeaderFormat)
+  {
+    m_aDayViewHeaderFormat = aDayViewHeaderFormat;
+    return this;
+  }
+
+  /**
    * @return The icon that is by default prepended to each date time picker input group. By default
    *         it is {@link #DEFAULT_PREPEND_ICON}. May also be <code>null</code>.
    */
@@ -680,6 +723,9 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
     final JSAssocArray aLocalization = getJSLocalizationTexts ();
     aLocalization.add ("locale", m_aDisplayLocale.toLanguageTag ());
     aLocalization.add ("format", sJSFormat);
+
+    if (m_aDayViewHeaderFormat != null)
+      aLocalization.add ("dayViewHeaderFormat", m_aDayViewHeaderFormat);
 
     // Align the clock display with the effective format
     if (sJSFormat.indexOf ('H') >= 0)
