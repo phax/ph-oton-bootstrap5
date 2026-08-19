@@ -22,6 +22,7 @@ import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import com.helger.annotation.concurrent.Immutable;
+import com.helger.base.builder.IBuilder;
 import com.helger.base.enforce.ValueEnforcer;
 import com.helger.base.tostring.ToStringGenerator;
 import com.helger.html.hc.html.IHCElement;
@@ -213,5 +214,150 @@ public final class BootstrapGridSpec implements Serializable
                                   EBootstrapGridLG.getFromParts (nPartsLG),
                                   EBootstrapGridXL.getFromParts (nPartsXL),
                                   EBootstrapGridXXL.getFromParts (nPartsXXL));
+  }
+
+  /**
+   * @return A new builder with all breakpoints unset. Never <code>null</code>.
+   * @since 0.9.1
+   */
+  @NonNull
+  public static Builder builder ()
+  {
+    return new Builder ();
+  }
+
+  /**
+   * Create a new builder that is filled with the values of the provided grid specification.
+   *
+   * @param aSrc
+   *        The source grid specification to copy the values from. May be <code>null</code>.
+   * @return A new builder. Never <code>null</code>.
+   * @since 0.9.1
+   */
+  @NonNull
+  public static Builder builder (@Nullable final BootstrapGridSpec aSrc)
+  {
+    final Builder ret = new Builder ();
+    if (aSrc != null)
+      ret.xs (aSrc.m_eXS).sm (aSrc.m_eSM).md (aSrc.m_eMD).lg (aSrc.m_eLG).xl (aSrc.m_eXL).xxl (aSrc.m_eXXL);
+    return ret;
+  }
+
+  /**
+   * Builder class for {@link BootstrapGridSpec}. Each breakpoint can either be set with the
+   * respective enum entry or with the number of parts to span. Unset breakpoints inherit the value
+   * of the next smaller breakpoint.
+   *
+   * @author Philip Helger
+   * @since 0.9.1
+   */
+  public static class Builder implements IBuilder <BootstrapGridSpec>
+  {
+    private EBootstrapGridXS m_eXS;
+    private EBootstrapGridSM m_eSM;
+    private EBootstrapGridMD m_eMD;
+    private EBootstrapGridLG m_eLG;
+    private EBootstrapGridXL m_eXL;
+    private EBootstrapGridXXL m_eXXL;
+
+    protected Builder ()
+    {}
+
+    @NonNull
+    public Builder xs (@Nullable final EBootstrapGridXS e)
+    {
+      m_eXS = e;
+      return this;
+    }
+
+    @NonNull
+    public Builder xs (final int nParts)
+    {
+      return xs (EBootstrapGridXS.getFromParts (nParts));
+    }
+
+    @NonNull
+    public Builder sm (@Nullable final EBootstrapGridSM e)
+    {
+      m_eSM = e;
+      return this;
+    }
+
+    @NonNull
+    public Builder sm (final int nParts)
+    {
+      return sm (EBootstrapGridSM.getFromParts (nParts));
+    }
+
+    @NonNull
+    public Builder md (@Nullable final EBootstrapGridMD e)
+    {
+      m_eMD = e;
+      return this;
+    }
+
+    @NonNull
+    public Builder md (final int nParts)
+    {
+      return md (EBootstrapGridMD.getFromParts (nParts));
+    }
+
+    @NonNull
+    public Builder lg (@Nullable final EBootstrapGridLG e)
+    {
+      m_eLG = e;
+      return this;
+    }
+
+    @NonNull
+    public Builder lg (final int nParts)
+    {
+      return lg (EBootstrapGridLG.getFromParts (nParts));
+    }
+
+    @NonNull
+    public Builder xl (@Nullable final EBootstrapGridXL e)
+    {
+      m_eXL = e;
+      return this;
+    }
+
+    @NonNull
+    public Builder xl (final int nParts)
+    {
+      return xl (EBootstrapGridXL.getFromParts (nParts));
+    }
+
+    @NonNull
+    public Builder xxl (@Nullable final EBootstrapGridXXL e)
+    {
+      m_eXXL = e;
+      return this;
+    }
+
+    @NonNull
+    public Builder xxl (final int nParts)
+    {
+      return xxl (EBootstrapGridXXL.getFromParts (nParts));
+    }
+
+    /**
+     * Set the number of parts of all breakpoints at once.
+     *
+     * @param nParts
+     *        The number of parts to use for all breakpoints.
+     * @return this for chaining
+     */
+    @NonNull
+    public Builder all (final int nParts)
+    {
+      return xs (nParts).sm (nParts).md (nParts).lg (nParts).xl (nParts).xxl (nParts);
+    }
+
+    @NonNull
+    public BootstrapGridSpec build ()
+    {
+      return new BootstrapGridSpec (m_eXS, m_eSM, m_eMD, m_eLG, m_eXL, m_eXXL);
+    }
   }
 }
