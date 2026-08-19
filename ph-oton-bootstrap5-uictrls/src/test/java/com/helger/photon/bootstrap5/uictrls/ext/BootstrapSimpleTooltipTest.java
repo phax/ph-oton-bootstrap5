@@ -58,5 +58,7 @@ public final class BootstrapSimpleTooltipTest
     assertTrue (sHTML, sHTML.contains ("document.querySelectorAll"));
     assertTrue (sHTML, sHTML.contains ("Some help"));
     assertFalse (sHTML, sHTML.contains (".tooltip("));
+    // FontAwesome 6 renamed "question-circle" to "circle-question"
+    assertTrue (sHTML, sHTML.contains ("class=\"fa-solid fa-circle-question\""));
   }
 }

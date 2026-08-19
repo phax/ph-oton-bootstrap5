@@ -7,9 +7,11 @@ Bootstrap 5 bindings for the richer ph-oton UI controls (DataTables, DateTimePic
 Unlike the core module, components here pull in JS/CSS via `onRegisterExternalResources (...)`, e.g.
 
 ```java
-EFontAwesome5Icon.registerResourcesForThisRequest ();
+EFontAwesome6Icon.registerResourcesForThisRequest ();
 PhotonCSS.registerCSSIncludeForThisRequest (EBootstrapUICtrlsCSSPathProvider.BOOTSTRAP_EXT);
 ```
+
+The module uses **FontAwesome 6** (`ph-oton-icon-fontawesome6`) throughout — `BootstrapDateTimePicker`, `BootstrapCardCollapsible` and `BootstrapSimpleTooltip`. Do not reintroduce FontAwesome 5 for a single component: both versions define `.fa` and use different glyphs for renamed icons, so a page registering both gets broken icons. FontAwesome 6 also needs the style class next to the icon class (`fa-solid fa-calendar`), which is why `bootstrap-ext.css` matches `.fa-solid` in addition to `.fa`.
 
 Those calls need a request scope, so **rendering tests in this module must install `@Rule public final PhotonAppWebTestRule m_aRule = new PhotonAppWebTestRule ();`** (from ph-oton-app). Without it the render fails with a missing-scope error. `BootstrapCardCollapsibleTest` is the pattern to copy.
 

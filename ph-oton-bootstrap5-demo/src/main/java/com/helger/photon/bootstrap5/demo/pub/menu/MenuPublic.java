@@ -25,6 +25,7 @@ import com.helger.photon.bootstrap5.demo.pub.page.PagePublicDataTables;
 import com.helger.photon.bootstrap5.demo.pub.page.PagePublicDateTimePicker;
 import com.helger.photon.bootstrap5.demo.pub.page.PagePublicFormGroups;
 import com.helger.photon.bootstrap5.demo.pub.page.PagePublicLogin;
+import com.helger.photon.bootstrap5.demo.pub.page.PagePublicMiscControls;
 import com.helger.photon.bootstrap5.demo.pub.page.icon.PagePublicIconBootstrapIcons;
 import com.helger.photon.bootstrap5.demo.pub.page.icon.PagePublicIconFontAwesome4;
 import com.helger.photon.bootstrap5.demo.pub.page.icon.PagePublicIconFontAwesome5;
@@ -71,6 +72,7 @@ public final class MenuPublic
       aMenuTree.createItem (aUICtrls, new PagePublicDateTimePicker ("ui-datetimepicker"));
       aMenuTree.createItem (aUICtrls, new PagePublicFormGroups ("ui-formgroups"));
       aMenuTree.createItem (aUICtrls, new PagePublicChartsV4 ("ui-chartsv4"));
+      aMenuTree.createItem (aUICtrls, new PagePublicMiscControls ("ui-misc"));
     }
 
     // Common stuff

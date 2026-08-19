@@ -37,10 +37,13 @@ jQuery plugin API any more (Bootstrap 4 used `$(...).datetimepicker (...)`). The
 `Bootstrap5DateTimePickerJS` out-of-band node; `Bootstrap5DateTimePickerSpecialNodeListModifier` merges
 the initialization of all pickers on a page that share identical options into a single invocation.
 
-**D2 — FontAwesome 5 icons.** The Tempus Dominus defaults are FontAwesome **6** class names
-(`fa-solid fa-calendar`), while ph-oton ships FontAwesome 5 (`fa fa-calendar`). The constructor therefore
-fills `display.icons` explicitly for all nine keys: `time`, `date`, `up`, `down`, `previous`, `next`,
-`today`, `clear`, `close`. If the icon set of the application changes, this is the single place to adapt.
+**D2 — Explicit FontAwesome 6 icons.** The module ships FontAwesome 6 (`ph-oton-icon-fontawesome6`), which
+is also what Tempus Dominus defaults to, so the class names now agree. The constructor still fills
+`display.icons` explicitly for all nine keys (`time`, `date`, `up`, `down`, `previous`, `next`, `today`,
+`clear`, `close`) for two reasons: `clear` stays an eraser and `close` an `xmark` instead of the Tempus
+Dominus defaults (trash / xmark), and applications can replace single entries through `getIcons ()`.
+Note that FontAwesome 6 needs the style class next to the icon class (`fa-solid fa-calendar`), which the
+private `_fa (...)` helper prepends — the FontAwesome 5 form (`fa fa-calendar`) does not render in v6.
 
 **D3 — Input group markup.** The picker is a `BootstrapInputGroup`, not a bare input:
 

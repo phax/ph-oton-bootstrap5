@@ -55,8 +55,9 @@ import com.helger.photon.bootstrap5.inputgroup.BootstrapInputGroup;
 import com.helger.photon.bootstrap5.uictrls.EBootstrapUICtrlsCSSPathProvider;
 import com.helger.photon.bootstrap5.uictrls.EBootstrapUICtrlsJSPathProvider;
 import com.helger.photon.core.form.RequestField;
-import com.helger.photon.icon.fontawesome5.CFontAwesome5CSS;
-import com.helger.photon.icon.fontawesome5.EFontAwesome5Icon;
+import com.helger.photon.icon.fontawesome6.CFontAwesome6CSS;
+import com.helger.photon.icon.fontawesome6.EFontAwesome6Icon;
+import com.helger.photon.icon.fontawesome6.EFontAwesome6IconStyle;
 
 /**
  * This class represents a wrapper around the DateTime Picker for Bootstrap 5 (Tempus Dominus v6)
@@ -76,7 +77,7 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
   public static final EBootstrap5DateTimePickerViewModeType DEFAULT_VIEW_MODE = EBootstrap5DateTimePickerViewModeType.CALENDAR;
 
   // Use the calendar icon as default prefix
-  public static final IHCNode DEFAULT_PREPEND_ICON = EFontAwesome5Icon.CALENDAR.getAsNode ();
+  public static final IHCNode DEFAULT_PREPEND_ICON = EFontAwesome6Icon.CALENDAR.getAsNode ();
 
   private static final LocalDate DUMMY_DATE = PDTFactory.createLocalDate (2018, Month.OCTOBER, 24);
   private static final LocalTime DUMMY_TIME = PDTFactory.createLocalTime (12, 10, 34);
@@ -102,7 +103,8 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
   @NonNull
   private static String _fa (@NonNull final ICSSClassProvider aIcon)
   {
-    return CFontAwesome5CSS.FA.getCSSClass () + " " + aIcon.getCSSClass ();
+    // FontAwesome 6 needs the style class in addition to the icon class
+    return EFontAwesome6IconStyle.SOLID.getCSSClass ().getCSSClass () + " " + aIcon.getCSSClass ();
   }
 
   @Nullable
@@ -158,16 +160,17 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
 
     setMode (eMode);
 
-    // Explicit icons, as the Tempus Dominus defaults require FontAwesome 6
-    m_aIcons.put ("time", _fa (CFontAwesome5CSS.FA_CLOCK));
-    m_aIcons.put ("date", _fa (CFontAwesome5CSS.FA_CALENDAR));
-    m_aIcons.put ("up", _fa (CFontAwesome5CSS.FA_ARROW_UP));
-    m_aIcons.put ("down", _fa (CFontAwesome5CSS.FA_ARROW_DOWN));
-    m_aIcons.put ("previous", _fa (CFontAwesome5CSS.FA_CHEVRON_LEFT));
-    m_aIcons.put ("next", _fa (CFontAwesome5CSS.FA_CHEVRON_RIGHT));
-    m_aIcons.put ("today", _fa (CFontAwesome5CSS.FA_CALENDAR_CHECK));
-    m_aIcons.put ("clear", _fa (CFontAwesome5CSS.FA_ERASER));
-    m_aIcons.put ("close", _fa (CFontAwesome5CSS.FA_TIMES));
+    // Explicit icons, so that they can be changed via getIcons () and to keep "eraser" and
+    // "xmark" instead of the Tempus Dominus defaults
+    m_aIcons.put ("time", _fa (CFontAwesome6CSS.FA_CLOCK));
+    m_aIcons.put ("date", _fa (CFontAwesome6CSS.FA_CALENDAR));
+    m_aIcons.put ("up", _fa (CFontAwesome6CSS.FA_ARROW_UP));
+    m_aIcons.put ("down", _fa (CFontAwesome6CSS.FA_ARROW_DOWN));
+    m_aIcons.put ("previous", _fa (CFontAwesome6CSS.FA_CHEVRON_LEFT));
+    m_aIcons.put ("next", _fa (CFontAwesome6CSS.FA_CHEVRON_RIGHT));
+    m_aIcons.put ("today", _fa (CFontAwesome6CSS.FA_CALENDAR_CHECK));
+    m_aIcons.put ("clear", _fa (CFontAwesome6CSS.FA_ERASER));
+    m_aIcons.put ("close", _fa (CFontAwesome6CSS.FA_XMARK));
   }
 
   /**
@@ -755,7 +758,7 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
     PhotonJS.registerJSIncludeForThisRequest (EBootstrapUICtrlsJSPathProvider.POPPER);
     PhotonJS.registerJSIncludeForThisRequest (EBootstrapUICtrlsJSPathProvider.DATETIMEPICKER);
 
-    EFontAwesome5Icon.registerResourcesForThisRequest ();
+    EFontAwesome6Icon.registerResourcesForThisRequest ();
     PhotonCSS.registerCSSIncludeForThisRequest (EBootstrapUICtrlsCSSPathProvider.DATETIMEPICKER);
   }
 

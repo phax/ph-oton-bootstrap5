@@ -78,15 +78,23 @@ This library wraps **Bootstrap 5.3.x**, which includes:
 * **Modernized styling** - Cleaner CSS and improved utilities
 * **Updated data attributes** - All Bootstrap data attributes now use `data-bs-*` prefix
 
+## Migration from Bootstrap 4
+
+See [migration-plan.md](migration-plan.md) for detailed migration steps from ph-oton-bootstrap4.
+
+## License
+
+Licensed under the Apache License, Version 2.0.
+
 ## News and Noteworthy
 
-**v1.0.0 - Work in Progress**
+v0.9.0 - 2026-08-19
 * Initial release for Bootstrap 5.3.x
 * Migration from Bootstrap 4 wrapper
 * Full support for Bootstrap 5 components
 * Updated for JakartaEE 10
 * Reworked `BootstrapInputGroup` to use the flat Bootstrap 5 markup (no more `input-group-prepend`/`input-group-append` wrappers)
-* Made the DateTimePicker based on Tempus Dominus v6.10.4 work: fixed initialization (`new tempusDominus.TempusDominus`), format token mapping, icon configuration (FontAwesome 5) and initial value handling; clicking into the input opens the picker as well (as in the Bootstrap 4 version)
+* Made the DateTimePicker based on Tempus Dominus v6.10.4 work: fixed initialization (`new tempusDominus.TempusDominus`), format token mapping, icon configuration and initial value handling; clicking into the input opens the picker as well (as in the Bootstrap 4 version)
 * Added Popper v2.11.8 as a contained resource, as it is required by Tempus Dominus for popup positioning
 * Migrated `BootstrapTooltip` and `BootstrapModal` from the removed jQuery plugin API to the native `bootstrap.Tooltip`/`bootstrap.Modal` JS API
 * Horizontal form labels now use the `col-form-label` class for correct alignment
@@ -95,14 +103,10 @@ This library wraps **Bootstrap 5.3.x**, which includes:
 * Updated Tempus Dominus from v6.9.4 to v6.10.4 (keyboard navigation and ARIA improvements). The shipped files are unmodified upstream copies - the ph-oton specific integration is documented in `ph-oton-bootstrap5-uictrls/src/main/resources/external/tempusdominus/README.md`
 * Added `BootstrapDateTimePicker.setKeyboardNavigation (...)` for the new Tempus Dominus `display.keyboardNavigation` option
 * Added `EBootstrap5DateTimePickerTexts.TOGGLE_ARIA_LABEL` and fill the new Tempus Dominus `localization.toggleAriaLabel` key with it
-
-## Migration from Bootstrap 4
-
-See [migration-plan.md](migration-plan.md) for detailed migration steps from ph-oton-bootstrap4.
-
-## License
-
-Licensed under the Apache License, Version 2.0.
+* Added the demo page "Misc Controls" that shows all controls without a dedicated demo page (modal, offcanvas, tooltip, collapse, floating labels, validation feedback, cards, collapsible cards, alerts, badges, breadcrumb, list group, dropdown, tabs, tree view, file upload, Select2 and Prism)
+* `ph-oton-bootstrap5-uictrls` now uses FontAwesome 6 (`ph-oton-icon-fontawesome6`) instead of FontAwesome 5.
+  This affects `BootstrapDateTimePicker` (which now matches the Tempus Dominus default icon set), `BootstrapCardCollapsible` and `BootstrapSimpleTooltip` (`QUESTION_CIRCLE` became `CIRCLE_QUESTION`).
+  FontAwesome 6 requires the style class in addition to the icon class, so `bootstrap-ext.css` now matches `.fa-solid` as well
 
 ---
 

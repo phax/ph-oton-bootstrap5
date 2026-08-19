@@ -73,6 +73,8 @@ public final class BootstrapDateTimePickerTest
     assertTrue (sHTML, sHTML.contains ("data-td-toggle=\"datetimepicker\""));
     assertTrue (sHTML, sHTML.contains ("data-td-target=\"#" + aDTP.getID () + "\""));
     assertTrue (sHTML, sHTML.contains ("datetimepicker-input"));
+    // The prepend icon is a FontAwesome 6 node
+    assertTrue (sHTML, sHTML.contains ("class=\"fa-solid fa-calendar\""));
   }
 
   @Test
@@ -111,9 +113,11 @@ public final class BootstrapDateTimePickerTest
                                              "defaultDate",
                                              "allowInputToggle" })
       assertTrue (sKey + " is missing in " + sOptions, sOptions.contains (sKey));
-    // FontAwesome 5 icon classes - the Tempus Dominus defaults require FontAwesome 6
-    assertTrue (sOptions, sOptions.contains ("fa fa-calendar"));
-    assertTrue (sOptions, !sOptions.contains ("fa-solid"));
+    // FontAwesome 6 icon classes - the style class is required in addition to the icon class
+    assertTrue (sOptions, sOptions.contains ("fa-solid fa-calendar"));
+    assertTrue (sOptions, sOptions.contains ("fa-solid fa-xmark"));
+    // The FontAwesome 5 style ("fa" as style class) may not be used any more
+    assertTrue (sOptions, !sOptions.contains ("\"fa fa-"));
   }
 
   @Test

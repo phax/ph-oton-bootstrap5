@@ -61,6 +61,9 @@ public final class BootstrapCardCollapsibleTest
     assertTrue (sHTML, sHTML.contains ("aria-expanded=\"true\""));
     assertTrue (sHTML, sHTML.contains ("aria-controls=\"" + aCard.getCollapseDiv ().getID () + "\""));
     assertTrue (sHTML, sHTML.contains ("card-body"));
+    // FontAwesome 6 - the style class is required next to the icon class, and
+    // bootstrap-ext.css matches ".fa-solid" for the rotation
+    assertTrue (sHTML, sHTML.contains ("class=\"fa-solid fa-chevron-down\""));
   }
 
   @Test

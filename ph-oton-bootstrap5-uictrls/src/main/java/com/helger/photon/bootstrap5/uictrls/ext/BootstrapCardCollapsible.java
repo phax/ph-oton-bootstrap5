@@ -33,7 +33,7 @@ import com.helger.photon.bootstrap5.base.AbstractBootstrapDiv;
 import com.helger.photon.bootstrap5.card.BootstrapCardBody;
 import com.helger.photon.bootstrap5.card.BootstrapCardHeader;
 import com.helger.photon.bootstrap5.uictrls.EBootstrapUICtrlsCSSPathProvider;
-import com.helger.photon.icon.fontawesome5.EFontAwesome5Icon;
+import com.helger.photon.icon.fontawesome6.EFontAwesome6Icon;
 import com.helger.url.SimpleURL;
 
 /**
@@ -105,7 +105,7 @@ public class BootstrapCardCollapsible extends AbstractBootstrapDiv <BootstrapCar
   @OverrideOnDemand
   protected IHCNode createCloseIcon ()
   {
-    return EFontAwesome5Icon.CHEVRON_DOWN.getAsNode ();
+    return EFontAwesome6Icon.CHEVRON_DOWN.getAsNode ();
   }
 
   @NonNull
@@ -143,7 +143,7 @@ public class BootstrapCardCollapsible extends AbstractBootstrapDiv <BootstrapCar
                                               final boolean bForcedRegistration)
   {
     super.onRegisterExternalResources (aConversionSettings, bForcedRegistration);
-    EFontAwesome5Icon.registerResourcesForThisRequest ();
+    EFontAwesome6Icon.registerResourcesForThisRequest ();
     PhotonCSS.registerCSSIncludeForThisRequest (EBootstrapUICtrlsCSSPathProvider.BOOTSTRAP_EXT);
   }
 }

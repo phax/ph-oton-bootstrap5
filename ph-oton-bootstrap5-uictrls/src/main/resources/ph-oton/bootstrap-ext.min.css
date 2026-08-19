@@ -1,1 +1,1 @@
-.card-collapsible .card-header .fa{transition:.3s transform ease-in-out}.card-collapsible .card-header .collapsed .fa{transform:rotate(90deg)}
+.card-collapsible .card-header .fa,.card-collapsible .card-header .fa-solid{transition:.3s transform ease-in-out}.card-collapsible .card-header .collapsed .fa,.card-collapsible .card-header .collapsed .fa-solid{transform:rotate(90deg)}

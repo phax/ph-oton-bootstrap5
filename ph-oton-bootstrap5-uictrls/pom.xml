@@ -68,7 +68,7 @@
     </dependency>
     <dependency>
       <groupId>com.helger.photon.icon</groupId>
-      <artifactId>ph-oton-icon-fontawesome5</artifactId>
+      <artifactId>ph-oton-icon-fontawesome6</artifactId>
     </dependency>
 
     <dependency>

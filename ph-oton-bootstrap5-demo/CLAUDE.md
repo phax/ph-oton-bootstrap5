@@ -15,4 +15,6 @@ Standalone demo WAR showing the Bootstrap 5 components in a real ph-oton applica
 
 ## Adding a demo page
 
-Create the page under `pub/page/` or `secure/page/`, then register it in the matching `MenuPublic` / `MenuSecure` class with a new item ID constant in `CMenuPublic` / `CMenuSecure`. A page that is not in the menu tree is unreachable.
+Create the page under `pub/page/` or `secure/page/`, then register it in the matching `MenuPublic` / `MenuSecure` class — a page that is not in the menu tree is unreachable. The content pages pass their menu item ID as a literal (`"ui-misc"`, `"ui-datatables"`, …); `CMenuPublic` / `CMenuSecure` only hold the IDs that are referenced from code, such as the login, site notice and GTC pages.
+
+`PagePublicMiscControls` (`ui-misc`) collects every control without a dedicated page — modal, offcanvas, tooltip, collapse, floating labels, validation feedback, cards, collapsible cards, alerts, badges, breadcrumb, list group, dropdown, tabs, tree view, file upload, Select2 and Prism. Use it to check anything that only shows up in a browser, and extend it when adding a component.

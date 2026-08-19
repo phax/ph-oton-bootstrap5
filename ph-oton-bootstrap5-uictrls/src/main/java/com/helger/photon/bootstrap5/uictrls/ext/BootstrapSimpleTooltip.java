@@ -22,7 +22,7 @@ import com.helger.html.hc.IHCNode;
 import com.helger.html.hc.html.IHCElement;
 import com.helger.html.hc.impl.HCNodeList;
 import com.helger.photon.bootstrap5.tooltip.BootstrapTooltip;
-import com.helger.photon.icon.fontawesome5.EFontAwesome5Icon;
+import com.helger.photon.icon.fontawesome6.EFontAwesome6Icon;
 
 public class BootstrapSimpleTooltip
 {
@@ -32,7 +32,7 @@ public class BootstrapSimpleTooltip
   @NonNull
   public static IHCNode createSimpleTooltip (@NonNull final String sTitle)
   {
-    final IHCElement <?> aIcon = EFontAwesome5Icon.QUESTION_CIRCLE.getAsNode ();
+    final IHCElement <?> aIcon = EFontAwesome6Icon.CIRCLE_QUESTION.getAsNode ();
     final BootstrapTooltip aTooltip = new BootstrapTooltip (aIcon).setTooltipTitle (sTitle);
     return new HCNodeList ().addChild (aIcon).addChild (aTooltip);
   }
@@ -40,7 +40,7 @@ public class BootstrapSimpleTooltip
   @NonNull
   public static IHCNode createSimpleTooltip (@NonNull final IHCNode aTitle)
   {
-    final IHCElement <?> aIcon = EFontAwesome5Icon.QUESTION_CIRCLE.getAsNode ();
+    final IHCElement <?> aIcon = EFontAwesome6Icon.CIRCLE_QUESTION.getAsNode ();
     final BootstrapTooltip aTooltip = new BootstrapTooltip (aIcon).setTooltipTitle (aTitle);
     return new HCNodeList ().addChild (aIcon).addChild (aTooltip);
   }
