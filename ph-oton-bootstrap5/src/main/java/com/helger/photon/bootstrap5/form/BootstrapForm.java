@@ -128,14 +128,20 @@ public class BootstrapForm extends AbstractHCForm <BootstrapForm> implements
                                       IBootstrapGridElement.MIN,
                                       CBootstrap.GRID_SYSTEM_MAX);
 
-    final BootstrapGridSpec aNewLeft = BootstrapGridSpec.builder ()
-                                                        .xs (nLeftPartsXS)
-                                                        .sm (nLeftPartsSM)
-                                                        .md (nLeftPartsMD)
-                                                        .lg (nLeftPartsLG)
-                                                        .xl (nLeftPartsXL)
-                                                        .xxl (nLeftPartsXXL)
-                                                        .build ();
+    return setLeft (BootstrapGridSpec.builder ()
+                                     .xs (nLeftPartsXS)
+                                     .sm (nLeftPartsSM)
+                                     .md (nLeftPartsMD)
+                                     .lg (nLeftPartsLG)
+                                     .xl (nLeftPartsXL)
+                                     .xxl (nLeftPartsXXL)
+                                     .build ());
+  }
+
+  @NonNull
+  @OverridingMethodsMustInvokeSuper
+  public BootstrapForm setLeft (@NonNull final BootstrapGridSpec aNewLeft)
+  {
     // The right side is the complement of the left side
     return setSplitting (aNewLeft, aNewLeft.getInverse ());
   }
