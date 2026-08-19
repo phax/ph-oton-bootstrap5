@@ -102,29 +102,7 @@ public class BootstrapRow extends AbstractBootstrapDiv <BootstrapRow>
   @NonNull
   public BootstrapCol createColumn (final int nParts)
   {
-    return createColumn (BootstrapGridSpec.create (nParts));
-  }
-
-  @NonNull
-  public BootstrapCol createColumn (final int nPartsXS,
-                                    final int nPartsSM,
-                                    final int nPartsMD,
-                                    final int nPartsLG,
-                                    final int nPartsXL,
-                                    final int nPartsXXL)
-  {
-    return createColumn (BootstrapGridSpec.create (nPartsXS, nPartsSM, nPartsMD, nPartsLG, nPartsXL, nPartsXXL));
-  }
-
-  @NonNull
-  public BootstrapCol createColumn (@Nullable final EBootstrapGridXS eXS,
-                                    @Nullable final EBootstrapGridSM eSM,
-                                    @Nullable final EBootstrapGridMD eMD,
-                                    @Nullable final EBootstrapGridLG eLG,
-                                    @Nullable final EBootstrapGridXL eXL,
-                                    @Nullable final EBootstrapGridXXL eXXL)
-  {
-    return createColumn (new BootstrapGridSpec (eXS, eSM, eMD, eLG, eXL, eXXL));
+    return createColumn (BootstrapGridSpec.builder ().all (nParts).build ());
   }
 
   @NonNull
@@ -192,21 +170,6 @@ public class BootstrapRow extends AbstractBootstrapDiv <BootstrapRow>
   {
     final BootstrapRow aRow = new BootstrapRow ();
     aRow.createColumn (nParts).addChild (aCtrl);
-    return aRow;
-  }
-
-  @NonNull
-  @ReturnsMutableCopy
-  public static BootstrapRow createRowWithOneColumn (final int nPartsXS,
-                                                     final int nPartsSM,
-                                                     final int nPartsMD,
-                                                     final int nPartsLG,
-                                                     final int nPartsXL,
-                                                     final int nPartsXXL,
-                                                     @NonNull final IHCNode aCtrl)
-  {
-    final BootstrapRow aRow = new BootstrapRow ();
-    aRow.createColumn (nPartsXS, nPartsSM, nPartsMD, nPartsLG, nPartsXL, nPartsXXL).addChild (aCtrl);
     return aRow;
   }
 

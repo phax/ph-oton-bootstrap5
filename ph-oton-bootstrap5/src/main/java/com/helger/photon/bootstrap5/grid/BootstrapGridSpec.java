@@ -16,8 +16,6 @@
  */
 package com.helger.photon.bootstrap5.grid;
 
-import java.io.Serializable;
-
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
@@ -28,15 +26,10 @@ import com.helger.base.tostring.ToStringGenerator;
 import com.helger.html.hc.html.IHCElement;
 
 @Immutable
-public final class BootstrapGridSpec implements Serializable
+public final class BootstrapGridSpec
 {
-  public static final BootstrapGridSpec NONE = new BootstrapGridSpec (null, null, null, null, null, null);
-  public static final BootstrapGridSpec EVENLY = new BootstrapGridSpec (EBootstrapGridXS.EVENLY,
-                                                                        null,
-                                                                        null,
-                                                                        null,
-                                                                        null,
-                                                                        null);
+  public static final BootstrapGridSpec NONE = builder ().build ();
+  public static final BootstrapGridSpec EVENLY = builder ().xs (EBootstrapGridXS.EVENLY).build ();
 
   private final EBootstrapGridXS m_eXS;
   private final EBootstrapGridSM m_eSM;
@@ -188,34 +181,6 @@ public final class BootstrapGridSpec implements Serializable
                                        .getToString ();
   }
 
-  @NonNull
-  public static BootstrapGridSpec create (final int nParts)
-  {
-    // The larger sizes inherit from the smaller sizes
-    return create (nParts,
-                   IBootstrapGridElement.PARTS_NONE,
-                   IBootstrapGridElement.PARTS_NONE,
-                   IBootstrapGridElement.PARTS_NONE,
-                   IBootstrapGridElement.PARTS_NONE,
-                   IBootstrapGridElement.PARTS_NONE);
-  }
-
-  @NonNull
-  public static BootstrapGridSpec create (final int nPartsXS,
-                                          final int nPartsSM,
-                                          final int nPartsMD,
-                                          final int nPartsLG,
-                                          final int nPartsXL,
-                                          final int nPartsXXL)
-  {
-    return new BootstrapGridSpec (EBootstrapGridXS.getFromParts (nPartsXS),
-                                  EBootstrapGridSM.getFromParts (nPartsSM),
-                                  EBootstrapGridMD.getFromParts (nPartsMD),
-                                  EBootstrapGridLG.getFromParts (nPartsLG),
-                                  EBootstrapGridXL.getFromParts (nPartsXL),
-                                  EBootstrapGridXXL.getFromParts (nPartsXXL));
-  }
-
   /**
    * @return A new builder with all breakpoints unset. Never <code>null</code>.
    * @since 0.9.1
@@ -351,7 +316,8 @@ public final class BootstrapGridSpec implements Serializable
     @NonNull
     public Builder all (final int nParts)
     {
-      return xs (nParts).sm (nParts).md (nParts).lg (nParts).xl (nParts).xxl (nParts);
+      // The larger sizes inherit from the smaller sizes
+      return xs (nParts).sm (null).md (null).lg (null).xl (null).xxl (null);
     }
 
     @NonNull

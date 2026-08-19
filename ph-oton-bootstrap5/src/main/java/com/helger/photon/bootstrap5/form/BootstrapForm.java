@@ -45,18 +45,14 @@ public class BootstrapForm extends AbstractHCForm <BootstrapForm> implements
 
   private final Locale m_aDisplayLocale;
   private EBootstrapFormType m_eFormType = EBootstrapFormType.DEFAULT;
-  private BootstrapGridSpec m_aLeftGrid = BootstrapGridSpec.create (CBootstrap.GRID_SYSTEM_MAX,
-                                                                    DEFAULT_LEFT_PART,
-                                                                    DEFAULT_LEFT_PART,
-                                                                    DEFAULT_LEFT_PART,
-                                                                    DEFAULT_LEFT_PART,
-                                                                    DEFAULT_LEFT_PART);
-  private BootstrapGridSpec m_aRightGrid = BootstrapGridSpec.create (CBootstrap.GRID_SYSTEM_MAX,
-                                                                     DEFAULT_RIGHT_PART,
-                                                                     DEFAULT_RIGHT_PART,
-                                                                     DEFAULT_RIGHT_PART,
-                                                                     DEFAULT_RIGHT_PART,
-                                                                     DEFAULT_RIGHT_PART);
+  private BootstrapGridSpec m_aLeftGrid = BootstrapGridSpec.builder ()
+                                                           .xs (CBootstrap.GRID_SYSTEM_MAX)
+                                                           .sm (DEFAULT_LEFT_PART)
+                                                           .build ();
+  private BootstrapGridSpec m_aRightGrid = BootstrapGridSpec.builder ()
+                                                            .xs (CBootstrap.GRID_SYSTEM_MAX)
+                                                            .sm (DEFAULT_RIGHT_PART)
+                                                            .build ();
   private IBootstrapFormGroupRenderer m_aFormGroupRenderer = new DefaultBootstrapFormGroupRenderer ();
 
   public BootstrapForm (@NonNull final ISimpleWebExecutionContext aLEC)
@@ -132,18 +128,22 @@ public class BootstrapForm extends AbstractHCForm <BootstrapForm> implements
                                       IBootstrapGridElement.MIN,
                                       CBootstrap.GRID_SYSTEM_MAX);
 
-    final BootstrapGridSpec aNewLeft = BootstrapGridSpec.create (nLeftPartsXS,
-                                                                 nLeftPartsSM,
-                                                                 nLeftPartsMD,
-                                                                 nLeftPartsLG,
-                                                                 nLeftPartsXL,
-                                                                 nLeftPartsXXL);
-    final BootstrapGridSpec aNewRight = BootstrapGridSpec.create (IBootstrapGridElement.getMatchingOpposite (nLeftPartsXS),
-                                                                  IBootstrapGridElement.getMatchingOpposite (nLeftPartsSM),
-                                                                  IBootstrapGridElement.getMatchingOpposite (nLeftPartsMD),
-                                                                  IBootstrapGridElement.getMatchingOpposite (nLeftPartsLG),
-                                                                  IBootstrapGridElement.getMatchingOpposite (nLeftPartsXL),
-                                                                  IBootstrapGridElement.getMatchingOpposite (nLeftPartsXXL));
+    final BootstrapGridSpec aNewLeft = BootstrapGridSpec.builder ()
+                                                        .xs (nLeftPartsXS)
+                                                        .sm (nLeftPartsSM)
+                                                        .md (nLeftPartsMD)
+                                                        .lg (nLeftPartsLG)
+                                                        .xl (nLeftPartsXL)
+                                                        .xxl (nLeftPartsXXL)
+                                                        .build ();
+    final BootstrapGridSpec aNewRight = BootstrapGridSpec.builder ()
+                                                         .xs (IBootstrapGridElement.getMatchingOpposite (nLeftPartsXS))
+                                                         .sm (IBootstrapGridElement.getMatchingOpposite (nLeftPartsSM))
+                                                         .md (IBootstrapGridElement.getMatchingOpposite (nLeftPartsMD))
+                                                         .lg (IBootstrapGridElement.getMatchingOpposite (nLeftPartsLG))
+                                                         .xl (IBootstrapGridElement.getMatchingOpposite (nLeftPartsXL))
+                                                         .xxl (IBootstrapGridElement.getMatchingOpposite (nLeftPartsXXL))
+                                                         .build ();
     return setSplitting (aNewLeft, aNewRight);
   }
 

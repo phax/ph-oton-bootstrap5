@@ -33,6 +33,7 @@ import com.helger.photon.bootstrap5.breadcrumb.BootstrapBreadcrumbProvider;
 import com.helger.photon.bootstrap5.demo.app.CApp;
 import com.helger.photon.bootstrap5.demo.app.ui.AppCommonUI;
 import com.helger.photon.bootstrap5.grid.BootstrapCol;
+import com.helger.photon.bootstrap5.grid.BootstrapGridSpec;
 import com.helger.photon.bootstrap5.grid.BootstrapRow;
 import com.helger.photon.bootstrap5.layout.BootstrapContainer;
 import com.helger.photon.bootstrap5.navbar.BootstrapNavbar;
@@ -112,8 +113,8 @@ public final class AppRendererSecure
     // Content
     {
       final BootstrapRow aRow = aOuterContainer.addAndReturnChild (new BootstrapRow ());
-      final BootstrapCol aCol1 = aRow.createColumn (12, 12, 4, 4, 3, 3);
-      final BootstrapCol aCol2 = aRow.createColumn (12, 12, 8, 8, 9, 9);
+      final BootstrapCol aCol1 = aRow.createColumn (BootstrapGridSpec.builder ().xs (12).md (4).xl (3).build ());
+      final BootstrapCol aCol2 = aRow.createColumn (BootstrapGridSpec.builder ().xs (12).md (8).xl (9).build ());
 
       // left
       // We need a wrapper span for easy AJAX content replacement

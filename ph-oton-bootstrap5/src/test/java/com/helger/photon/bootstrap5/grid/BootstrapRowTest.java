@@ -32,7 +32,7 @@ public final class BootstrapRowTest
   public void testSingleColumn ()
   {
     final BootstrapRow aRow = new BootstrapRow ();
-    aRow.createColumn (BootstrapGridSpec.create (6)).addChild ("a");
+    aRow.createColumn (BootstrapGridSpec.builder ().all (6).build ()).addChild ("a");
     assertEquals ("<div class=\"row\"><div class=\"col-6\">a</div></div>", getAsHTMLString (aRow));
   }
 
@@ -40,7 +40,8 @@ public final class BootstrapRowTest
   public void testAllBreakpoints ()
   {
     final BootstrapRow aRow = new BootstrapRow ();
-    aRow.createColumn (12, 6, 4, 3, 2, 1).addChild ("b");
+    aRow.createColumn (BootstrapGridSpec.builder ().xs (12).sm (6).md (4).lg (3).xl (2).xxl (1).build ())
+        .addChild ("b");
     // XXL is the Bootstrap 5 specific breakpoint
     assertEquals ("<div class=\"row\"><div class=\"col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-1\">b</div></div>",
                   getAsHTMLString (aRow));
@@ -50,7 +51,9 @@ public final class BootstrapRowTest
   public void testColumnOrder ()
   {
     final BootstrapRow aRow = new BootstrapRow ();
-    aRow.createColumn (BootstrapGridSpec.create (6)).setOrder (EBootstrapColOrder.ORDER_1).addChild ("a");
+    aRow.createColumn (BootstrapGridSpec.builder ().all (6).build ())
+        .setOrder (EBootstrapColOrder.ORDER_1)
+        .addChild ("a");
     assertEquals ("<div class=\"row\"><div class=\"col-6 order-1\">a</div></div>", getAsHTMLString (aRow));
   }
 }

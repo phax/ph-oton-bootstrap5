@@ -152,15 +152,16 @@ public class PagePublicMiscControls extends AbstractAppWebPage
 
     // Floating labels
     {
-      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.create (12, 12, 6, 6, 6, 6));
+      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.builder ().xs (12).md (6).build ());
       aCol.addChild (new HCP ().addChild (new HCSmall ().addChild ("Floating labels")));
-      aCol.addChild (new BootstrapFormFloating (new HCEdit ("floating1"), "E-Mail address").addClass (CBootstrapCSS.MB_2));
+      aCol.addChild (new BootstrapFormFloating (new HCEdit ("floating1"), "E-Mail address").addClass (
+                                                                                                      CBootstrapCSS.MB_2));
       aCol.addChild (new BootstrapFormFloating (new HCTextArea ("floating2"), "A comment"));
     }
 
     // Validation feedback
     {
-      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.create (12, 12, 6, 6, 6, 6));
+      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.builder ().xs (12).md (6).build ());
       aCol.addChild (new HCP ().addChild (new HCSmall ().addChild ("Validation feedback")));
 
       final HCEdit aValid = new HCEdit ("valid").addClasses (CBootstrapCSS.FORM_CONTROL, CBootstrapCSS.IS_VALID);
@@ -189,14 +190,14 @@ public class PagePublicMiscControls extends AbstractAppWebPage
     // Cards
     final BootstrapRow aCardRow = aNodeList.addAndReturnChild (new BootstrapRow ());
     {
-      final BootstrapCol aCol = aCardRow.createColumn (BootstrapGridSpec.create (12, 12, 6, 6, 6, 6));
+      final BootstrapCol aCol = aCardRow.createColumn (BootstrapGridSpec.builder ().xs (12).md (6).build ());
       final BootstrapCard aCard = aCol.addAndReturnChild (new BootstrapCard ());
       aCard.createAndAddHeader ().addChild ("A card");
       aCard.createAndAddBody ().addChild ("Cards replace the Bootstrap 3 panels, wells and thumbnails.");
       aCard.createAndAddFooter ().addChild (new HCSmall ().addChild ("Card footer"));
     }
     {
-      final BootstrapCol aCol = aCardRow.createColumn (BootstrapGridSpec.create (12, 12, 6, 6, 6, 6));
+      final BootstrapCol aCol = aCardRow.createColumn (BootstrapGridSpec.builder ().xs (12).md (6).build ());
       final BootstrapCardCollapsible aOpen = aCol.addAndReturnChild (new BootstrapCardCollapsible (new HCTextNode ("A collapsible card - initially open"),
                                                                                                    true));
       aOpen.getBody ().addChild ("Clicking the header collapses this card. The chevron is rotated by CSS.");
@@ -222,21 +223,21 @@ public class PagePublicMiscControls extends AbstractAppWebPage
     // Breadcrumb, list group and dropdown
     final BootstrapRow aRow = aNodeList.addAndReturnChild (new BootstrapRow ());
     {
-      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.create (12, 12, 4, 4, 4, 4));
+      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.builder ().xs (12).md (4).build ());
       final BootstrapBreadcrumb aBC = aCol.addAndReturnChild (new BootstrapBreadcrumb ());
       aBC.getList ().addLink (new SimpleURL ("#"), "Home");
       aBC.getList ().addLink (new SimpleURL ("#"), "Library");
       aBC.getList ().addActive ("Data");
     }
     {
-      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.create (12, 12, 4, 4, 4, 4));
+      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.builder ().xs (12).md (4).build ());
       final BootstrapListGroup aLG = aCol.addAndReturnChild (new BootstrapListGroup ());
       aLG.addItem ("First item");
       aLG.addItem ("Second item");
       aLG.addItem ("Third item");
     }
     {
-      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.create (12, 12, 4, 4, 4, 4));
+      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.builder ().xs (12).md (4).build ());
       final BootstrapDropdownMenu aMenu = new BootstrapDropdownMenu ();
       aMenu.createAndAddHeader ().addChild ("Dropdown header");
       aMenu.createAndAddItem ().setHref (new SimpleURL ("#")).addChild ("An action");
@@ -258,8 +259,16 @@ public class PagePublicMiscControls extends AbstractAppWebPage
 
     // Tab box
     final BootstrapTabBox aTabBox = new BootstrapTabBox ();
-    aTabBox.addTab ("tab1", new HCTextNode ("First tab"), new HCP ().addChild ("Content of the first tab."), true, false);
-    aTabBox.addTab ("tab2", new HCTextNode ("Second tab"), new HCP ().addChild ("Content of the second tab."), false, false);
+    aTabBox.addTab ("tab1",
+                    new HCTextNode ("First tab"),
+                    new HCP ().addChild ("Content of the first tab."),
+                    true,
+                    false);
+    aTabBox.addTab ("tab2",
+                    new HCTextNode ("Second tab"),
+                    new HCP ().addChild ("Content of the second tab."),
+                    false,
+                    false);
     aTabBox.addTab ("tab3", new HCTextNode ("Disabled"), new HCP ().addChild ("Not reachable."), false, true);
     aNodeList.addChild (aTabBox);
 
@@ -280,7 +289,7 @@ public class PagePublicMiscControls extends AbstractAppWebPage
 
     // Tree view
     {
-      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.create (12, 12, 6, 6, 6, 6));
+      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.builder ().xs (12).md (6).build ());
       aCol.addChild (new HCP ().addChild (new HCSmall ().addChild ("Tree view")));
 
       final DefaultTree <BootstrapTreeViewItem> aTree = new DefaultTree <> ();
@@ -297,7 +306,7 @@ public class PagePublicMiscControls extends AbstractAppWebPage
 
     // File upload and Select2
     {
-      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.create (12, 12, 6, 6, 6, 6));
+      final BootstrapCol aCol = aRow.createColumn (BootstrapGridSpec.builder ().xs (12).md (6).build ());
       aCol.addChild (new HCP ().addChild (new HCSmall ().addChild ("File upload")));
       aCol.addChild (new BootstrapFileUpload ("file", aDisplayLocale));
 

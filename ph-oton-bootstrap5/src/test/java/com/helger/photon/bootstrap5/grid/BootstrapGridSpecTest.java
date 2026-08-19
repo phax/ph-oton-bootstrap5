@@ -69,14 +69,7 @@ public final class BootstrapGridSpecTest
   @Test
   public void testBuilderParts ()
   {
-    final BootstrapGridSpec aSpec = BootstrapGridSpec.builder ()
-                                                     .xs (12)
-                                                     .sm (6)
-                                                     .md (4)
-                                                     .lg (3)
-                                                     .xl (2)
-                                                     .xxl (1)
-                                                     .build ();
+    final BootstrapGridSpec aSpec = BootstrapGridSpec.builder ().xs (12).sm (6).md (4).lg (3).xl (2).xxl (1).build ();
     assertEquals (EBootstrapGridXS.XS_12, aSpec.getXS ());
     assertEquals (EBootstrapGridSM.SM_6, aSpec.getSM ());
     assertEquals (EBootstrapGridMD.MD_4, aSpec.getMD ());
@@ -111,7 +104,7 @@ public final class BootstrapGridSpecTest
   @Test
   public void testBuilderCopy ()
   {
-    final BootstrapGridSpec aSrc = BootstrapGridSpec.create (12, 6, 4, 3, 2, 1);
+    final BootstrapGridSpec aSrc = BootstrapGridSpec.builder ().xs (12).sm (6).md (4).lg (3).xl (2).xxl (1).build ();
     final BootstrapGridSpec aSpec = BootstrapGridSpec.builder (aSrc).md (5).build ();
     assertEquals (aSrc.getXS (), aSpec.getXS ());
     assertEquals (aSrc.getSM (), aSpec.getSM ());

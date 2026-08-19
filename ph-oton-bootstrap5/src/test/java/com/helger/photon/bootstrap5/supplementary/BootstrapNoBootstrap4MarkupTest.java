@@ -85,7 +85,8 @@ public final class BootstrapNoBootstrap4MarkupTest
     final BootstrapContainer aContainer = aNL.addAndReturnChild (new BootstrapContainer ());
 
     final BootstrapRow aRow = aContainer.addAndReturnChild (new BootstrapRow ());
-    aRow.createColumn (BootstrapGridSpec.create (12, 6, 4, 3, 2, 1)).addChild ("Column");
+    aRow.createColumn (BootstrapGridSpec.builder ().xs (12).sm (6).md (4).lg (3).xl (2).xxl (1).build ())
+        .addChild ("Column");
 
     final BootstrapCard aCard = aContainer.addAndReturnChild (new BootstrapCard ());
     aCard.createAndAddHeader ().addChild ("Header");
