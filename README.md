@@ -88,6 +88,10 @@ Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
 
+v0.9.1 - work in progress
+* Added `BootstrapGridSpec.Builder` incl. the static factory methods `BootstrapGridSpec.builder ()` and `BootstrapGridSpec.builder (BootstrapGridSpec)` for easier creation of grid specifications
+* The `BootstrapDateTimePicker` calendar headline now shows the four digit year (e.g. "August 2026") instead of the Tempus Dominus default two digit year (e.g. "August 26"), as in the Bootstrap 4 version. Added `BootstrapDateTimePicker.dayViewHeaderFormat ()`, `setDayViewHeaderFormat (JSAssocArray)` and `createDefaultDayViewHeaderFormat ()` to customize the new `localization.dayViewHeaderFormat` option
+
 v0.9.0 - 2026-08-19
 * Initial release for Bootstrap 5.3.x
 * Migration from Bootstrap 4 wrapper

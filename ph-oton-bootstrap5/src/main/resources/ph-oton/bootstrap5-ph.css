@@ -14,3 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/* Dummy class to avoid minified file is 0 bytes */
+.ph-bs5-block {
+  display:block;
+}
