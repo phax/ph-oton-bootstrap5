@@ -1,5 +1,12 @@
 # ph-oton-bootstrap5
 
+<!-- ph-badge-start -->
+[![Sonatype Central](https://maven-badges.sml.io/sonatype-central/com.helger.photon/ph-oton-bootstrap5-parent-pom/badge.svg)](https://maven-badges.sml.io/sonatype-central/com.helger.photon/ph-oton-bootstrap5-parent-pom/)
+[![javadoc](https://javadoc.io/badge2/com.helger.photon/ph-oton-bootstrap5/javadoc.svg)](https://javadoc.io/doc/com.helger.photon/ph-oton-bootstrap5)
+
+> If this project saved you some time or made your day a little easier, a star would mean a lot — it helps others find it too.
+<!-- ph-badge-end -->
+
 Java wrapper library for Bootstrap 5 UI components, providing type-safe server-side rendering for web applications.
 
 ## Project Overview
@@ -126,4 +133,3 @@ v0.9.0 - 2026-08-19
 
 My personal [Coding Styleguide](https://github.com/phax/meta/blob/master/CodingStyleguide.md) |
 It is appreciated if you star the GitHub project if you like it.
-
