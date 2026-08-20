@@ -15,7 +15,14 @@
  * limitations under the License.
  */
 
-/* Dummy class to avoid minified file is 0 bytes */
-.ph-bs5-block {
-  display:block;
-}
+ /* Add the horizontal navbar padding */
+ .navbar {
+   --bs-navbar-padding-x: 0.5rem;
+ }
+
+ /* Style breadcrumbs like in BS4 */
+ .breadcrumb {
+   --bs-breadcrumb-bg: #e9ecef;
+   --bs-breadcrumb-padding-x: 1rem;
+   --bs-breadcrumb-padding-y: 0.75rem;
+ }
