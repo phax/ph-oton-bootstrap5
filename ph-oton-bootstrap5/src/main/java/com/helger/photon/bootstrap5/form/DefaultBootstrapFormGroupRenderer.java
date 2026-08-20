@@ -27,6 +27,7 @@ import com.helger.collection.commons.CommonsArrayList;
 import com.helger.collection.commons.ICommonsList;
 import com.helger.diagnostics.error.IError;
 import com.helger.diagnostics.error.list.IErrorList;
+import com.helger.html.css.ICSSClassProvider;
 import com.helger.html.hc.IHCNode;
 import com.helger.html.hc.html.IHCElement;
 import com.helger.html.hc.html.IHCElementWithChildren;
@@ -56,6 +57,7 @@ public class DefaultBootstrapFormGroupRenderer implements IBootstrapFormGroupRen
 {
   private boolean m_bUseIcons = false;
   private boolean m_bForceNoCheckBoxHandling = false;
+  private ICSSClassProvider m_aMarginBottomCSSClass = CBootstrapCSS.MB_3;
 
   public DefaultBootstrapFormGroupRenderer ()
   {}
@@ -83,6 +85,19 @@ public class DefaultBootstrapFormGroupRenderer implements IBootstrapFormGroupRen
   public DefaultBootstrapFormGroupRenderer setForceNoCheckBoxHandling (final boolean bForceNoCheckBoxHandling)
   {
     m_bForceNoCheckBoxHandling = bForceNoCheckBoxHandling;
+    return this;
+  }
+
+  @Nullable
+  public ICSSClassProvider getMarginBottomCSSClass ()
+  {
+    return m_aMarginBottomCSSClass;
+  }
+
+  @NonNull
+  public DefaultBootstrapFormGroupRenderer setMarginBottomCSSClass (@Nullable final ICSSClassProvider a)
+  {
+    m_aMarginBottomCSSClass = a;
     return this;
   }
 
@@ -279,7 +294,7 @@ public class DefaultBootstrapFormGroupRenderer implements IBootstrapFormGroupRen
         }
 
         aFinalNode = bIsInline ? new HCDiv () : new BootstrapRow ();
-        aFinalNode.addClass (CBootstrapCSS.MB_3).addChild (aDivRight);
+        aFinalNode.addClass (m_aMarginBottomCSSClass).addChild (aDivRight);
       }
     }
     else
@@ -316,7 +331,7 @@ public class DefaultBootstrapFormGroupRenderer implements IBootstrapFormGroupRen
       else
       {
         // add in form group
-        aFinalNode = new BootstrapRow ().addClass (CBootstrapCSS.MB_3);
+        aFinalNode = new BootstrapRow ().addClass (m_aMarginBottomCSSClass);
 
         final HCDiv aDivRight = new HCDiv ().addChild (aCtrls).addChild (aErrorListNode).addChild (aHelpTextNode);
         aForm.getRight ().applyTo (aDivRight);

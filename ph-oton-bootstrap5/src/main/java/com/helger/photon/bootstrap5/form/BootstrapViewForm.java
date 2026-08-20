@@ -30,6 +30,7 @@ import com.helger.html.hc.IHCConversionSettingsToNode;
 import com.helger.html.hc.IHCHasChildrenMutable;
 import com.helger.html.hc.IHCNode;
 import com.helger.html.hc.html.IHCElementWithChildren;
+import com.helger.photon.bootstrap5.CBootstrapCSS;
 import com.helger.photon.bootstrap5.base.AbstractBootstrapDiv;
 import com.helger.photon.bootstrap5.grid.BootstrapGridSpec;
 
@@ -42,7 +43,7 @@ public class BootstrapViewForm extends AbstractBootstrapDiv <BootstrapViewForm> 
   private EBootstrapFormType m_eFormType;
   private BootstrapGridSpec m_aLeftGrid = BootstrapFormSettings.getDefaultLeftGrid ();
   private BootstrapGridSpec m_aRightGrid = BootstrapFormSettings.getDefaultRightGrid ();
-  private IBootstrapFormGroupRenderer m_aFormGroupRenderer = new DefaultBootstrapFormGroupRenderer ();
+  private IBootstrapFormGroupRenderer m_aFormGroupRenderer = new DefaultBootstrapFormGroupRenderer ().setMarginBottomCSSClass (CBootstrapCSS.MB_1);
 
   public BootstrapViewForm ()
   {
