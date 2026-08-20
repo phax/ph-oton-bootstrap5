@@ -30,7 +30,6 @@ import com.helger.html.hc.IHCHasChildrenMutable;
 import com.helger.html.hc.IHCNode;
 import com.helger.html.hc.html.IHCElementWithChildren;
 import com.helger.html.hc.html.forms.AbstractHCForm;
-import com.helger.photon.bootstrap5.CBootstrap;
 import com.helger.photon.bootstrap5.grid.BootstrapGridSpec;
 import com.helger.photon.core.execcontext.ISimpleWebExecutionContext;
 
@@ -38,19 +37,10 @@ import com.helger.photon.core.execcontext.ISimpleWebExecutionContext;
 public class BootstrapForm extends AbstractHCForm <BootstrapForm> implements
                            IBootstrapFormGroupContainer <BootstrapForm>
 {
-  public static final int DEFAULT_LEFT_PART = 2;
-  public static final int DEFAULT_RIGHT_PART = CBootstrap.GRID_SYSTEM_MAX - DEFAULT_LEFT_PART;
-
   private final Locale m_aDisplayLocale;
   private EBootstrapFormType m_eFormType = EBootstrapFormType.DEFAULT;
-  private BootstrapGridSpec m_aLeftGrid = BootstrapGridSpec.builder ()
-                                                           .xs (CBootstrap.GRID_SYSTEM_MAX)
-                                                           .sm (DEFAULT_LEFT_PART)
-                                                           .build ();
-  private BootstrapGridSpec m_aRightGrid = BootstrapGridSpec.builder ()
-                                                            .xs (CBootstrap.GRID_SYSTEM_MAX)
-                                                            .sm (DEFAULT_RIGHT_PART)
-                                                            .build ();
+  private BootstrapGridSpec m_aLeftGrid = BootstrapFormSettings.getDefaultLeftGrid ();
+  private BootstrapGridSpec m_aRightGrid = BootstrapFormSettings.getDefaultRightGrid ();
   private IBootstrapFormGroupRenderer m_aFormGroupRenderer = new DefaultBootstrapFormGroupRenderer ();
 
   public BootstrapForm (@NonNull final ISimpleWebExecutionContext aLEC)

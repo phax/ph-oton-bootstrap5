@@ -29,6 +29,7 @@ import com.helger.photon.bootstrap5.demo.pub.page.PagePublicMiscControls;
 import com.helger.photon.bootstrap5.demo.pub.page.icon.PagePublicIconBootstrapIcons;
 import com.helger.photon.bootstrap5.demo.pub.page.icon.PagePublicIconFontAwesome4;
 import com.helger.photon.bootstrap5.demo.pub.page.icon.PagePublicIconFontAwesome5;
+import com.helger.photon.bootstrap5.demo.pub.page.icon.PagePublicIconFontAwesome6;
 import com.helger.photon.bootstrap5.demo.pub.page.icon.PagePublicIconMaterialDesign;
 import com.helger.photon.core.menu.IMenuItemPage;
 import com.helger.photon.core.menu.IMenuTree;
@@ -56,6 +57,7 @@ public final class MenuPublic
                                                                                           aMenuTree));
       aMenuTree.createItem (aIcons, new PagePublicIconFontAwesome4 ("icon-fa4"));
       aMenuTree.createItem (aIcons, new PagePublicIconFontAwesome5 ("icon-fa5"));
+      aMenuTree.createItem (aIcons, new PagePublicIconFontAwesome6 ("icon-fa6"));
       aMenuTree.createItem (aIcons, new PagePublicIconMaterialDesign ("icon-md"));
       aMenuTree.createItem (aIcons, new PagePublicIconBootstrapIcons ("icon-bootstrap"));
 

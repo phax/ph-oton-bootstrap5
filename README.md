@@ -88,6 +88,12 @@ Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
 
+v0.9.2 - work in progress
+* Added new class `BootstrapFormSettings` that centrally manages the default grid specifications of `BootstrapForm` and `BootstrapViewForm`.
+  It offers `getDefaultLeftGrid ()`, `getDefaultRightGrid ()`, `setDefaultLeftGrid (BootstrapGridSpec)` and `setDefaultSplitting (BootstrapGridSpec, BootstrapGridSpec)`
+* Removed `BootstrapForm.DEFAULT_LEFT_PART`, `BootstrapForm.DEFAULT_RIGHT_PART`, `BootstrapViewForm.DEFAULT_LEFT_PART` and `BootstrapViewForm.DEFAULT_RIGHT_PART` in favour of `BootstrapFormSettings.DEFAULT_LEFT_PART`, `BootstrapFormSettings.DEFAULT_LEFT_GRID` and `BootstrapFormSettings.DEFAULT_RIGHT_GRID`
+* `BootstrapViewForm` now uses the same default grid as `BootstrapForm` (`col-12 col-sm-2` for the left part instead of `col-3`)
+
 v0.9.1 - 2026-08-19
 * Added `BootstrapGridSpec.Builder` incl. the static factory methods `BootstrapGridSpec.builder ()` and `BootstrapGridSpec.builder (BootstrapGridSpec)` for easier creation of grid specifications
 * Added `BootstrapGridSpec.getInverse ()` to create the complementary grid specification, so that two grid specifications add up to the maximum number of parts per breakpoint
