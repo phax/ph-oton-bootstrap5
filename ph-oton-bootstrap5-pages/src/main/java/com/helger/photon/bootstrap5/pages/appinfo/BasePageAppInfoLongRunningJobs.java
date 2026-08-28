@@ -177,8 +177,7 @@ public class BasePageAppInfoLongRunningJobs <WPECTYPE extends IWebPageExecutionC
                           if (nDeleted > 0)
                           {
                             LOGGER.info ("Deleted " + nDeleted + " long running job results");
-                            final String sSuccessMsg = nDeleted == 1 ? EText.DELETE_ALL_SUCCESS_1.getDisplayText (
-                                                                                                                  aDisplayLocale)
+                            final String sSuccessMsg = nDeleted == 1 ? EText.DELETE_ALL_SUCCESS_1.getDisplayText (aDisplayLocale)
                                                                      : EText.DELETE_ALL_SUCCESS_N.getDisplayTextWithArgs (aDisplayLocale,
                                                                                                                           Integer.toString (nDeleted));
                             aWPEC.postRedirectGetInternal (success (sSuccessMsg));
@@ -192,33 +191,7 @@ public class BasePageAppInfoLongRunningJobs <WPECTYPE extends IWebPageExecutionC
                                          @NonNull final LongRunningJobManager aJobMgr,
                                          @NonNull final ILongRunningJobResultManager aResultMgr)
   {
-    super (sID, EWebPageText.PAGE_NAME_APPINFO_LONG_RUNNING_JOBS.getAsMLT ());
-    m_aJobMgr = ValueEnforcer.notNull (aJobMgr, "JobMgr");
-    m_aResultMgr = ValueEnforcer.notNull (aResultMgr, "ResultMgr");
-    _init ();
-  }
-
-  public BasePageAppInfoLongRunningJobs (@NonNull @Nonempty final String sID,
-                                         @NonNull final String sName,
-                                         @NonNull final LongRunningJobManager aJobMgr,
-                                         @NonNull final ILongRunningJobResultManager aResultMgr)
-  {
-    super (sID, sName);
-    m_aJobMgr = ValueEnforcer.notNull (aJobMgr, "JobMgr");
-    m_aResultMgr = ValueEnforcer.notNull (aResultMgr, "ResultMgr");
-    _init ();
-  }
-
-  public BasePageAppInfoLongRunningJobs (@NonNull @Nonempty final String sID,
-                                         @NonNull final String sName,
-                                         @Nullable final String sDescription,
-                                         @NonNull final LongRunningJobManager aJobMgr,
-                                         @NonNull final ILongRunningJobResultManager aResultMgr)
-  {
-    super (sID, sName, sDescription);
-    m_aJobMgr = ValueEnforcer.notNull (aJobMgr, "JobMgr");
-    m_aResultMgr = ValueEnforcer.notNull (aResultMgr, "ResultMgr");
-    _init ();
+    this (sID, EWebPageText.PAGE_NAME_APPINFO_LONG_RUNNING_JOBS.getAsMLT (), null, aJobMgr, aResultMgr);
   }
 
   public BasePageAppInfoLongRunningJobs (@NonNull @Nonempty final String sID,
@@ -415,8 +388,8 @@ public class BasePageAppInfoLongRunningJobs <WPECTYPE extends IWebPageExecutionC
     aRow.addCell (aItem.isEnded () ? PDTToString.getAsString (aItem.getEndDateTime (), aDisplayLocale) : null);
     aRow.addCell (aDuration == null ? null : aDuration.toString ());
     aRow.addCell (SecurityHelper.getUserDisplayName (aItem.getStartingUserID (), aDisplayLocale));
-    aRow.addCell (aItem.isEnded () ? EPhotonCoreText.getYesOrNo (aItem.getExecutionSuccess ().isTrue (),
-                                                                 aDisplayLocale) : null);
+    aRow.addCell (aItem.isEnded () ? EPhotonCoreText.getYesOrNo (aItem.getExecutionSuccess ().isTrue (), aDisplayLocale)
+                                   : null);
   }
 
   @Override
