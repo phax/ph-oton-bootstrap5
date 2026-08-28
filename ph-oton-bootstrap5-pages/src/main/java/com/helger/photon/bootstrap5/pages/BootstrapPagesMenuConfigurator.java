@@ -30,6 +30,7 @@ import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoAjaxFunctions;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoConfigurationFiles;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoGlobalScope;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoGo;
+import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoLongRunningJobs;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoPathMapper;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoScheduler;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoServletStatus;
@@ -75,6 +76,8 @@ import com.helger.photon.core.menu.IMenuTree;
 import com.helger.photon.core.mgr.PhotonCoreManager;
 import com.helger.photon.core.smtp.NamedSMTPSettingsManager;
 import com.helger.photon.mgrs.PhotonBasicManager;
+import com.helger.photon.mgrs.longrun.ILongRunningJobResultManager;
+import com.helger.photon.mgrs.longrun.LongRunningJobManager;
 import com.helger.photon.mgrs.sysmigration.ISystemMigrationManager;
 import com.helger.photon.security.lock.ILockManager;
 import com.helger.photon.security.mgr.PhotonSecurityManager;
@@ -116,6 +119,7 @@ public final class BootstrapPagesMenuConfigurator
   public static final String MENU_ADMIN_APPINFO_API = "admin_appinfo_api";
   public static final String MENU_ADMIN_APPINFO_CONFIGFILES = "admin_appinfo_configfiles";
   public static final String MENU_ADMIN_APPINFO_GO = "admin_appinfo_go";
+  public static final String MENU_ADMIN_APPINFO_LONG_RUNNING_JOBS = "admin_appinfo_longrunningjobs";
   public static final String MENU_ADMIN_APPINFO_PATH_MAPPER = "admin_appinfo_pathmapper";
   public static final String MENU_ADMIN_APPINFO_SCHEDULER = "admin_appinfo_scheduler";
   public static final String MENU_ADMIN_APPINFO_GLOBAL_SCOPE = "admin_appinfo_scopes";
@@ -268,7 +272,9 @@ public final class BootstrapPagesMenuConfigurator
                                                            aParent,
                                                            aDisplayFilter,
                                                            PhotonCoreManager.getGoMappingMgr (),
-                                                           PhotonAppManager.getWebSiteResourceBundleMgr ());
+                                                           PhotonAppManager.getWebSiteResourceBundleMgr (),
+                                                           PhotonBasicManager.getLongRunningJobMgr (),
+                                                           PhotonBasicManager.getLongRunningJobResultMgr ());
   }
 
   @NonNull
@@ -277,6 +283,49 @@ public final class BootstrapPagesMenuConfigurator
                                                @Nullable final IMenuObjectFilter aDisplayFilter,
                                                @Nullable final GoMappingManager aGoMappingMgr,
                                                @Nullable final WebSiteResourceBundleManager aResBundleMgr)
+  {
+    // Deliberately without the long running job managers, to keep the behaviour of this method
+    return BootstrapPagesMenuConfigurator.addAppInfoItems (aMenuTree,
+                                                           aParent,
+                                                           aDisplayFilter,
+                                                           aGoMappingMgr,
+                                                           aResBundleMgr,
+                                                           (LongRunningJobManager) null,
+                                                           (ILongRunningJobResultManager) null);
+  }
+
+  /**
+   * Add all the "Application Information" pages to the provided menu tree.
+   *
+   * @param aMenuTree
+   *        The menu tree to add the items to. May not be <code>null</code>.
+   * @param aParent
+   *        The parent menu item. May not be <code>null</code>.
+   * @param aDisplayFilter
+   *        The display filter to be used. May be <code>null</code>.
+   * @param aGoMappingMgr
+   *        The "Go mapping" manager to be used. If <code>null</code> the respective page is not
+   *        added.
+   * @param aResBundleMgr
+   *        The resource bundle manager to be used. If <code>null</code> the respective page is not
+   *        added.
+   * @param aLongRunningJobMgr
+   *        The long running job manager to be used. If this or the long running job result manager
+   *        is <code>null</code> the respective page is not added.
+   * @param aLongRunningJobResultMgr
+   *        The long running job result manager to be used. If this or the long running job manager
+   *        is <code>null</code> the respective page is not added.
+   * @return The created parent menu item. Never <code>null</code>.
+   * @since 0.9.3
+   */
+  @NonNull
+  public static IMenuItemPage addAppInfoItems (@NonNull final IMenuTree aMenuTree,
+                                               @NonNull final IMenuItem aParent,
+                                               @Nullable final IMenuObjectFilter aDisplayFilter,
+                                               @Nullable final GoMappingManager aGoMappingMgr,
+                                               @Nullable final WebSiteResourceBundleManager aResBundleMgr,
+                                               @Nullable final LongRunningJobManager aLongRunningJobMgr,
+                                               @Nullable final ILongRunningJobResultManager aLongRunningJobResultMgr)
   {
     final IMenuItemPage aAdminAppInfo = aMenuTree.createItem (aParent,
                                                               new BasePageShowChildren <> (MENU_ADMIN_APPINFO,
@@ -302,6 +351,14 @@ public final class BootstrapPagesMenuConfigurator
              .setDisplayFilter (aDisplayFilter);
     aMenuTree.createItem (aAdminAppInfo, new BasePageAppInfoServletStatus <> (MENU_ADMIN_APPINFO_SERVLETSTATUS))
              .setDisplayFilter (aDisplayFilter);
+    if (aLongRunningJobMgr != null && aLongRunningJobResultMgr != null)
+    {
+      aMenuTree.createItem (aAdminAppInfo,
+                            new BasePageAppInfoLongRunningJobs <> (MENU_ADMIN_APPINFO_LONG_RUNNING_JOBS,
+                                                                   aLongRunningJobMgr,
+                                                                   aLongRunningJobResultMgr))
+               .setDisplayFilter (aDisplayFilter);
+    }
     if (aResBundleMgr != null)
     {
       aMenuTree.createItem (aAdminAppInfo,

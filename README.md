@@ -95,6 +95,13 @@ Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
 
+v0.9.3 - work in progress
+* Requires at least ph-oton 10.4.0
+* Added the new page `BasePageAppInfoLongRunningJobs` that shows the currently running long running jobs as well as the results of all previously finished ones, and that allows to delete single results or all of them.
+  It is registered as `BootstrapPagesMenuConfigurator.MENU_ADMIN_APPINFO_LONG_RUNNING_JOBS` below "Administration / Application Information".
+  Added the new overload `BootstrapPagesMenuConfigurator.addAppInfoItems (IMenuTree, IMenuItem, IMenuObjectFilter, GoMappingManager, WebSiteResourceBundleManager, LongRunningJobManager, ILongRunningJobResultManager)`.
+  The 3 argument version of `addAppInfoItems` adds the new page using the managers of `PhotonBasicManager`. The existing 5 argument version does not add the new page, so that its behaviour is unchanged.
+
 v0.9.2 - 2026-08-20
 * Added new class `BootstrapFormSettings` that centrally manages the default grid specifications of `BootstrapForm` and `BootstrapViewForm`.
   It offers `getDefaultLeftGrid ()`, `getDefaultRightGrid ()`, `setDefaultLeftGrid (BootstrapGridSpec)` and `setDefaultSplitting (BootstrapGridSpec, BootstrapGridSpec)`
