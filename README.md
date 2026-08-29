@@ -97,7 +97,7 @@ Licensed under the Apache License, Version 2.0.
 
 v0.9.3 - work in progress
 * Requires at least ph-oton 10.4.0
-* Added the new page `BasePageAppInfoLongRunningJobs` that shows the currently running long running jobs as well as the results of all previously finished ones, and that allows to delete single results or all of them.
+* Added the new page `BasePageAppInfoLongRunningJobs` that shows the currently running long running jobs as well as the results of all previously finished ones, and that allows to delete single results or all of them. The list and the detail view also show the job type introduced in ph-oton 10.4.0.
   It is registered as `BootstrapPagesMenuConfigurator.MENU_ADMIN_APPINFO_LONG_RUNNING_JOBS` below "Administration / Application Information".
   Added the new overload `BootstrapPagesMenuConfigurator.addAppInfoItems (IMenuTree, IMenuItem, IMenuObjectFilter, GoMappingManager, WebSiteResourceBundleManager, LongRunningJobManager, ILongRunningJobResultManager)`.
   The 3 argument version of `addAppInfoItems` adds the new page using the managers of `PhotonBasicManager`. The existing 5 argument version does not add the new page, so that its behaviour is unchanged.

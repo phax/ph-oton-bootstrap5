@@ -87,6 +87,7 @@ public class BasePageAppInfoLongRunningJobs <WPECTYPE extends IWebPageExecutionC
   protected enum EText implements IHasDisplayTextWithArgs
   {
     MSG_ID ("ID", "ID"),
+    MSG_JOB_TYPE ("Job-Typ", "Job type"),
     MSG_DESCRIPTION ("Beschreibung", "Description"),
     MSG_START_DT ("Startzeit", "Start time"),
     MSG_END_DT ("Endzeit", "End time"),
@@ -313,6 +314,8 @@ public class BasePageAppInfoLongRunningJobs <WPECTYPE extends IWebPageExecutionC
     final Locale aDisplayLocale = aWPEC.getDisplayLocale ();
 
     final BootstrapViewForm aForm = aNodeList.addAndReturnChild (new BootstrapViewForm ());
+    aForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_JOB_TYPE.getDisplayText (aDisplayLocale))
+                                                 .setCtrl (aSelectedObject.getJobType ()));
     aForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_ID.getDisplayText (aDisplayLocale))
                                                  .setCtrl (aSelectedObject.getID ()));
     aForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_DESCRIPTION.getDisplayText (aDisplayLocale))
@@ -382,6 +385,7 @@ public class BasePageAppInfoLongRunningJobs <WPECTYPE extends IWebPageExecutionC
 
     final HCRow aRow = aTable.addBodyRow ();
     aRow.addCell (new HCA (aViewURL).addChild (aItem.getJobDescription ().getText (aDisplayLocale)));
+    aRow.addCell (aItem.getJobType ());
     aRow.addCell (bIsRunning ? EText.MSG_STATE_RUNNING.getDisplayText (aDisplayLocale)
                              : EText.MSG_STATE_FINISHED.getDisplayText (aDisplayLocale));
     aRow.addCell (PDTToString.getAsString (aItem.getStartDateTime (), aDisplayLocale));
@@ -413,6 +417,7 @@ public class BasePageAppInfoLongRunningJobs <WPECTYPE extends IWebPageExecutionC
     aNodeList.addChild (aToolbar);
 
     final HCTable aTable = new HCTable (new DTCol (EText.MSG_DESCRIPTION.getDisplayText (aDisplayLocale)),
+                                        new DTCol (EText.MSG_JOB_TYPE.getDisplayText (aDisplayLocale)),
                                         new DTCol (EText.MSG_STATE.getDisplayText (aDisplayLocale)),
                                         new DTCol (EText.MSG_START_DT.getDisplayText (aDisplayLocale)).setDisplayType (EDTColType.DATETIME,
                                                                                                                        aDisplayLocale)
