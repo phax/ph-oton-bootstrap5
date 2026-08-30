@@ -95,7 +95,7 @@ Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
 
-v0.9.3 - work in progress
+v0.9.3 - 2026-08-30
 * Requires at least ph-oton 10.4.0
 * Added the new page `BasePageAppInfoLongRunningJobs` that shows the currently running long running jobs as well as the results of all previously finished ones, and that allows to delete single results or all of them. The list and the detail view also show the job type introduced in ph-oton 10.4.0.
   It is registered as `BootstrapPagesMenuConfigurator.MENU_ADMIN_APPINFO_LONG_RUNNING_JOBS` below "Administration / Application Information".
