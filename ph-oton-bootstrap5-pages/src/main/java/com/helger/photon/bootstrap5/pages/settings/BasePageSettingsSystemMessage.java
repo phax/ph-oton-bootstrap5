@@ -150,15 +150,16 @@ public class BasePageSettingsSystemMessage <WPECTYPE extends IWebPageExecutionCo
         final BootstrapForm aForm = aNodeList.addAndReturnChild (getUIHandler ().createFormSelf (aWPEC));
         aForm.setLeft (BootstrapGridSpec.builder ().lg (2).xl (1).build ());
 
-        final String sSystemMessage = aSystemMsgMgr.getSystemMessage ();
+        final var aSystemMsgData = aSystemMsgMgr.getSystemMessageData ();
+
         aForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.LABEL_SEVERITY.getDisplayText (aDisplayLocale))
                                                      .setCtrl (new HCSystemMessageTypeSelect (new RequestField (FIELD_SEVERITY,
-                                                                                                                aSystemMsgMgr.getMessageType ()
-                                                                                                                             .getID ()),
+                                                                                                                aSystemMsgData.getMessageType ()
+                                                                                                                              .getID ()),
                                                                                               aDisplayLocale)));
         aForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.LABEL_MESSAGE.getDisplayText (aDisplayLocale))
                                                      .setCtrl (new HCTextAreaAutosize (new RequestField (FIELD_MESSAGE,
-                                                                                                         sSystemMessage))));
+                                                                                                         aSystemMsgData.getMessage ()))));
         aForm.addChild (div (BootstrapSystemMessage.getDefaultFormatter ().getDisplayText (aDisplayLocale)));
         aForm.addChild (new HCHiddenField (CPageParam.PARAM_ACTION, CPageParam.ACTION_EDIT));
         aForm.addChild (new HCHiddenField (CPageParam.PARAM_SUBACTION, CPageParam.ACTION_SAVE));
@@ -174,8 +175,10 @@ public class BasePageSettingsSystemMessage <WPECTYPE extends IWebPageExecutionCo
 
     if (bShowList)
     {
+      final var aSystemMsgData = aSystemMsgMgr.getSystemMessageData ();
+
       // Add last update datetime
-      final LocalDateTime aLastUpdateDT = aSystemMsgMgr.getLastUpdateDT ();
+      final LocalDateTime aLastUpdateDT = aSystemMsgData.getLastUpdateDT ();
       if (aLastUpdateDT != null)
       {
         aNodeList.addChild (getUIHandler ().createActionHeader (EText.LAST_UPDATE.getDisplayTextWithArgs (aDisplayLocale,
@@ -185,12 +188,12 @@ public class BasePageSettingsSystemMessage <WPECTYPE extends IWebPageExecutionCo
 
       final BootstrapForm aForm = aNodeList.addAndReturnChild (getUIHandler ().createFormSelf (aWPEC));
 
-      if (aSystemMsgMgr.hasSystemMessage ())
+      if (aSystemMsgData.hasMessage ())
       {
         // Show current message
         aForm.addChild (getUIHandler ().createDataGroupHeader (EText.CURRENT_MESSAGE_TYPE.getDisplayTextWithArgs (aDisplayLocale,
-                                                                                                                  aSystemMsgMgr.getMessageType ()
-                                                                                                                               .getDisplayText (aDisplayLocale))));
+                                                                                                                  aSystemMsgData.getMessageType ()
+                                                                                                                                .getDisplayText (aDisplayLocale))));
         aForm.addChild (div (renderCurrentSystemMessage (aWPEC)));
       }
       else

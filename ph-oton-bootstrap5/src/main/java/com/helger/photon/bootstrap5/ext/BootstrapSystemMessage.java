@@ -48,7 +48,7 @@ public class BootstrapSystemMessage extends AbstractBootstrapAlert <BootstrapSys
   @NonNull
   public static ISystemMessageRenderer getDefaultFormatter ()
   {
-    return RW_LOCK.readLockedGet ( () -> s_aFormatter);
+    return RW_LOCK.readLockedGet (() -> s_aFormatter);
   }
 
   /**
@@ -61,7 +61,7 @@ public class BootstrapSystemMessage extends AbstractBootstrapAlert <BootstrapSys
   public static void setDefaultFormatter (@NonNull final ISystemMessageRenderer aFormatter)
   {
     ValueEnforcer.notNull (aFormatter, "Formatter");
-    RW_LOCK.writeLocked ( () -> s_aFormatter = aFormatter);
+    RW_LOCK.writeLocked (() -> s_aFormatter = aFormatter);
   }
 
   public static boolean isDefaultMarkdown ()
@@ -113,7 +113,8 @@ public class BootstrapSystemMessage extends AbstractBootstrapAlert <BootstrapSys
   public static BootstrapSystemMessage createDefault ()
   {
     final ISystemMessageManager aSystemMsgMgr = PhotonBasicManager.getSystemMessageMgr ();
-    return create (aSystemMsgMgr.getMessageType (), aSystemMsgMgr.getSystemMessage ());
+    final var aSystemMsgData = aSystemMsgMgr.getSystemMessageData ();
+    return create (aSystemMsgData.getMessageType (), aSystemMsgData.getMessage ());
   }
 
   @Nullable

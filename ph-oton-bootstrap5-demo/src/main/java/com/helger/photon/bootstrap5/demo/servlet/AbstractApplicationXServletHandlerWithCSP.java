@@ -16,8 +16,6 @@
  */
 package com.helger.photon.bootstrap5.demo.servlet;
 
-import java.io.IOException;
-
 import org.jspecify.annotations.NonNull;
 
 import com.helger.http.CHttpHeader;
@@ -29,8 +27,6 @@ import com.helger.photon.app.csrf.CSRFSessionManager;
 import com.helger.photon.core.servlet.AbstractApplicationXServletHandler;
 import com.helger.servlet.response.UnifiedResponse;
 import com.helger.web.scope.IRequestWebScopeWithoutResponse;
-
-import jakarta.servlet.ServletException;
 
 /**
  * CSP enabled application servlet handler
@@ -48,7 +44,7 @@ public abstract class AbstractApplicationXServletHandlerWithCSP extends Abstract
 
   @Override
   public void handleRequest (final IRequestWebScopeWithoutResponse aRequestScope,
-                             final UnifiedResponse aUnifiedResponse) throws IOException, ServletException
+                             final UnifiedResponse aUnifiedResponse) throws Exception
   {
     final CSPSourceList aScriptSrcList = new CSPSourceList ().addKeywordSelf ()
                                                              .addNonce (CSRFSessionManager.getInstance ().getNonce ())
