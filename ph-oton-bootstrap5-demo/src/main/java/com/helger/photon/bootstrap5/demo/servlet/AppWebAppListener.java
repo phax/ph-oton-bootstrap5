@@ -175,7 +175,7 @@ public final class AppWebAppListener extends WebAppListenerBootstrap
   @Override
   protected void initUI ()
   {
-    BootstrapDataTables.setConfigurator ( (aLEC, aTable, aDataTables) -> {
+    BootstrapDataTables.setConfigurator ((aLEC, aTable, aDataTables) -> {
       final IRequestWebScopeWithoutResponse aRequestScope = aLEC.getRequestScope ();
       aDataTables.setAutoWidth (false)
                  .setLengthMenu (DataTablesLengthMenu.INSTANCE_25_50_100_ALL)

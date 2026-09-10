@@ -88,7 +88,9 @@ public class BasePageAppInfoGo <WPECTYPE extends IWebPageExecutionContext> exten
     m_aGoMappingMgr = ValueEnforcer.notNull (aGoMappingMgr, "GoMappingMgr");
   }
 
-  public BasePageAppInfoGo (@NonNull @Nonempty final String sID, @NonNull final String sName, @NonNull final GoMappingManager aGoMappingMgr)
+  public BasePageAppInfoGo (@NonNull @Nonempty final String sID,
+                            @NonNull final String sName,
+                            @NonNull final GoMappingManager aGoMappingMgr)
   {
     super (sID, sName);
     m_aGoMappingMgr = ValueEnforcer.notNull (aGoMappingMgr, "GoMappingMgr");
@@ -126,16 +128,21 @@ public class BasePageAppInfoGo <WPECTYPE extends IWebPageExecutionContext> exten
 
     // Refresh button
     final BootstrapButtonToolbar aToolbar = new BootstrapButtonToolbar (aWPEC);
-    aToolbar.addButton (EPhotonCoreText.BUTTON_REFRESH.getDisplayText (aDisplayLocale), aWPEC.getSelfHref (), EDefaultIcon.REFRESH);
+    aToolbar.addButton (EPhotonCoreText.BUTTON_REFRESH.getDisplayText (aDisplayLocale),
+                        aWPEC.getSelfHref (),
+                        EDefaultIcon.REFRESH);
     aNodeList.addChild (aToolbar);
 
     aNodeList.addChild (div (EText.MSG_GO_SERVLET.getDisplayText (aDisplayLocale) +
-                             EPhotonCoreText.getYesOrNo (ServletStatusManager.isServletRegistered (GoServlet.class), aDisplayLocale)));
+                             EPhotonCoreText.getYesOrNo (ServletStatusManager.isServletRegistered (GoServlet.class),
+                                                         aDisplayLocale)));
 
     final HCTable aTable = new HCTable (new DTCol (EText.MSG_KEY.getDisplayText (aDisplayLocale)).setInitialSorting (ESortOrder.ASCENDING),
-                                        new DTCol (EText.MSG_INTERNAL.getDisplayText (aDisplayLocale)).setDataSort (1, 0),
+                                        new DTCol (EText.MSG_INTERNAL.getDisplayText (aDisplayLocale)).setDataSort (1,
+                                                                                                                    0),
                                         new DTCol (EText.MSG_URL.getDisplayText (aDisplayLocale)),
-                                        new DTCol (EText.MSG_EDITABLE.getDisplayText (aDisplayLocale)).setDataSort (3, 0)).setID (getID ());
+                                        new DTCol (EText.MSG_EDITABLE.getDisplayText (aDisplayLocale)).setDataSort (3,
+                                                                                                                    0)).setID (getID ());
 
     for (final GoMappingItem aItem : m_aGoMappingMgr.getAllItems ().values ())
     {

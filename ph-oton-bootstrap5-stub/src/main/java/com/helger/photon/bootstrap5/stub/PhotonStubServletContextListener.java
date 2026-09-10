@@ -26,8 +26,7 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 
 /**
- * This class triggers some default configuration to run ph-oton applications
- * more easy.
+ * This class triggers some default configuration to run ph-oton applications more easy.
  *
  * @author Philip Helger
  */

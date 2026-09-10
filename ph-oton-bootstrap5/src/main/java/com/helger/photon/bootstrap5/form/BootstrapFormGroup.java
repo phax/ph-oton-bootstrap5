@@ -226,8 +226,8 @@ public class BootstrapFormGroup extends AbstractBootstrapObject <BootstrapFormGr
   @NonNull
   public final BootstrapFormGroup setHelpText (@Nullable final IHCNode aHelpText)
   {
-    return setHelpText (aHelpText instanceof HCNodeList ? (HCNodeList) aHelpText : new HCNodeList ().addChild (
-                                                                                                               aHelpText));
+    return setHelpText (aHelpText instanceof HCNodeList ? (HCNodeList) aHelpText
+                                                        : new HCNodeList ().addChild (aHelpText));
   }
 
   @NonNull

@@ -24,9 +24,8 @@ import com.helger.html.hc.html.script.AbstractHCScriptInline;
 import com.helger.html.hc.special.SpecialNodeListModifier;
 
 /**
- * A special script that initializes the {@link BootstrapDateTimePicker}. It is
- * a separate class, so that potentially identical options can be merged to a
- * single invocation.
+ * A special script that initializes the {@link BootstrapDateTimePicker}. It is a separate class, so
+ * that potentially identical options can be merged to a single invocation.
  *
  * @author Philip Helger
  */

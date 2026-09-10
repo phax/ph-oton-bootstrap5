@@ -23,9 +23,8 @@ import com.helger.photon.bootstrap5.CBootstrapCSS;
 
 /**
  * Position. See https://getbootstrap.com/docs/4.1/utilities/position/ <br>
- * IE11 and IE10 will render position: sticky as position: relative. As such, we
- * wrap the styles in a @supports query, limiting the stickiness to only
- * browsers that can render it properly.
+ * IE11 and IE10 will render position: sticky as position: relative. As such, we wrap the styles in
+ * a @supports query, limiting the stickiness to only browsers that can render it properly.
  *
  * @author Philip Helger
  */

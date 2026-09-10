@@ -317,7 +317,8 @@ public class BootstrapModal extends AbstractHCDiv <BootstrapModal>
     if (aKeyboard != null)
       aOptions.add ("keyboard", aKeyboard.booleanValue ());
 
-    return new JSInvocation (JSExpr.ref (JSExpr.ref ("bootstrap"), "Modal")).arg (JSHtml.documentGetElementById (getID ()))
+    return new JSInvocation (JSExpr.ref (JSExpr.ref ("bootstrap"), "Modal")).arg (JSHtml.documentGetElementById (
+                                                                                                                 getID ()))
                                                                             .arg (aOptions)
                                                                             .invoke ("show");
   }

@@ -86,8 +86,8 @@ public class BootstrapSpacingBuilder implements ICSSClassProvider, Serializable
   }
 
   /**
-   * Number of grid elements to "margin" and "padding" (0 = x*0, 1 = x*.25, 2 =
-   * x*.5, 3 = x*1, 4 = x*1.5, 5 = x*3)
+   * Number of grid elements to "margin" and "padding" (0 = x*0, 1 = x*.25, 2 = x*.5, 3 = x*1, 4 =
+   * x*1.5, 5 = x*3)
    *
    * @param nSize
    *        Size from 0 to 5 ("-1" for "auto" is not allowed here)
@@ -103,8 +103,7 @@ public class BootstrapSpacingBuilder implements ICSSClassProvider, Serializable
   }
 
   /**
-   * Think of it as a shortcut for <code>size (-1)</code> even though this wont
-   * work
+   * Think of it as a shortcut for <code>size (-1)</code> even though this wont work
    *
    * @return this for chaining
    * @see #size(int)
@@ -119,7 +118,10 @@ public class BootstrapSpacingBuilder implements ICSSClassProvider, Serializable
   @NonNull
   public String getCSSClass ()
   {
-    String ret = m_eProperty.getCSSClassNamePart () + m_eSide.getCSSClassNamePart () + m_eGrid.getCSSClassNamePart () + '-';
+    String ret = m_eProperty.getCSSClassNamePart () +
+                 m_eSide.getCSSClassNamePart () +
+                 m_eGrid.getCSSClassNamePart () +
+                 '-';
     if (m_nSize == -1)
       ret += "auto";
     else

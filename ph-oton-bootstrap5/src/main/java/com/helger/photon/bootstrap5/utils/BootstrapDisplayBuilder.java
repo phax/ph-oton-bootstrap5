@@ -25,8 +25,8 @@ import com.helger.html.css.ICSSClassProvider;
 import com.helger.photon.bootstrap5.grid.EBootstrapBreakpoint;
 
 /**
- * Utility class to build a display class based on {@link EBootstrapBreakpoint}
- * and {@link EBootstrapDisplayType}.
+ * Utility class to build a display class based on {@link EBootstrapBreakpoint} and
+ * {@link EBootstrapDisplayType}.
  *
  * @author Philip Helger
  */

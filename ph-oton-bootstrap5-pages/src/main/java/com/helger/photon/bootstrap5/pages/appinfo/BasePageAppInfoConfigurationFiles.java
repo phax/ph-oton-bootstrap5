@@ -44,14 +44,15 @@ import com.helger.text.resolve.DefaultTextResolver;
 import com.helger.text.util.TextHelper;
 
 /**
- * This page displays information about the certificate configured in the SMP
- * Server configuration file.
+ * This page displays information about the certificate configured in the SMP Server configuration
+ * file.
  *
  * @author Philip Helger
  * @param <WPECTYPE>
  *        Web Page Execution Context type
  */
-public class BasePageAppInfoConfigurationFiles <WPECTYPE extends IWebPageExecutionContext> extends AbstractBootstrapWebPage <WPECTYPE>
+public class BasePageAppInfoConfigurationFiles <WPECTYPE extends IWebPageExecutionContext> extends
+                                               AbstractBootstrapWebPage <WPECTYPE>
 {
   @Translatable
   protected enum EText implements IHasDisplayText
@@ -106,7 +107,9 @@ public class BasePageAppInfoConfigurationFiles <WPECTYPE extends IWebPageExecuti
 
     // Refresh button
     final BootstrapButtonToolbar aToolbar = new BootstrapButtonToolbar (aWPEC);
-    aToolbar.addButton (EPhotonCoreText.BUTTON_REFRESH.getDisplayText (aDisplayLocale), aWPEC.getSelfHref (), EDefaultIcon.REFRESH);
+    aToolbar.addButton (EPhotonCoreText.BUTTON_REFRESH.getDisplayText (aDisplayLocale),
+                        aWPEC.getSelfHref (),
+                        EDefaultIcon.REFRESH);
     aNodeList.addChild (aToolbar);
 
     final BootstrapTabBox aTabBox = new BootstrapTabBox ();

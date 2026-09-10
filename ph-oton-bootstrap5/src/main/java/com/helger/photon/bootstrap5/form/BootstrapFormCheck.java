@@ -24,8 +24,8 @@ import com.helger.html.hc.html.grouping.AbstractHCDiv;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 
 /**
- * Special wrapper for a DIV with class "form-check" to handle check boxes and
- * radio buttons. An optional label can be added as a child.
+ * Special wrapper for a DIV with class "form-check" to handle check boxes and radio buttons. An
+ * optional label can be added as a child.
  *
  * @author Philip Helger
  */

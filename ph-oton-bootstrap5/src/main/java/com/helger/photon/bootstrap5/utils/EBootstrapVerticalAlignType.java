@@ -22,8 +22,7 @@ import com.helger.html.css.ICSSClassProvider;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 
 /**
- * Vertical alignment. See
- * https://getbootstrap.com/docs/4.1/utilities/vertical-align/
+ * Vertical alignment. See https://getbootstrap.com/docs/4.1/utilities/vertical-align/
  *
  * @author Philip Helger
  */

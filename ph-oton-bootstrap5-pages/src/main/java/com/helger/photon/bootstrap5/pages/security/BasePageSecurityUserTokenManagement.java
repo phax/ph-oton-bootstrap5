@@ -418,9 +418,8 @@ public class BasePageSecurityUserTokenManagement <WPECTYPE extends IWebPageExecu
   public static IHCNode createUserLink (@NonNull final IWebPageExecutionContext aWPEC, @NonNull final IUser aUser)
   {
     if (aWPEC.getMenuTree ().containsItemWithID (BootstrapPagesMenuConfigurator.MENU_ADMIN_SECURITY_USER))
-      return new HCA (createViewURL (aWPEC,
-                                     BootstrapPagesMenuConfigurator.MENU_ADMIN_SECURITY_USER,
-                                     aUser)).addChild (aUser.getDisplayName ());
+      return new HCA (createViewURL (aWPEC, BootstrapPagesMenuConfigurator.MENU_ADMIN_SECURITY_USER, aUser)).addChild (
+                                                                                                                       aUser.getDisplayName ());
     return new HCTextNode (aUser.getDisplayName ());
   }
 
@@ -639,8 +638,8 @@ public class BasePageSecurityUserTokenManagement <WPECTYPE extends IWebPageExecu
         if (canCreateNewAccessToken (aCurObject))
           aActionCell.addChild (new HCA (aWPEC.getSelfHref ()
                                               .add (CPageParam.PARAM_ACTION, ACTION_CREATE_NEW_ACCESS_TOKEN)
-                                              .add (CPageParam.PARAM_OBJECT, aCurObject.getID ()))
-                                                                                                  .addChild (EDefaultIcon.REFRESH.getAsNode ())
+                                              .add (CPageParam.PARAM_OBJECT, aCurObject.getID ())).addChild (
+                                                                                                             EDefaultIcon.REFRESH.getAsNode ())
                                                                                                   .setTitle (EBaseText.TITLE_ACTION_CREATE_NEW_ACCESS_TOKEN.getDisplayTextWithArgs (aDisplayLocale,
                                                                                                                                                                                     sDisplayName)));
         else
@@ -651,8 +650,8 @@ public class BasePageSecurityUserTokenManagement <WPECTYPE extends IWebPageExecu
         if (canRevokeAccessToken (aCurObject))
           aActionCell.addChild (new HCA (aWPEC.getSelfHref ()
                                               .add (CPageParam.PARAM_ACTION, ACTION_REVOKE_ACCESS_TOKEN)
-                                              .add (CPageParam.PARAM_OBJECT, aCurObject.getID ()))
-                                                                                                  .addChild (EDefaultIcon.CANCEL.getAsNode ())
+                                              .add (CPageParam.PARAM_OBJECT, aCurObject.getID ())).addChild (
+                                                                                                             EDefaultIcon.CANCEL.getAsNode ())
                                                                                                   .setTitle (EBaseText.TITLE_ACTION_REVOKE_ACCESS_TOKEN.getDisplayTextWithArgs (aDisplayLocale,
                                                                                                                                                                                 sDisplayName)));
         else

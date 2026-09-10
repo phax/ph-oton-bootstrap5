@@ -57,7 +57,8 @@ public class BootstrapLinkButton extends AbstractHCA <BootstrapLinkButton>
     this (EBootstrapButtonType.DEFAULT, eButtonSize);
   }
 
-  public BootstrapLinkButton (@NonNull final EBootstrapButtonType eButtonType, @NonNull final EBootstrapButtonSize eButtonSize)
+  public BootstrapLinkButton (@NonNull final EBootstrapButtonType eButtonType,
+                              @NonNull final EBootstrapButtonSize eButtonSize)
   {
     setRole (EHTMLRole.BUTTON);
     addClass (CBootstrapCSS.BTN);

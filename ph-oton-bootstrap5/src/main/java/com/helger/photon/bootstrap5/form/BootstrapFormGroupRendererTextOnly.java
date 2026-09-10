@@ -131,9 +131,9 @@ public class BootstrapFormGroupRendererTextOnly implements IBootstrapFormGroupRe
                                             @NonNull final Locale aDisplayLocale)
   {
     final HCFormLabel aLabel = aFormGroup.getLabel ();
-    final var aLabelRenderContent = aLabel == null ? null : aLabel.isTextLabel () ? new HCSpan ().addChild (aLabel
-                                                                                                                  .getPlainText ())
-                                                                                  : _toElement (aLabel.getFirstChild ());
+    final var aLabelRenderContent = aLabel == null ? null
+                                                   : aLabel.isTextLabel () ? new HCSpan ().addChild (aLabel.getPlainText ())
+                                                                           : _toElement (aLabel.getFirstChild ());
 
     final IHCNode aCtrls = aFormGroup.getCtrl ();
     final IHCNode aHelpText = aFormGroup.getHelpText ();

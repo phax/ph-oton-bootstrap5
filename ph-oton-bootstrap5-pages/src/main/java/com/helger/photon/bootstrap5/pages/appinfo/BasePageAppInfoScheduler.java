@@ -204,8 +204,8 @@ public class BasePageAppInfoScheduler <WPECTYPE extends IWebPageExecutionContext
               aJobDataTable.addBodyRow ().addCells (aEntry.getKey (), String.valueOf (aEntry.getValue ()));
 
             aUL2.addItem (new HCTextNode (EText.MSG_JOB_DATA.getDisplayText (aDisplayLocale)),
-                          aJobDataTable.hasBodyRows () ? aJobDataTable : em (EText.MSG_NONE.getDisplayText (
-                                                                                                            aDisplayLocale)));
+                          aJobDataTable.hasBodyRows () ? aJobDataTable
+                                                       : em (EText.MSG_NONE.getDisplayText (aDisplayLocale)));
           }
         aTab.addChild (aDetailUL);
 

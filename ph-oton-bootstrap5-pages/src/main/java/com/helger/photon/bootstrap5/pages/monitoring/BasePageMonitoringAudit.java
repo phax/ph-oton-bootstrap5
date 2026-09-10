@@ -55,7 +55,8 @@ import com.helger.text.util.TextHelper;
  * @param <WPECTYPE>
  *        Web page execution context type
  */
-public class BasePageMonitoringAudit <WPECTYPE extends IWebPageExecutionContext> extends AbstractBootstrapWebPage <WPECTYPE>
+public class BasePageMonitoringAudit <WPECTYPE extends IWebPageExecutionContext> extends
+                                     AbstractBootstrapWebPage <WPECTYPE>
 {
   @Translatable
   protected enum EText implements IHasDisplayText
@@ -93,7 +94,9 @@ public class BasePageMonitoringAudit <WPECTYPE extends IWebPageExecutionContext>
     m_aAuditMgr = ValueEnforcer.notNull (aAuditMgr, "AuditManager");
   }
 
-  public BasePageMonitoringAudit (@NonNull @Nonempty final String sID, @NonNull final String sName, @NonNull final IAuditManager aAuditMgr)
+  public BasePageMonitoringAudit (@NonNull @Nonempty final String sID,
+                                  @NonNull final String sName,
+                                  @NonNull final IAuditManager aAuditMgr)
   {
     super (sID, sName);
     m_aAuditMgr = ValueEnforcer.notNull (aAuditMgr, "AuditManager");
@@ -138,7 +141,9 @@ public class BasePageMonitoringAudit <WPECTYPE extends IWebPageExecutionContext>
 
     // Refresh button
     final BootstrapButtonToolbar aToolbar = new BootstrapButtonToolbar (aWPEC);
-    aToolbar.addButton (EPhotonCoreText.BUTTON_REFRESH.getDisplayText (aDisplayLocale), aWPEC.getSelfHref (), EDefaultIcon.REFRESH);
+    aToolbar.addButton (EPhotonCoreText.BUTTON_REFRESH.getDisplayText (aDisplayLocale),
+                        aWPEC.getSelfHref (),
+                        EDefaultIcon.REFRESH);
     aNodeList.addChild (aToolbar);
 
     // Info
@@ -156,7 +161,8 @@ public class BasePageMonitoringAudit <WPECTYPE extends IWebPageExecutionContext>
                                         new DTCol (EText.MSG_USER.getDisplayText (aDisplayLocale)),
                                         new DTCol (EText.MSG_TYPE.getDisplayText (aDisplayLocale)),
                                         new DTCol (EText.MSG_SUCCESS.getDisplayText (aDisplayLocale)),
-                                        new DTCol (EText.MSG_ACTION.getDisplayText (aDisplayLocale)).setDataSort (4, 0)).setID (getID ());
+                                        new DTCol (EText.MSG_ACTION.getDisplayText (aDisplayLocale)).setDataSort (4, 0))
+                                                                                                                        .setID (getID ());
     for (final IAuditItem aItem : m_aAuditMgr.getLastAuditItems (nMaxItems))
     {
       final HCRow aRow = aTable.addBodyRow ();

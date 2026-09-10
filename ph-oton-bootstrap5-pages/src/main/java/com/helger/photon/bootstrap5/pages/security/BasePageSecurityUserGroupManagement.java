@@ -454,8 +454,7 @@ public class BasePageSecurityUserGroupManagement <WPECTYPE extends IWebPageExecu
       final String sName = EText.LABEL_NAME.getDisplayText (aDisplayLocale);
       aForm.addFormGroup (new BootstrapFormGroup ().setLabelMandatory (sName)
                                                    .setCtrl (new HCEdit (new RequestField (FIELD_NAME,
-                                                                                           aSelectedObject == null
-                                                                                                                   ? null
+                                                                                           aSelectedObject == null ? null
                                                                                                                    : aSelectedObject.getName ())).setPlaceholder (sName))
                                                    .setErrorList (aFormErrors.getListOfField (FIELD_NAME)));
     }
@@ -465,8 +464,7 @@ public class BasePageSecurityUserGroupManagement <WPECTYPE extends IWebPageExecu
       final String sDescription = EText.LABEL_DESCRIPTION.getDisplayText (aDisplayLocale);
       aForm.addFormGroup (new BootstrapFormGroup ().setLabel (sDescription)
                                                    .setCtrl (new HCTextAreaAutosize (new RequestField (FIELD_DESCRIPTION,
-                                                                                                       aSelectedObject ==
-                                                                                                                          null ? null
+                                                                                                       aSelectedObject == null ? null
                                                                                                                                : aSelectedObject.getDescription ())).setPlaceholder (sDescription))
                                                    .setErrorList (aFormErrors.getListOfField (FIELD_DESCRIPTION)));
     }

@@ -160,8 +160,8 @@ public class BasePageUtilsPortChecker <WPECTYPE extends IWebPageExecutionContext
           aBody.addChild (div ().addChild (EText.MSG_RESULT_STATUS_PREFIX.getDisplayText (aDisplayLocale))
                                 .addChild (code (sHost + ":" + aPort))
                                 .addChild (" = ")
-                                .addChild (eStatus.isPortOpen () ? badgeSuccess (eStatus.toString ()) : badgeDanger (
-                                                                                                                     eStatus.toString ())));
+                                .addChild (eStatus.isPortOpen () ? badgeSuccess (eStatus.toString ())
+                                                                 : badgeDanger (eStatus.toString ())));
         }
         aNodeList.addChild (aResult.addClass (CBootstrapCSS.MB_2));
       }

@@ -33,14 +33,14 @@ import com.helger.text.resolve.DefaultTextResolver;
 import com.helger.text.util.TextHelper;
 
 /**
- * Base page to be able to change the log level for all logs during execution
- * time.
+ * Base page to be able to change the log level for all logs during execution time.
  *
  * @author Philip Helger
  * @param <WPECTYPE>
  *        Web Page Execution Context type
  */
-public class BasePageSettingsLogLevel <WPECTYPE extends IWebPageExecutionContext> extends AbstractBootstrapWebPage <WPECTYPE>
+public class BasePageSettingsLogLevel <WPECTYPE extends IWebPageExecutionContext> extends
+                                      AbstractBootstrapWebPage <WPECTYPE>
 {
   @Translatable
   protected enum EText implements IHasDisplayTextWithArgs
@@ -54,8 +54,10 @@ public class BasePageSettingsLogLevel <WPECTYPE extends IWebPageExecutionContext
                                                                                        "Note: the setting is only active during this application session."),
     MSG_ERR_NO_LEVEL ("Es muss ein Log-Level ausgewählt werden", "A log level must be selected"),
     MSG_ERR_INVALID_LEVEL ("Das angegebene Log-Level ist ungültig", "The provided log level is invalid"),
-    MSG_NO_CHANGE ("Das Log-Level wurde nicht geändert. Es ist noch immer ''{0}''", "The log level was not changed. It is still ''{0}''"),
-    MSG_CHANGE_SUCCESS ("Das Log-Level wurde von ''{0}'' auf ''{1}'' geändert.", "The log level was changed from ''{0}'' to ''{1}''"),
+    MSG_NO_CHANGE ("Das Log-Level wurde nicht geändert. Es ist noch immer ''{0}''",
+                   "The log level was not changed. It is still ''{0}''"),
+    MSG_CHANGE_SUCCESS ("Das Log-Level wurde von ''{0}'' auf ''{1}'' geändert.",
+                        "The log level was changed from ''{0}'' to ''{1}''"),
     MSG_EXISTING_LEVEL ("Derzeitiges Log-Level", "Existing log level"),
     MSG_FIELD_LEVEL ("Neues Log-Level", "New log level"),
     MSG_SUBMIT_BUTTON ("Log-Level ändern", "Change log level");
@@ -84,7 +86,9 @@ public class BasePageSettingsLogLevel <WPECTYPE extends IWebPageExecutionContext
     super (sID, sName);
   }
 
-  public BasePageSettingsLogLevel (@NonNull @Nonempty final String sID, @NonNull final String sName, @Nullable final String sDescription)
+  public BasePageSettingsLogLevel (@NonNull @Nonempty final String sID,
+                                   @NonNull final String sName,
+                                   @Nullable final String sDescription)
   {
     super (sID, sName, sDescription);
   }

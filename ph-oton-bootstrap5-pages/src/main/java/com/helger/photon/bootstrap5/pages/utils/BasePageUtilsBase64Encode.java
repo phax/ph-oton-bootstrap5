@@ -103,7 +103,7 @@ public class BasePageUtilsBase64Encode <WPECTYPE extends IWebPageExecutionContex
 
   static
   {
-    AJAX_GET_ENCODED = addAjax ( (aRequestScope, aAjaxResponse) -> {
+    AJAX_GET_ENCODED = addAjax ((aRequestScope, aAjaxResponse) -> {
       final Encoded aEncoded = Encoded.getInstance ();
       if (aEncoded.hasData ())
       {

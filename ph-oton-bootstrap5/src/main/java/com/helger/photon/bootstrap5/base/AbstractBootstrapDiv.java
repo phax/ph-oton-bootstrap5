@@ -40,7 +40,8 @@ import com.helger.photon.bootstrap5.utils.EBootstrapTextAlignType;
  *        Implementation type
  */
 @NotThreadSafe
-public abstract class AbstractBootstrapDiv <IMPLTYPE extends AbstractBootstrapDiv <IMPLTYPE>> extends AbstractHCDiv <IMPLTYPE>
+public abstract class AbstractBootstrapDiv <IMPLTYPE extends AbstractBootstrapDiv <IMPLTYPE>> extends
+                                           AbstractHCDiv <IMPLTYPE>
 {
   private BootstrapSpacingBuilder m_aPadding;
   private BootstrapSpacingBuilder m_aMargin;

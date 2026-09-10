@@ -43,8 +43,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletRegistration;
 
 /**
- * This class dynamically registers the ph-oton servlets into the
- * {@link ServletContext} provided.
+ * This class dynamically registers the ph-oton servlets into the {@link ServletContext} provided.
  *
  * @author Philip Helger
  */
@@ -61,8 +60,8 @@ public final class PhotonStubServletInitializer
   {}
 
   /**
-   * @return <code>true</code> if the servlet registration already took place,
-   *         <code>false</code> otherwise.
+   * @return <code>true</code> if the servlet registration already took place, <code>false</code>
+   *         otherwise.
    */
   public static boolean areServletsRegistered ()
   {
@@ -91,7 +90,8 @@ public final class PhotonStubServletInitializer
       LOGGER.info ("Registering default ph-oton listeners and servlets");
 
       {
-        final FilterRegistration.Dynamic aFilter = aSC.addFilter ("CharacterEncodingFilter", CharacterEncodingFilter.class);
+        final FilterRegistration.Dynamic aFilter = aSC.addFilter ("CharacterEncodingFilter",
+                                                                  CharacterEncodingFilter.class);
         if (aFilter != null)
         {
           // Filter is new
@@ -161,7 +161,8 @@ public final class PhotonStubServletInitializer
       }
 
       {
-        final ServletRegistration.Dynamic aServlet = aSC.addServlet ("ResourceBundleServlet", ResourceBundleServlet.class);
+        final ServletRegistration.Dynamic aServlet = aSC.addServlet ("ResourceBundleServlet",
+                                                                     ResourceBundleServlet.class);
         if (aServlet != null)
         {
           aServlet.setAsyncSupported (true);

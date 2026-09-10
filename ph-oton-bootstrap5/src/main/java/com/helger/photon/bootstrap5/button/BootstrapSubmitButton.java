@@ -50,7 +50,8 @@ public class BootstrapSubmitButton extends BootstrapButton
     _init ();
   }
 
-  public BootstrapSubmitButton (@NonNull final EBootstrapButtonType eButtonType, @NonNull final EBootstrapButtonSize eButtonSize)
+  public BootstrapSubmitButton (@NonNull final EBootstrapButtonType eButtonType,
+                                @NonNull final EBootstrapButtonSize eButtonSize)
   {
     super (eButtonType, eButtonSize);
     _init ();

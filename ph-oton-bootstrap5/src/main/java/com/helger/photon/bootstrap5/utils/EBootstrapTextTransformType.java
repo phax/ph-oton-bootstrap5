@@ -32,8 +32,8 @@ public enum EBootstrapTextTransformType implements ICSSClassProvider
   LOWERCASE (CBootstrapCSS.TEXT_LOWERCASE),
   UPPERCASE (CBootstrapCSS.TEXT_UPPERCASE),
   /**
-   * Note how text-capitalize only changes the first letter of each word,
-   * leaving the case of any other letters unaffected.
+   * Note how text-capitalize only changes the first letter of each word, leaving the case of any
+   * other letters unaffected.
    */
   CAPITALIZE (CBootstrapCSS.TEXT_CAPITALIZE);
 

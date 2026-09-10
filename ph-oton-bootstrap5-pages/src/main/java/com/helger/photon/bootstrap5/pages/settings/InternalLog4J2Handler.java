@@ -219,8 +219,7 @@ final class InternalLog4J2Handler implements IHCBootstrap5Trait
 
     aForm.addFormGroup (new BootstrapFormGroup ().setLabelMandatory (EText.MSG_FIELD_LEVEL.getDisplayText (aDisplayLocale))
                                                  .setCtrl (new LevelSelect (new RequestField (FIELD_NEW_LEVEL,
-                                                                                              eExistingLevel != null
-                                                                                                                     ? eExistingLevel.getID ()
+                                                                                              eExistingLevel != null ? eExistingLevel.getID ()
                                                                                                                      : null),
                                                                             aDisplayLocale))
                                                  .setErrorList (aFormErrors.getListOfField (FIELD_NEW_LEVEL)));

@@ -54,7 +54,8 @@ import com.helger.web.scope.IRequestWebScopeWithoutResponse;
  * @param <WPECTYPE>
  *        Web Page Execution Context type
  */
-public class BasePageAppInfoAjaxFunctions <WPECTYPE extends IWebPageExecutionContext> extends AbstractBootstrapWebPage <WPECTYPE>
+public class BasePageAppInfoAjaxFunctions <WPECTYPE extends IWebPageExecutionContext> extends
+                                          AbstractBootstrapWebPage <WPECTYPE>
 {
   @Translatable
   protected enum EText implements IHasDisplayText
@@ -118,7 +119,8 @@ public class BasePageAppInfoAjaxFunctions <WPECTYPE extends IWebPageExecutionCon
     {
       final HCTable aTable = new HCTable (new DTCol (EText.MSG_KEY.getDisplayText (aDisplayLocale)).setInitialSorting (ESortOrder.ASCENDING),
                                           new DTCol (EText.MSG_FACTORY.getDisplayText (aDisplayLocale)),
-                                          new DTCol (EText.MSG_URL.getDisplayText (aDisplayLocale))).setID (getID () + "-ajax");
+                                          new DTCol (EText.MSG_URL.getDisplayText (aDisplayLocale))).setID (getID () +
+                                                                                                            "-ajax");
       for (final Map.Entry <String, IAjaxFunctionDeclaration> aEntry : aMgr.getAllRegisteredFunctions ().entrySet ())
       {
         aTable.addBodyRow ()
@@ -137,14 +139,16 @@ public class BasePageAppInfoAjaxFunctions <WPECTYPE extends IWebPageExecutionCon
 
       final HCTable aTable = new HCTable (new DTCol (EText.MSG_TYPE.getDisplayText (aDisplayLocale)).setDataSort (0, 1)
                                                                                                     .setInitialSorting (ESortOrder.ASCENDING),
-                                          new DTCol (EText.MSG_CALLBACK.getDisplayText (aDisplayLocale))).setID (getID () + "-ajax-cb");
+                                          new DTCol (EText.MSG_CALLBACK.getDisplayText (aDisplayLocale))).setID (getID () +
+                                                                                                                 "-ajax-cb");
       for (final IAjaxExceptionCallback aCB : AjaxSettings.exceptionCallbacks ().getAllCallbacks ())
         aTable.addBodyRow ().addCells ("Exception", aCB.toString ());
       for (final IAjaxBeforeExecutionCallback aCB : AjaxSettings.beforeExecutionCallbacks ().getAllCallbacks ())
         aTable.addBodyRow ().addCells ("BeforeExecution", aCB.toString ());
       for (final IAjaxAfterExecutionCallback aCB : AjaxSettings.afterExecutionCallbacks ().getAllCallbacks ())
         aTable.addBodyRow ().addCells ("AfterExecution", aCB.toString ());
-      for (final IAjaxLongRunningExecutionCallback aCB : AjaxSettings.longRunningExecutionCallbacks ().getAllCallbacks ())
+      for (final IAjaxLongRunningExecutionCallback aCB : AjaxSettings.longRunningExecutionCallbacks ()
+                                                                     .getAllCallbacks ())
         aTable.addBodyRow ().addCells ("LongRunningExecution", aCB.toString ());
 
       final DataTables aDataTables = BootstrapDataTables.createDefaultDataTables (aWPEC, aTable);

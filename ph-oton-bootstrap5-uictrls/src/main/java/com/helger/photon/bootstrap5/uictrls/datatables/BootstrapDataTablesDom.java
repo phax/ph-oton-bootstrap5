@@ -20,8 +20,8 @@ import com.helger.photon.bootstrap5.CBootstrapCSS;
 import com.helger.photon.uictrls.datatables.DataTablesDom;
 
 /**
- * The data tables "dom" to be used for Bootstrap. This is default DOM as
- * created by dataTables.bootstrap except for the added "hidden-print" classes.
+ * The data tables "dom" to be used for Bootstrap. This is default DOM as created by
+ * dataTables.bootstrap except for the added "hidden-print" classes.
  *
  * @author Philip Helger
  */

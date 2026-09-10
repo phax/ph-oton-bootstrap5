@@ -58,7 +58,8 @@ import com.helger.text.util.TextHelper;
  * @param <WPECTYPE>
  *        Web page execution context type
  */
-public class BasePageDataCurrencies <WPECTYPE extends IWebPageExecutionContext> extends AbstractBootstrapWebPage <WPECTYPE>
+public class BasePageDataCurrencies <WPECTYPE extends IWebPageExecutionContext> extends
+                                    AbstractBootstrapWebPage <WPECTYPE>
 {
   @Translatable
   protected enum EText implements IHasDisplayText
@@ -95,7 +96,9 @@ public class BasePageDataCurrencies <WPECTYPE extends IWebPageExecutionContext> 
     super (sID, sName);
   }
 
-  public BasePageDataCurrencies (@NonNull @Nonempty final String sID, @NonNull final String sName, @Nullable final String sDescription)
+  public BasePageDataCurrencies (@NonNull @Nonempty final String sID,
+                                 @NonNull final String sName,
+                                 @Nullable final String sDescription)
   {
     super (sID, sName, sDescription);
   }

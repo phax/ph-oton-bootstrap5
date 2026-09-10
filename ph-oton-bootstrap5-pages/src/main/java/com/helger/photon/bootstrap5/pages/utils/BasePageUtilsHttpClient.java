@@ -347,8 +347,8 @@ public class BasePageUtilsHttpClient <WPECTYPE extends IWebPageExecutionContext>
                                                        .addChild (" using ")
                                                        .addChild (em (aConfig.getDisplayName ()))
                                                        .addChild (": ")
-                                                       .addChild (bSuccess ? badgeSuccess ("success") : badgeDanger (
-                                                                                                                     "error")));
+                                                       .addChild (bSuccess ? badgeSuccess ("success")
+                                                                           : badgeDanger ("error")));
         aNodeList.addChild (div ("Querying took " + aSW.getMillis () + " milliseconds"));
         if (aResponseHdl.m_aUsedStatusLine != null)
         {
@@ -364,7 +364,7 @@ public class BasePageUtilsHttpClient <WPECTYPE extends IWebPageExecutionContext>
           aNodeList.addChild (div ("Response HTTP headers:"));
           final HCTable aTable = new HCTable (new DTCol ("Name").setInitialSorting (ESortOrder.ASCENDING),
                                               new DTCol ("Value")).setID ("httpresponseheaders");
-          aResponseHdl.m_aUsedHeaders.forEachSingleHeader ( (n, v) -> aTable.addBodyRow ().addCells (n, v), false);
+          aResponseHdl.m_aUsedHeaders.forEachSingleHeader ((n, v) -> aTable.addBodyRow ().addCells (n, v), false);
           final BootstrapDataTables aDT = BootstrapDataTables.createDefaultDataTables (aWPEC, aTable);
           aDT.setLengthMenu (DataTablesLengthMenu.INSTANCE_ALL);
           aDT.setPaging (false);

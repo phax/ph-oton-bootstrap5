@@ -215,7 +215,8 @@ public class BasePageMonitoringSessions <WPECTYPE extends IWebPageExecutionConte
 
     final HCTable aTableAttrs = new HCTable (new DTCol (EText.MSG_NAME.getDisplayText (aDisplayLocale)).setInitialSorting (ESortOrder.ASCENDING),
                                              new DTCol (EText.MSG_TYPE.getDisplayText (aDisplayLocale)),
-                                             new DTCol (EText.MSG_VALUE.getDisplayText (aDisplayLocale))).setID ("sessionscope-" + aScope.getID ());
+                                             new DTCol (EText.MSG_VALUE.getDisplayText (aDisplayLocale))).setID ("sessionscope-" +
+                                                                                                                 aScope.getID ());
     for (final Map.Entry <String, Object> aEntry : aScope.attrs ().entrySet ())
     {
       final Object aValue = aEntry.getValue ();

@@ -56,7 +56,8 @@ import com.helger.web.scope.mgr.WebScopeManager;
  * @param <WPECTYPE>
  *        Web page execution context type
  */
-public class BasePageAppInfoGlobalScope <WPECTYPE extends IWebPageExecutionContext> extends AbstractBootstrapWebPage <WPECTYPE>
+public class BasePageAppInfoGlobalScope <WPECTYPE extends IWebPageExecutionContext> extends
+                                        AbstractBootstrapWebPage <WPECTYPE>
 {
   @Translatable
   protected enum EText implements IHasDisplayTextWithArgs
@@ -95,7 +96,9 @@ public class BasePageAppInfoGlobalScope <WPECTYPE extends IWebPageExecutionConte
     super (sID, sName);
   }
 
-  public BasePageAppInfoGlobalScope (@NonNull @Nonempty final String sID, @NonNull final String sName, @Nullable final String sDescription)
+  public BasePageAppInfoGlobalScope (@NonNull @Nonempty final String sID,
+                                     @NonNull final String sName,
+                                     @Nullable final String sDescription)
   {
     super (sID, sName, sDescription);
   }
@@ -117,13 +120,17 @@ public class BasePageAppInfoGlobalScope <WPECTYPE extends IWebPageExecutionConte
     aViewForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_SCOPE_ID.getDisplayText (aDisplayLocale))
                                                      .setCtrl (aScope.getID ()));
     aViewForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_SCOPE_CREATION_DT.getDisplayText (aDisplayLocale))
-                                                     .setCtrl (PDTToString.getAsString (aScope.getCreationDateTime (), aDisplayLocale)));
+                                                     .setCtrl (PDTToString.getAsString (aScope.getCreationDateTime (),
+                                                                                        aDisplayLocale)));
     aViewForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_SCOPE_VALID.getDisplayText (aDisplayLocale))
-                                                     .setCtrl (EPhotonCoreText.getYesOrNo (aScope.isValid (), aDisplayLocale)));
+                                                     .setCtrl (EPhotonCoreText.getYesOrNo (aScope.isValid (),
+                                                                                           aDisplayLocale)));
     aViewForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_SCOPE_IN_DESTRUCTION.getDisplayText (aDisplayLocale))
-                                                     .setCtrl (EPhotonCoreText.getYesOrNo (aScope.isInDestruction (), aDisplayLocale)));
+                                                     .setCtrl (EPhotonCoreText.getYesOrNo (aScope.isInDestruction (),
+                                                                                           aDisplayLocale)));
     aViewForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_SCOPE_DESTROYED.getDisplayText (aDisplayLocale))
-                                                     .setCtrl (EPhotonCoreText.getYesOrNo (aScope.isDestroyed (), aDisplayLocale)));
+                                                     .setCtrl (EPhotonCoreText.getYesOrNo (aScope.isDestroyed (),
+                                                                                           aDisplayLocale)));
     aViewForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_SCOPE_ATTRS.getDisplayText (aDisplayLocale))
                                                      .setCtrl (Integer.toString (aScope.attrs ().size ())));
     aNodeList.addChild (aViewForm);
@@ -154,7 +161,9 @@ public class BasePageAppInfoGlobalScope <WPECTYPE extends IWebPageExecutionConte
 
     // Refresh button
     final BootstrapButtonToolbar aToolbar = new BootstrapButtonToolbar (aWPEC);
-    aToolbar.addButton (EPhotonCoreText.BUTTON_REFRESH.getDisplayText (aDisplayLocale), aWPEC.getSelfHref (), EDefaultIcon.REFRESH);
+    aToolbar.addButton (EPhotonCoreText.BUTTON_REFRESH.getDisplayText (aDisplayLocale),
+                        aWPEC.getSelfHref (),
+                        EDefaultIcon.REFRESH);
     aNodeList.addChild (aToolbar);
 
     // Global scope

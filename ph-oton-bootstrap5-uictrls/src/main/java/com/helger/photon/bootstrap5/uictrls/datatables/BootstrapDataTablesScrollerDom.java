@@ -20,8 +20,8 @@ import com.helger.photon.bootstrap5.CBootstrapCSS;
 import com.helger.photon.uictrls.datatables.DataTablesDom;
 
 /**
- * The data tables "dom" to be used for Bootstrap. This DOM is only to be used,
- * if the scroller plugin is installed.
+ * The data tables "dom" to be used for Bootstrap. This DOM is only to be used, if the scroller
+ * plugin is installed.
  *
  * @author Philip Helger
  */

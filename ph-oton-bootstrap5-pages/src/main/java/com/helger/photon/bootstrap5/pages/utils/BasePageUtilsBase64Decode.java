@@ -108,7 +108,7 @@ public class BasePageUtilsBase64Decode <WPECTYPE extends IWebPageExecutionContex
 
   static
   {
-    AJAX_GET_DECODED = addAjax ( (aRequestScope, aAjaxResponse) -> {
+    AJAX_GET_DECODED = addAjax ((aRequestScope, aAjaxResponse) -> {
       final Decoded aDecoded = Decoded.getInstance ();
       if (aDecoded.hasData ())
       {

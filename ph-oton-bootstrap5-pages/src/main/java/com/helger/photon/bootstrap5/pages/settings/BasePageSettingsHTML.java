@@ -258,7 +258,7 @@ public class BasePageSettingsHTML <WPECTYPE extends IWebPageExecutionContext> ex
                                                                                                         HCSettings.isUseNonceInStyle ()))));
 
         final Function <String, IHCNode> aFormatter = s -> StringHelper.isEmpty (s) ? em (EText.MSG_NONE.getDisplayText (aDisplayLocale))
-                                                                                      : code (s);
+                                                                                    : code (s);
         aForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_FORM_LABEL_SUFFIX_OPTIONAL.getDisplayText (aDisplayLocale))
                                                      .setCtrl (aFormatter.apply (HCFormLabelHelper.getSuffixString (ELabelType.OPTIONAL))));
         aForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_FORM_LABEL_SUFFIX_ALTERNATIVE.getDisplayText (aDisplayLocale))

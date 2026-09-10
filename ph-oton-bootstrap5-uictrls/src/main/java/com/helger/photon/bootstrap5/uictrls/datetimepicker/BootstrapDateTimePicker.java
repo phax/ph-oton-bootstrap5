@@ -495,8 +495,8 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
   }
 
   /**
-   * Is the keyboard navigation inside the picker enabled? Requires Tempus Dominus 6.10 or later.
-   * If undefined, the Tempus Dominus default (enabled) applies.
+   * Is the keyboard navigation inside the picker enabled? Requires Tempus Dominus 6.10 or later. If
+   * undefined, the Tempus Dominus default (enabled) applies.
    *
    * @return Never <code>null</code>
    */
@@ -588,8 +588,7 @@ public class BootstrapDateTimePicker extends BootstrapInputGroup
   }
 
   @NonNull
-  public static JSInvocation invoke (@NonNull final IJSExpression aTargetElement,
-                                     @NonNull final JSAssocArray aOptions)
+  public static JSInvocation invoke (@NonNull final IJSExpression aTargetElement, @NonNull final JSAssocArray aOptions)
   {
     // new tempusDominus.TempusDominus (element, options)
     return new JSInvocation (JSExpr.ref (JSExpr.ref ("tempusDominus"), "TempusDominus")).arg (aTargetElement)

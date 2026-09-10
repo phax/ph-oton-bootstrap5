@@ -47,7 +47,8 @@ import com.helger.text.util.TextHelper;
  * @param <WPECTYPE>
  *        Web Page Execution Context type
  */
-public class BasePageAppInfoPathMapper <WPECTYPE extends IWebPageExecutionContext> extends AbstractBootstrapWebPage <WPECTYPE>
+public class BasePageAppInfoPathMapper <WPECTYPE extends IWebPageExecutionContext> extends
+                                       AbstractBootstrapWebPage <WPECTYPE>
 {
   @Translatable
   protected enum EText implements IHasDisplayText
@@ -80,7 +81,9 @@ public class BasePageAppInfoPathMapper <WPECTYPE extends IWebPageExecutionContex
     super (sID, sName);
   }
 
-  public BasePageAppInfoPathMapper (@NonNull @Nonempty final String sID, @NonNull final String sName, @Nullable final String sDescription)
+  public BasePageAppInfoPathMapper (@NonNull @Nonempty final String sID,
+                                    @NonNull final String sName,
+                                    @Nullable final String sDescription)
   {
     super (sID, sName, sDescription);
   }

@@ -26,8 +26,7 @@ import com.helger.photon.core.execcontext.ISimpleWebExecutionContext;
 import com.helger.photon.core.menu.IMenuSeparator;
 
 /**
- * A special menu item renderer for the footer area, where the items are
- * displayed horizontally
+ * A special menu item renderer for the footer area, where the items are displayed horizontally
  *
  * @author Philip Helger
  */
@@ -40,7 +39,8 @@ public class BootstrapMenuItemRendererHorz extends BootstrapMenuItemRenderer
 
   @Override
   @NonNull
-  public IHCNode renderSeparator (@NonNull final ISimpleWebExecutionContext aSWEC, @NonNull final IMenuSeparator aSeparator)
+  public IHCNode renderSeparator (@NonNull final ISimpleWebExecutionContext aSWEC,
+                                  @NonNull final IMenuSeparator aSeparator)
   {
     return new HCLI ().addChild ("·");
   }

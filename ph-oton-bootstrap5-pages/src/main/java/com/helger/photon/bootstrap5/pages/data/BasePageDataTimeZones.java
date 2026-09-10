@@ -56,7 +56,8 @@ import com.helger.text.util.TextHelper;
  * @param <WPECTYPE>
  *        Web page execution context type
  */
-public class BasePageDataTimeZones <WPECTYPE extends IWebPageExecutionContext> extends AbstractBootstrapWebPage <WPECTYPE>
+public class BasePageDataTimeZones <WPECTYPE extends IWebPageExecutionContext> extends
+                                   AbstractBootstrapWebPage <WPECTYPE>
 {
   @Translatable
   protected enum EText implements IHasDisplayTextWithArgs
@@ -93,7 +94,9 @@ public class BasePageDataTimeZones <WPECTYPE extends IWebPageExecutionContext> e
     super (sID, sName);
   }
 
-  public BasePageDataTimeZones (@NonNull @Nonempty final String sID, @NonNull final String sName, @Nullable final String sDescription)
+  public BasePageDataTimeZones (@NonNull @Nonempty final String sID,
+                                @NonNull final String sName,
+                                @Nullable final String sDescription)
   {
     super (sID, sName, sDescription);
   }
@@ -119,7 +122,8 @@ public class BasePageDataTimeZones <WPECTYPE extends IWebPageExecutionContext> e
     aNodeList.addChild (getUIHandler ().createActionHeader (EText.MSG_CURRENT_TIMEZONE.getDisplayText (aDisplayLocale) +
                                                             aCurrentDTZ.getId () +
                                                             " - " +
-                                                            aCurrentDTZ.getDisplayName (TextStyle.FULL, aDisplayLocale)));
+                                                            aCurrentDTZ.getDisplayName (TextStyle.FULL,
+                                                                                        aDisplayLocale)));
 
     // Show current local date time
     aNodeList.addChild (div (EText.MSG_CURRENT_LOCAL_TIME.getDisplayTextWithArgs (aDisplayLocale,

@@ -41,7 +41,8 @@ public class BootstrapButtonGroup extends AbstractBootstrapDiv <BootstrapButtonG
     this (EBootstrapButtonGroupType.DEFAULT, eSize);
   }
 
-  public BootstrapButtonGroup (@NonNull final EBootstrapButtonGroupType eType, @NonNull final EBootstrapButtonGroupSize eSize)
+  public BootstrapButtonGroup (@NonNull final EBootstrapButtonGroupType eType,
+                               @NonNull final EBootstrapButtonGroupSize eSize)
   {
     addClasses (eType, eSize);
     setRole (EHTMLRole.GROUP);

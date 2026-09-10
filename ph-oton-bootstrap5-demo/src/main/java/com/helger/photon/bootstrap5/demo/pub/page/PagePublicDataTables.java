@@ -45,8 +45,8 @@ public class PagePublicDataTables extends AbstractAppWebPage
     final HCTable aTable = new HCTable (new DTCol ("Key").setDisplayType (EDTColType.TEXT, aDisplayLocale),
                                         new DTCol ("Value 1").setDisplayType (EDTColType.INT, aDisplayLocale)
                                                              .setInitialSorting (ESortOrder.ASCENDING),
-                                        new DTCol ("Value 2").setDisplayType (EDTColType.INT, aDisplayLocale))
-                                                                                                              .setID ("demo-table");
+                                        new DTCol ("Value 2").setDisplayType (EDTColType.INT, aDisplayLocale)).setID (
+                                                                                                                      "demo-table");
     for (int i = 0; i < 100; ++i)
       aTable.addBodyRow ()
             .addCell ("Key " + (i + 1))

@@ -26,8 +26,7 @@ import com.helger.base.thirdparty.ThirdPartyModule;
 import com.helger.photon.bootstrap5.CBootstrap;
 
 /**
- * Implement this SPI interface if your JAR file contains external third party
- * modules.
+ * Implement this SPI interface if your JAR file contains external third party modules.
  *
  * @author Philip Helger
  */

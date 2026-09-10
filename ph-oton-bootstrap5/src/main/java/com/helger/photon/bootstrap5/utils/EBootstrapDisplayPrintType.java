@@ -22,8 +22,7 @@ import com.helger.html.css.ICSSClassProvider;
 import com.helger.photon.bootstrap5.CBootstrapCSS;
 
 /**
- * Print display classes. See
- * https://getbootstrap.com/docs/4.1/utilities/display/
+ * Print display classes. See https://getbootstrap.com/docs/4.1/utilities/display/
  *
  * @author Philip Helger
  */

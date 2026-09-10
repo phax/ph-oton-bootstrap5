@@ -34,13 +34,11 @@ public final class SecurityUIHelper
   {}
 
   /**
-   * Check if a user can be edited or not. Currently all not deleted users can
-   * be edited.
+   * Check if a user can be edited or not. Currently all not deleted users can be edited.
    *
    * @param aUser
    *        The user to check. May be <code>null</code>.
-   * @return <code>true</code> if the user can be edited, <code>false</code> if
-   *         not.
+   * @return <code>true</code> if the user can be edited, <code>false</code> if not.
    */
   public static boolean canBeEdited (@Nullable final IUser aUser)
   {
@@ -48,13 +46,12 @@ public final class SecurityUIHelper
   }
 
   /**
-   * Check if a user can be deleted or not. Currently all not deleted users can
-   * be deleted except for the administrator special user.
+   * Check if a user can be deleted or not. Currently all not deleted users can be deleted except
+   * for the administrator special user.
    *
    * @param aUser
    *        The user to check. May be <code>null</code>.
-   * @return <code>true</code> if the user can be deleted, <code>false</code> if
-   *         not.
+   * @return <code>true</code> if the user can be deleted, <code>false</code> if not.
    */
   public static boolean canBeDeleted (@Nullable final IUser aUser)
   {
@@ -62,13 +59,11 @@ public final class SecurityUIHelper
   }
 
   /**
-   * Check if a user can be undeleted or not. Currently all deleted users can be
-   * undeleted.
+   * Check if a user can be undeleted or not. Currently all deleted users can be undeleted.
    *
    * @param aUser
    *        The user to check. May be <code>null</code>.
-   * @return <code>true</code> if the user can be deleted, <code>false</code> if
-   *         not.
+   * @return <code>true</code> if the user can be deleted, <code>false</code> if not.
    */
   public static boolean canBeUndeleted (@Nullable final IUser aUser)
   {
@@ -76,13 +71,12 @@ public final class SecurityUIHelper
   }
 
   /**
-   * Check if the password of a user can be reset or not. Currently the
-   * passwords of all not deleted users can be reset.
+   * Check if the password of a user can be reset or not. Currently the passwords of all not deleted
+   * users can be reset.
    *
    * @param aUser
    *        The user to check. May be <code>null</code>.
-   * @return <code>true</code> if the password can be reset, <code>false</code>
-   *         if not.
+   * @return <code>true</code> if the password can be reset, <code>false</code> if not.
    */
   public static boolean canResetPassword (@Nullable final IUser aUser)
   {

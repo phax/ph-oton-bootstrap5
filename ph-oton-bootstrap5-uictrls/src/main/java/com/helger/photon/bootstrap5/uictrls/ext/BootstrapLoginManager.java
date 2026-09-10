@@ -46,7 +46,8 @@ public class BootstrapLoginManager extends AbstractLoginManager
   }
 
   @Override
-  protected IHTMLProvider createLoginScreen (final boolean bLoginError, @NonNull final ICredentialValidationResult aLoginResult)
+  protected IHTMLProvider createLoginScreen (final boolean bLoginError,
+                                             @NonNull final ICredentialValidationResult aLoginResult)
   {
     return new BootstrapLoginHTMLProvider (bLoginError, aLoginResult, m_aPageTitle);
   }

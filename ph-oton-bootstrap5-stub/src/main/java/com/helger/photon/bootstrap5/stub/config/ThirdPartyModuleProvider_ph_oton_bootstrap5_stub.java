@@ -24,8 +24,7 @@ import com.helger.base.thirdparty.IThirdPartyModuleProviderSPI;
 import com.helger.photon.app.PhotonAppConfig;
 
 /**
- * Implement this SPI interface if your JAR file contains external third party
- * modules.
+ * Implement this SPI interface if your JAR file contains external third party modules.
  *
  * @author Philip Helger
  */

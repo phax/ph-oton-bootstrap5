@@ -28,8 +28,7 @@ import com.helger.photon.uicore.css.CUICoreCSS;
 import com.helger.photon.uictrls.datatables.column.DTCol;
 
 /**
- * Special action column. Has a special CSS class and is never sortable nor
- * searchable.
+ * Special action column. Has a special CSS class and is never sortable nor searchable.
  *
  * @author Philip Helger
  */
@@ -63,8 +62,7 @@ public class BootstrapDTColAction extends DTCol
   }
 
   /**
-   * Special constructor using the predefined header text "Actions" in the
-   * selected locale.
+   * Special constructor using the predefined header text "Actions" in the selected locale.
    *
    * @param aDisplayLocale
    *        Display locale to use. May not be <code>null</code>.

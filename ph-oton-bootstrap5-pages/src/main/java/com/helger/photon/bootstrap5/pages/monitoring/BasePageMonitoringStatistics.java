@@ -113,7 +113,7 @@ public class BasePageMonitoringStatistics <WPECTYPE extends IWebPageExecutionCon
 
   private static final Logger LOGGER = LoggerFactory.getLogger (BasePageMonitoringStatistics.class);
 
-  private static final AjaxFunctionDeclaration AJAX_SAVE_STATS = addAjax ( (aRequestScope, aAjaxResponse) -> {
+  private static final AjaxFunctionDeclaration AJAX_SAVE_STATS = addAjax ((aRequestScope, aAjaxResponse) -> {
     LOGGER.info ("Downloading ph-oton statistics");
     final IMicroDocument aDoc = StatisticsExporter.getAsXMLDocument ();
     aDoc.getDocumentElement ().setAttribute ("location", "user-interface");

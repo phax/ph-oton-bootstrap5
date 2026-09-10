@@ -39,5 +39,7 @@ public interface IBootstrapDataTablesConfigurator
    * @param aDataTables
    *        The newly created datatables object
    */
-  void configure (@NonNull ILayoutExecutionContext aLEC, @NonNull IHCTable <?> aTable, @NonNull BootstrapDataTables aDataTables);
+  void configure (@NonNull ILayoutExecutionContext aLEC,
+                  @NonNull IHCTable <?> aTable,
+                  @NonNull BootstrapDataTables aDataTables);
 }

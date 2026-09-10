@@ -98,7 +98,9 @@ public class BasePageAppInfoAPI <WPECTYPE extends IWebPageExecutionContext> exte
     super (sID, sName);
   }
 
-  public BasePageAppInfoAPI (@NonNull @Nonempty final String sID, @NonNull final String sName, @Nullable final String sDescription)
+  public BasePageAppInfoAPI (@NonNull @Nonempty final String sID,
+                             @NonNull final String sName,
+                             @Nullable final String sDescription)
   {
     super (sID, sName, sDescription);
   }
@@ -128,7 +130,8 @@ public class BasePageAppInfoAPI <WPECTYPE extends IWebPageExecutionContext> exte
                                           new DTCol (EText.MSG_REQUIRED_PARAMS.getDisplayText (aDisplayLocale)),
                                           new DTCol (EText.MSG_ALLOWED_MIME_TYPES.getDisplayText (aDisplayLocale)),
                                           new DTCol (EText.MSG_HAS_EXECUTION_FILTER.getDisplayText (aDisplayLocale)),
-                                          new DTCol (EText.MSG_HAS_EXCEPTION_MAPPER.getDisplayText (aDisplayLocale))).setID (getID () + "-api");
+                                          new DTCol (EText.MSG_HAS_EXCEPTION_MAPPER.getDisplayText (aDisplayLocale))).setID (getID () +
+                                                                                                                             "-api");
       for (final IAPIDescriptor aDescriptor : aRegistry.getAllAPIDescriptors ())
       {
         final HCRow aRow = aTable.addBodyRow ();
@@ -153,7 +156,8 @@ public class BasePageAppInfoAPI <WPECTYPE extends IWebPageExecutionContext> exte
 
       final HCTable aTable = new HCTable (new DTCol (EText.MSG_TYPE.getDisplayText (aDisplayLocale)).setDataSort (0, 1)
                                                                                                     .setInitialSorting (ESortOrder.ASCENDING),
-                                          new DTCol (EText.MSG_CALLBACK.getDisplayText (aDisplayLocale))).setID (getID () + "-api-cb");
+                                          new DTCol (EText.MSG_CALLBACK.getDisplayText (aDisplayLocale))).setID (getID () +
+                                                                                                                 "-api-cb");
       for (final IAPIExceptionCallback aCB : APISettings.exceptionCallbacks ().getAllCallbacks ())
         aTable.addBodyRow ().addCells ("Exception", aCB.toString ());
       for (final IAPIBeforeExecutionCallback aCB : APISettings.beforeExecutionCallbacks ().getAllCallbacks ())
