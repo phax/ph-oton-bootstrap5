@@ -27,6 +27,7 @@ import com.helger.photon.ajax.IAjaxRegistry;
 import com.helger.photon.bootstrap5.demo.ajax.CAjax;
 import com.helger.photon.bootstrap5.demo.app.AppSettings;
 import com.helger.photon.bootstrap5.demo.app.CApp;
+import com.helger.photon.bootstrap5.demo.app.job.DemoLongRunningJob;
 import com.helger.photon.bootstrap5.demo.pub.menu.MenuPublic;
 import com.helger.photon.bootstrap5.demo.secure.menu.MenuSecure;
 import com.helger.photon.bootstrap5.servlet.WebAppListenerBootstrap;
@@ -47,6 +48,7 @@ import com.helger.photon.uictrls.datatables.EDataTablesFilterType;
 import com.helger.photon.uictrls.datatables.ajax.AjaxExecutorDataTables;
 import com.helger.photon.uictrls.datatables.ajax.AjaxExecutorDataTablesI18N;
 import com.helger.photon.uictrls.datatables.plugins.DataTablesPluginSearchHighlight;
+import com.helger.quartz.SimpleScheduleBuilder;
 import com.helger.web.scope.IRequestWebScopeWithoutResponse;
 
 import jakarta.servlet.ServletContext;
@@ -219,5 +221,12 @@ public final class AppWebAppListener extends WebAppListenerBootstrap
                                                                                                    .setSyntaxHighlightLanguage (EConfigurationFileSyntax.XML));
     aCfgMgr.registerConfigurationFile (new ConfigurationFile (new ClassPathResource ("application.properties")).setDescription ("Web application properties")
                                                                                                                .setSyntaxHighlightLanguage (EConfigurationFileSyntax.PROPERTIES));
+  }
+
+  @Override
+  protected void initJobs ()
+  {
+    // Start immediately and repeat every 30 seconds
+    DemoLongRunningJob.schedule (SimpleScheduleBuilder.repeatSecondlyForever (30));
   }
 }
