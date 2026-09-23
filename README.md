@@ -96,7 +96,7 @@ Licensed under the Apache License, Version 2.0.
 ## News and Noteworthy
 
 v0.9.5 - 2026-09-23
-* Requires at least ph-schedule 6.2.0. The `ph-schedule-parent-pom` BOM is imported explicitly in the parent POM, ahead of `ph-oton-parent-pom`, so that it wins over the version pinned by ph-oton
+* Requires at least ph-schedule 6.2.0.
 * `BasePageAppInfoScheduler` now
   * shows the minimum, average and maximum runtime per job, from the timer statistics that `StatisticsJobListener` collects since ph-schedule 6.2.0
   * shows the most recent failures per job - date, exception class and message, plus the stack trace of the most recent one - from the `JobExecutionErrorRegistry` introduced in ph-schedule 6.2.0.
