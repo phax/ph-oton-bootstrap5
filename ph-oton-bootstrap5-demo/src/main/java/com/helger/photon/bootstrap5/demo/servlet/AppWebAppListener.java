@@ -27,6 +27,7 @@ import com.helger.photon.ajax.IAjaxRegistry;
 import com.helger.photon.bootstrap5.demo.ajax.CAjax;
 import com.helger.photon.bootstrap5.demo.app.AppSettings;
 import com.helger.photon.bootstrap5.demo.app.CApp;
+import com.helger.photon.bootstrap5.demo.app.job.DemoDelayedJob;
 import com.helger.photon.bootstrap5.demo.app.job.DemoLongRunningJob;
 import com.helger.photon.bootstrap5.demo.pub.menu.MenuPublic;
 import com.helger.photon.bootstrap5.demo.secure.menu.MenuSecure;
@@ -228,5 +229,7 @@ public final class AppWebAppListener extends WebAppListenerBootstrap
   {
     // Start immediately and repeat every 30 seconds
     DemoLongRunningJob.schedule (SimpleScheduleBuilder.repeatSecondlyForever (30));
+    // Run exactly once, 10 minutes after startup
+    DemoDelayedJob.schedule (DemoDelayedJob.DELAY_MINUTES);
   }
 }
