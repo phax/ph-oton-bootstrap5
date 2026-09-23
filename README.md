@@ -95,22 +95,19 @@ Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
 
-v0.9.5 - work in progress
+v0.9.5 - 2026-09-23
 * Requires at least ph-schedule 6.2.0. The `ph-schedule-parent-pom` BOM is imported explicitly in the parent POM, ahead of `ph-oton-parent-pom`, so that it wins over the version pinned by ph-oton
-* `BasePageAppInfoScheduler` now shows the minimum, average and maximum runtime per job, from the timer statistics that `StatisticsJobListener` collects since ph-schedule 6.2.0
-* `BasePageAppInfoScheduler` now shows the most recent failures per job - date, exception class and message, plus the stack trace of the most recent one - from the `JobExecutionErrorRegistry` introduced in ph-schedule 6.2.0. Previously only the number of errors was visible and the reason had to be looked up in the log file
-* `BasePageAppInfoScheduler` now uses `StatisticsJobListener.getStatisticsName (Class)` and the `STATS_SUFFIX_*` constants instead of rebuilding the statistics handler names itself
-* The demo application now additionally schedules the new job `DemoDelayedJob` that runs exactly once, 10 minutes after application startup. In contrast to `DemoLongRunningJob` it is a plain scope aware job and not a long running one, so it only shows up on the "Scheduler" page. Until it fires, its trigger start time lies in the future and is therefore marked with a red badge
-* **Fixed**: `BasePageAppInfoScheduler` reported "Standby" for a scheduler that was never started, and its "Not started" state was unreachable. `IScheduler.isStarted ()` is implemented as "was ever started" by `StdScheduler` and therefore returns `true` in standby mode as well - the start date is now used to tell the two apart, matching `ESchedulerState.NOT_STARTED` of ph-schedule 6.2.0
-* `BasePageAppInfoLongRunningJobs` now shows the duration a currently running job is already running - in the "Duration" column of the list and as the new "Duration so far" entry of the detail view.
-  Added the new text constant `BasePageAppInfoLongRunningJobs.EText.MSG_DURATION_SO_FAR`
-* `BasePageAppInfoScheduler` now shows the details of all currently executing jobs (job key, job class, trigger key, fire time, duration so far, scheduled fire time, next fire time, refire count, recovering state and fire instance ID) instead of only their count.
-  Added the new text constants `BasePageAppInfoScheduler.EText.MSG_FIRE_TIME`, `MSG_SCHEDULED_FIRE_TIME`, `MSG_RUNNING_FOR`, `MSG_REFIRE_COUNT`, `MSG_RECOVERING` and `MSG_FIRE_INSTANCE_ID`
-* `BasePageAppInfoScheduler` now shows a "Refresh" button on top of the page, as the other pages do
-* The demo application now schedules the new dummy job `DemoLongRunningJob` that starts immediately, logs a message, sleeps for 10 seconds and repeats every 30 seconds, so that both "Long running jobs" and "Scheduler" show a currently running job
-* `BasePageAppInfoScheduler` now shows a badge next to every date time, stating the distance to "now" (e.g. "in 27 seconds" or "2 seconds ago"). The badge is green if the date time is on the expected side of "now" - start time, previous fire time, fire time and scheduled fire time are expected to be in the past, end time and next fire time in the future - and red otherwise.
-  Added the new text constants `BasePageAppInfoScheduler.EText.MSG_TIME_IN` and `MSG_TIME_AGO`; `BasePageAppInfoScheduler.EText` now implements `IHasDisplayTextWithArgs` instead of `IHasDisplayText`
-* `BasePageAppInfoScheduler` now shows "none" instead of "null" for date times that are not set (e.g. the previous fire time of a trigger that never fired)
+* `BasePageAppInfoScheduler` now
+  * shows the minimum, average and maximum runtime per job, from the timer statistics that `StatisticsJobListener` collects since ph-schedule 6.2.0
+  * shows the most recent failures per job - date, exception class and message, plus the stack trace of the most recent one - from the `JobExecutionErrorRegistry` introduced in ph-schedule 6.2.0.
+    Previously only the number of errors was visible and the reason had to be looked up in the log file
+  * uses `StatisticsJobListener.getStatisticsName (Class)` and the `STATS_SUFFIX_*` constants instead of rebuilding the statistics handler names itself
+  * shows the details of all currently executing jobs (job key, job class, trigger key, fire time, duration so far, scheduled fire time, next fire time, refire count, recovering state and fire instance ID) instead of only their count.
+    Added the new text constants `BasePageAppInfoScheduler.EText.MSG_FIRE_TIME`, `MSG_SCHEDULED_FIRE_TIME`, `MSG_RUNNING_FOR`, `MSG_REFIRE_COUNT`, `MSG_RECOVERING` and `MSG_FIRE_INSTANCE_ID`
+  * shows a "Refresh" button on top of the page, as the other pages do
+  * shows "none" instead of "null" for date times that are not set (e.g. the previous fire time of a trigger that never fired)
+  * shows a badge next to every date time, stating the distance to "now" (e.g. "in 27 seconds" or "2 seconds ago"). The badge is green if the date time is on the expected side of "now" - start time, previous fire time, fire time and scheduled fire time are expected to be in the past, end time and next fire time in the future - and red otherwise.
+    Added the new text constants `BasePageAppInfoScheduler.EText.MSG_TIME_IN` and `MSG_TIME_AGO`; `BasePageAppInfoScheduler.EText` now implements `IHasDisplayTextWithArgs` instead of `IHasDisplayText`
 * `BasePageAppInfoScheduler` now shows a set of diagnostic details that help to answer the question why a job did not run:
   * The state of every trigger (`IScheduler.getTriggerState`) as a badge - only `NORMAL` is green, `ERROR` is red, `PAUSED` and `BLOCKED` are yellow
   * The scheduler state as a badge plus a prominent error/warning box if the scheduler is shut down, in standby or was never started, because then no job is executed at all
@@ -122,6 +119,12 @@ v0.9.5 - work in progress
   * All jobs that have no trigger at all and are therefore never executed
   * The execution, error and vetoed counters that the `StatisticsJobListener` of `GlobalQuartzScheduler` collects per job, with a red badge if the error count is &gt; 0
   Added the new public constant `BasePageAppInfoScheduler.NEXT_FIRE_TIMES_COUNT` and the new text constants `BasePageAppInfoScheduler.EText.MSG_SCHEDULER_STATE`, `MSG_SCHEDULER_STATE_RUNNING`, `MSG_SCHEDULER_STATE_STANDBY`, `MSG_SCHEDULER_STATE_SHUTDOWN`, `MSG_SCHEDULER_STATE_NOT_STARTED`, `MSG_SCHEDULER_STANDBY_HINT`, `MSG_SCHEDULER_SHUTDOWN_HINT`, `MSG_SCHEDULER_NOT_STARTED_HINT`, `MSG_RUNNING_SINCE`, `MSG_THREAD_POOL`, `MSG_THREAD_POOL_USAGE`, `MSG_THREAD_POOL_EXHAUSTED`, `MSG_PAUSED_TRIGGER_GROUPS`, `MSG_PAUSED_TRIGGER_GROUPS_HINT`, `MSG_CALENDARS`, `MSG_JOBS_WITHOUT_TRIGGER`, `MSG_JOBS_WITHOUT_TRIGGER_HINT`, `MSG_TRIGGER_STATE`, `MSG_CALENDAR_NAME`, `MSG_MAY_FIRE_AGAIN`, `MSG_FINAL_FIRE_TIME`, `MSG_NEXT_FIRE_TIMES`, `MSG_EXECUTION_COUNT`, `MSG_ERROR_COUNT` and `MSG_VETOED_COUNT`
+* **Fixed**: `BasePageAppInfoScheduler` reported "Standby" for a scheduler that was never started, and its "Not started" state was unreachable.
+  `IScheduler.isStarted ()` is implemented as "was ever started" by `StdScheduler` and therefore returns `true` in standby mode as well - the start date is now used to tell the two apart, matching `ESchedulerState.NOT_STARTED` of ph-schedule 6.2.0
+* `BasePageAppInfoLongRunningJobs` now shows the duration a currently running job is already running - in the "Duration" column of the list and as the new "Duration so far" entry of the detail view.
+  Added the new text constant `BasePageAppInfoLongRunningJobs.EText.MSG_DURATION_SO_FAR`
+* The demo application now additionally schedules the new job `DemoDelayedJob` that runs exactly once, 10 minutes after application startup. In contrast to `DemoLongRunningJob` it is a plain scope aware job and not a long running one, so it only shows up on the "Scheduler" page. Until it fires, its trigger start time lies in the future and is therefore marked with a red badge
+* The demo application now schedules the new dummy job `DemoLongRunningJob` that starts immediately, logs a message, sleeps for 10 seconds and repeats every 30 seconds, so that both "Long running jobs" and "Scheduler" show a currently running job
 
 v0.9.4 - 2026-09-04
 * Requires at least ph-oton 10.5.0
