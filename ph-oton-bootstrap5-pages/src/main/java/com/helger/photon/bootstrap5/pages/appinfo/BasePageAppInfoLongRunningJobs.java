@@ -32,6 +32,7 @@ import com.helger.base.compare.ESortOrder;
 import com.helger.base.enforce.ValueEnforcer;
 import com.helger.collection.commons.ICommonsList;
 import com.helger.datetime.format.PDTToString;
+import com.helger.datetime.helper.PDTFactory;
 import com.helger.html.hc.IHCNode;
 import com.helger.html.hc.ext.HCExtHelper;
 import com.helger.html.hc.html.grouping.HCPre;
@@ -92,6 +93,7 @@ public class BasePageAppInfoLongRunningJobs <WPECTYPE extends IWebPageExecutionC
     MSG_START_DT ("Startzeit", "Start time"),
     MSG_END_DT ("Endzeit", "End time"),
     MSG_DURATION ("Dauer", "Duration"),
+    MSG_DURATION_SO_FAR ("Bisherige Dauer", "Duration so far"),
     MSG_USER ("Benutzer", "User"),
     MSG_SUCCESS ("Erfolg?", "Success?"),
     MSG_STATE ("Status", "State"),
@@ -351,6 +353,8 @@ public class BasePageAppInfoLongRunningJobs <WPECTYPE extends IWebPageExecutionC
     {
       aForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_STATE.getDisplayText (aDisplayLocale))
                                                    .setCtrl (EText.MSG_STATE_RUNNING.getDisplayText (aDisplayLocale)));
+      aForm.addFormGroup (new BootstrapFormGroup ().setLabel (EText.MSG_DURATION_SO_FAR.getDisplayText (aDisplayLocale))
+                                                   .setCtrl (_getDurationSoFar (aSelectedObject).toString ()));
     }
   }
 
@@ -374,6 +378,20 @@ public class BasePageAppInfoLongRunningJobs <WPECTYPE extends IWebPageExecutionC
     throw new UnsupportedOperationException ();
   }
 
+  /**
+   * Get the duration a currently running job is already running.
+   *
+   * @param aItem
+   *        The job data to be evaluated. May not be <code>null</code> and must be a job that has
+   *        not yet ended.
+   * @return The duration between the job start date time and now. Never <code>null</code>.
+   */
+  @NonNull
+  private static Duration _getDurationSoFar (@NonNull final LongRunningJobData aItem)
+  {
+    return Duration.between (aItem.getStartDateTime (), PDTFactory.getCurrentLocalDateTime ());
+  }
+
   private void _addRow (@NonNull final WPECTYPE aWPEC,
                         @NonNull final HCTable aTable,
                         @NonNull final LongRunningJobData aItem,
@@ -381,7 +399,8 @@ public class BasePageAppInfoLongRunningJobs <WPECTYPE extends IWebPageExecutionC
   {
     final Locale aDisplayLocale = aWPEC.getDisplayLocale ();
     final ISimpleURL aViewURL = createViewURL (aWPEC, aItem);
-    final Duration aDuration = aItem.isEnded () ? aItem.getDuration () : null;
+    // For a running job the duration so far is shown instead
+    final Duration aDuration = aItem.isEnded () ? aItem.getDuration () : _getDurationSoFar (aItem);
 
     final HCRow aRow = aTable.addBodyRow ();
     aRow.addCell (new HCA (aViewURL).addChild (aItem.getJobDescription ().getText (aDisplayLocale)));
@@ -390,7 +409,7 @@ public class BasePageAppInfoLongRunningJobs <WPECTYPE extends IWebPageExecutionC
                              : EText.MSG_STATE_FINISHED.getDisplayText (aDisplayLocale));
     aRow.addCell (PDTToString.getAsString (aItem.getStartDateTime (), aDisplayLocale));
     aRow.addCell (aItem.isEnded () ? PDTToString.getAsString (aItem.getEndDateTime (), aDisplayLocale) : null);
-    aRow.addCell (aDuration == null ? null : aDuration.toString ());
+    aRow.addCell (aDuration.toString ());
     aRow.addCell (SecurityHelper.getUserDisplayName (aItem.getStartingUserID (), aDisplayLocale));
     aRow.addCell (aItem.isEnded () ? EPhotonCoreText.getYesOrNo (aItem.getExecutionSuccess ().isTrue (), aDisplayLocale)
                                    : null);
