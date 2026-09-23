@@ -95,6 +95,17 @@ Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
 
+v0.9.5 - work in progress
+* `BasePageAppInfoLongRunningJobs` now shows the duration a currently running job is already running - in the "Duration" column of the list and as the new "Duration so far" entry of the detail view.
+  Added the new text constant `BasePageAppInfoLongRunningJobs.EText.MSG_DURATION_SO_FAR`
+* `BasePageAppInfoScheduler` now shows the details of all currently executing jobs (job key, job class, trigger key, fire time, duration so far, scheduled fire time, next fire time, refire count, recovering state and fire instance ID) instead of only their count.
+  Added the new text constants `BasePageAppInfoScheduler.EText.MSG_FIRE_TIME`, `MSG_SCHEDULED_FIRE_TIME`, `MSG_RUNNING_FOR`, `MSG_REFIRE_COUNT`, `MSG_RECOVERING` and `MSG_FIRE_INSTANCE_ID`
+* `BasePageAppInfoScheduler` now shows a "Refresh" button on top of the page, as the other pages do
+* The demo application now schedules the new dummy job `DemoLongRunningJob` that starts immediately, logs a message, sleeps for 10 seconds and repeats every 30 seconds, so that both "Long running jobs" and "Scheduler" show a currently running job
+* `BasePageAppInfoScheduler` now shows a badge next to every date time, stating the distance to "now" (e.g. "in 27 seconds" or "2 seconds ago"). The badge is green if the date time is on the expected side of "now" - start time, previous fire time, fire time and scheduled fire time are expected to be in the past, end time and next fire time in the future - and red otherwise.
+  Added the new text constants `BasePageAppInfoScheduler.EText.MSG_TIME_IN` and `MSG_TIME_AGO`; `BasePageAppInfoScheduler.EText` now implements `IHasDisplayTextWithArgs` instead of `IHasDisplayText`
+* `BasePageAppInfoScheduler` now shows "none" instead of "null" for date times that are not set (e.g. the previous fire time of a trigger that never fired)
+
 v0.9.4 - 2026-09-04
 * Requires at least ph-oton 10.5.0
 
