@@ -95,6 +95,9 @@ Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
 
+v0.9.6 - work in progress
+* The module `ph-oton-bootstrap5-demo` is no longer published to Maven Central
+
 v0.9.5 - 2026-09-23
 * Requires at least ph-schedule 6.2.0.
 * `BasePageAppInfoScheduler` now

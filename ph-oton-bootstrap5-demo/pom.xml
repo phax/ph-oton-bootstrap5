@@ -39,6 +39,11 @@
     </license>
   </licenses>
 
+  <properties>
+    <!-- Don't publish this demo module to Maven Central -->
+    <skipPublishing>true</skipPublishing>
+  </properties>
+
   <organization>
     <name>Philip Helger</name>
     <url>https://www.helger.com</url>
