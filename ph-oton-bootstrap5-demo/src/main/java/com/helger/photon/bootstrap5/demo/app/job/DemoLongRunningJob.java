@@ -57,8 +57,8 @@ public final class DemoLongRunningJob extends AbstractScopeAwareLongRunningJob
                                                                                     DURATION_SECONDS +
                                                                                     " Sekunden lang läuft",
                                                                                     "Demo job that runs for " +
-                                                                                                        DURATION_SECONDS +
-                                                                                                        " seconds");
+                                                                                                            DURATION_SECONDS +
+                                                                                                            " seconds");
   private static final Logger LOGGER = LoggerFactory.getLogger (DemoLongRunningJob.class);
 
   /**

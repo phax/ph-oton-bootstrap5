@@ -488,8 +488,8 @@ public class BasePageAppInfoScheduler <WPECTYPE extends IWebPageExecutionContext
    *         If querying the scheduler fails
    */
   @Nullable
-  private IHCNode _getJobsWithoutTriggerUI (@NonNull final IScheduler aScheduler, @NonNull final Locale aDisplayLocale)
-                                                                                                                        throws SchedulerException
+  private IHCNode _getJobsWithoutTriggerUI (@NonNull final IScheduler aScheduler,
+                                            @NonNull final Locale aDisplayLocale) throws SchedulerException
   {
     final HCUL aUL = new HCUL ();
     for (final JobKey aJobKey : aScheduler.getJobKeys (GroupMatcher.anyJobGroup ()))
