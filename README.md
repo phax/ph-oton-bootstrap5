@@ -97,6 +97,7 @@ Licensed under the Apache License, Version 2.0.
 
 v0.9.6 - work in progress
 * The module `ph-oton-bootstrap5-demo` is no longer published to Maven Central
+* Added the new page `BasePageAppInfoCSSAndJS` (menu item `admin_appinfo_cssandjs` below "App Information") that lists all globally registered CSS and JS resources as well as the ones included in the current page, in inclusion order and with links that open in a new browser tab
 
 v0.9.5 - 2026-09-23
 * Requires at least ph-schedule 6.2.0.

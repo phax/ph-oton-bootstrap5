@@ -27,6 +27,7 @@ import com.helger.photon.app.resource.WebSiteResourceBundleManager;
 import com.helger.photon.audit.IAuditManager;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoAPI;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoAjaxFunctions;
+import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoCSSAndJS;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoConfigurationFiles;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoGlobalScope;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoGo;
@@ -125,6 +126,7 @@ public final class BootstrapPagesMenuConfigurator
   public static final String MENU_ADMIN_APPINFO_GLOBAL_SCOPE = "admin_appinfo_scopes";
   public static final String MENU_ADMIN_APPINFO_SERVLETSTATUS = "admin_appinfo_servletstatus";
   public static final String MENU_ADMIN_APPINFO_WEBRESBUNDLE = "admin_appinfo_webresbundle";
+  public static final String MENU_ADMIN_APPINFO_CSS_AND_JS = "admin_appinfo_cssandjs";
 
   public static final String MENU_ADMIN_DATA = "admin_data";
   public static final String MENU_ADMIN_DATA_COUNTRIES = "admin_data_countries";
@@ -366,6 +368,8 @@ public final class BootstrapPagesMenuConfigurator
                                                                           aResBundleMgr))
                .setDisplayFilter (aDisplayFilter);
     }
+    aMenuTree.createItem (aAdminAppInfo, new BasePageAppInfoCSSAndJS <> (MENU_ADMIN_APPINFO_CSS_AND_JS))
+             .setDisplayFilter (aDisplayFilter);
     return aAdminAppInfo;
   }
 
