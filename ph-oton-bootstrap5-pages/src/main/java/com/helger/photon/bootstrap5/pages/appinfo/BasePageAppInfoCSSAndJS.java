@@ -134,9 +134,7 @@ public class BasePageAppInfoCSSAndJS <WPECTYPE extends IWebPageExecutionContext>
   private static HCA _createLink (@NonNull final ISimpleURL aURL)
   {
     // Open in a clean browser tab
-    return new HCA (aURL).setTarget (HC_Target.BLANK)
-                         .setRel ("noopener noreferrer")
-                         .addChild (aURL.getAsStringWithEncodedParameters ());
+    return new HCA (aURL).setTarget (HC_Target.BLANK).setRel ("noopener noreferrer").addChild (aURL.getAsString ());
   }
 
   @Override
