@@ -98,6 +98,15 @@ Licensed under the Apache License, Version 2.0.
 v0.9.6 - work in progress
 * The module `ph-oton-bootstrap5-demo` is no longer published to Maven Central
 * Added the new page `BasePageAppInfoCSSAndJS` (menu item `admin_appinfo_cssandjs` below "App Information") that lists all globally registered CSS and JS resources as well as the ones included in the current page, in inclusion order and with links that open in a new browser tab
+* Requires at least ph-oton 10.7.0
+* `BasePageMonitoringAudit` (menu item `admin_monitoring_audit`) now has three tabs, selected via the request parameter `tab`:
+  * "Latest entries" - the previous view of the latest audit items
+  * "Entries by date" - all audit items of one day, with a date picker and buttons for the previous day, the next day and today
+  * "Search" - a search over the last 1 to 30 days (default 7) with a case-insensitive text match on action, user ID, user name and type, plus filters for user, action type and success.
+    A per-day summary shows the total, successful and failed entries of each day of the period, with links to the "Entries by date" tab
+  * Rows of failed audit items are highlighted in red
+  * The "Entries by date" and "Search" tabs show at most `getMaxResultItems ()` (default 5,000) of the most recent matching items
+  * The "Entries by date" and "Search" tabs require an `IAuditManager` that supports `getAllAuditItemsOfDateRange`; otherwise an info message is shown
 
 v0.9.5 - 2026-09-23
 * Requires at least ph-schedule 6.2.0.
