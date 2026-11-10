@@ -23,7 +23,7 @@ import org.jspecify.annotations.Nullable;
 
 import com.helger.annotation.concurrent.Immutable;
 import com.helger.photon.app.PhotonAppManager;
-import com.helger.photon.app.resource.WebSiteResourceBundleManager;
+import com.helger.photon.app.resource.IWebSiteResourceBundleManager;
 import com.helger.photon.audit.IAuditManager;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoAPI;
 import com.helger.photon.bootstrap5.pages.appinfo.BasePageAppInfoAjaxFunctions;
@@ -284,7 +284,7 @@ public final class BootstrapPagesMenuConfigurator
                                                @NonNull final IMenuItem aParent,
                                                @Nullable final IMenuObjectFilter aDisplayFilter,
                                                @Nullable final GoMappingManager aGoMappingMgr,
-                                               @Nullable final WebSiteResourceBundleManager aResBundleMgr)
+                                               @Nullable final IWebSiteResourceBundleManager aResBundleMgr)
   {
     // Deliberately without the long running job managers, to keep the behaviour of this method
     return BootstrapPagesMenuConfigurator.addAppInfoItems (aMenuTree,
@@ -325,7 +325,7 @@ public final class BootstrapPagesMenuConfigurator
                                                @NonNull final IMenuItem aParent,
                                                @Nullable final IMenuObjectFilter aDisplayFilter,
                                                @Nullable final GoMappingManager aGoMappingMgr,
-                                               @Nullable final WebSiteResourceBundleManager aResBundleMgr,
+                                               @Nullable final IWebSiteResourceBundleManager aResBundleMgr,
                                                @Nullable final LongRunningJobManager aLongRunningJobMgr,
                                                @Nullable final ILongRunningJobResultManager aLongRunningJobResultMgr)
   {

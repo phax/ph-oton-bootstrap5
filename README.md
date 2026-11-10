@@ -95,6 +95,12 @@ Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
 
+v1.0.1 - work in progress
+* Requires at least ph-oton 10.8.0
+* **Incompatible change**: `BootstrapPagesMenuConfigurator.addAppInfoItems`, the constructors of `BasePageAppInfoWebSiteResourceBundles` and its method `getResBundleMgr ()` now use `IWebSiteResourceBundleManager` instead of `WebSiteResourceBundleManager`.
+  This is source compatible but requires a recompilation.
+  See [phax/ph-oton#59](https://github.com/phax/ph-oton/issues/59)
+
 v1.0.0 - 2026-10-08
 * The module `ph-oton-bootstrap5-demo` is no longer published to Maven Central
 * Added the new page `BasePageAppInfoCSSAndJS` (menu item `admin_appinfo_cssandjs` below "App Information") that lists all globally registered CSS and JS resources as well as the ones included in the current page, in inclusion order and with links that open in a new browser tab

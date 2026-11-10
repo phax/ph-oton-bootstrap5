@@ -37,7 +37,7 @@ import com.helger.html.hc.html.textlevel.HCBR;
 import com.helger.html.hc.impl.HCNodeList;
 import com.helger.io.file.FileSystemIterator;
 import com.helger.photon.app.PhotonAppSettings;
-import com.helger.photon.app.resource.WebSiteResourceBundleManager;
+import com.helger.photon.app.resource.IWebSiteResourceBundleManager;
 import com.helger.photon.app.resource.WebSiteResourceBundleSerialized;
 import com.helger.photon.app.resource.WebSiteResourceCache;
 import com.helger.photon.bootstrap5.button.BootstrapButton;
@@ -108,10 +108,10 @@ public class BasePageAppInfoWebSiteResourceBundles <WPECTYPE extends IWebPageExe
   private static final String ACTION_CHANGE_MERGE_CSS_STATE = "changemergecssstate";
   private static final String ACTION_CHANGE_MERGE_JS_STATE = "changemergejsstate";
 
-  private final WebSiteResourceBundleManager m_aResBundleMgr;
+  private final IWebSiteResourceBundleManager m_aResBundleMgr;
 
   public BasePageAppInfoWebSiteResourceBundles (@NonNull @Nonempty final String sID,
-                                                @NonNull final WebSiteResourceBundleManager aResBundleMgr)
+                                                @NonNull final IWebSiteResourceBundleManager aResBundleMgr)
   {
     super (sID, EWebPageText.PAGE_NAME_APPINFO_WEBRESBUNDLE.getAsMLT ());
     m_aResBundleMgr = ValueEnforcer.notNull (aResBundleMgr, "ResBundleMgr");
@@ -119,7 +119,7 @@ public class BasePageAppInfoWebSiteResourceBundles <WPECTYPE extends IWebPageExe
 
   public BasePageAppInfoWebSiteResourceBundles (@NonNull @Nonempty final String sID,
                                                 @NonNull final String sName,
-                                                @NonNull final WebSiteResourceBundleManager aResBundleMgr)
+                                                @NonNull final IWebSiteResourceBundleManager aResBundleMgr)
   {
     super (sID, sName);
     m_aResBundleMgr = ValueEnforcer.notNull (aResBundleMgr, "ResBundleMgr");
@@ -128,7 +128,7 @@ public class BasePageAppInfoWebSiteResourceBundles <WPECTYPE extends IWebPageExe
   public BasePageAppInfoWebSiteResourceBundles (@NonNull @Nonempty final String sID,
                                                 @NonNull final String sName,
                                                 @Nullable final String sDescription,
-                                                @NonNull final WebSiteResourceBundleManager aResBundleMgr)
+                                                @NonNull final IWebSiteResourceBundleManager aResBundleMgr)
   {
     super (sID, sName, sDescription);
     m_aResBundleMgr = ValueEnforcer.notNull (aResBundleMgr, "ResBundleMgr");
@@ -137,14 +137,14 @@ public class BasePageAppInfoWebSiteResourceBundles <WPECTYPE extends IWebPageExe
   public BasePageAppInfoWebSiteResourceBundles (@NonNull @Nonempty final String sID,
                                                 @NonNull final IMultilingualText aName,
                                                 @Nullable final IMultilingualText aDescription,
-                                                @NonNull final WebSiteResourceBundleManager aResBundleMgr)
+                                                @NonNull final IWebSiteResourceBundleManager aResBundleMgr)
   {
     super (sID, aName, aDescription);
     m_aResBundleMgr = ValueEnforcer.notNull (aResBundleMgr, "ResBundleMgr");
   }
 
   @NonNull
-  protected final WebSiteResourceBundleManager getResBundleMgr ()
+  protected final IWebSiteResourceBundleManager getResBundleMgr ()
   {
     return m_aResBundleMgr;
   }
