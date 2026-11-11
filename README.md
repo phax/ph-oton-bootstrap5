@@ -95,6 +95,11 @@ Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
 
+v1.0.2 - work in progress
+* Updated to Bootstrap 5.3.9
+* **Incompatible change**: renamed the constant `CBootstrap.BOOTSTRAP_VERSION_538` to the version-neutral `CBootstrap.BOOTSTRAP_VERSION`
+* Added `CBootstrapCSS.MODAL_XXL` and `EBootstrapModalSize.XXLARGE` for the new Bootstrap 5.3.9 modal size
+
 v1.0.1 - 2026-11-11
 * Requires at least ph-oton 10.8.0
 * Requires at least ph-commons 12.6.0

@@ -31,9 +31,9 @@ import com.helger.html.resource.js.IJSPathProvider;
 public enum EBootstrapJSPathProvider implements IJSPathProvider
 {
   /** Default complete Bootstrap JS (requires Popper.js separately) */
-  BOOTSTRAP ("external/bootstrap/5.3.8/bootstrap.js"),
+  BOOTSTRAP ("external/bootstrap/5.3.9/bootstrap.js"),
   /** Bootstrap JS with bundled Popper.js - recommended for Bootstrap 5 */
-  BOOTSTRAP_BUNDLE ("external/bootstrap/5.3.8/bootstrap.bundle.js"),
+  BOOTSTRAP_BUNDLE ("external/bootstrap/5.3.9/bootstrap.bundle.js"),
   /** Some Bootstrap JS extensions */
   BOOTSTRAP_PH ("ph-oton/bootstrap5-ph.js");
 

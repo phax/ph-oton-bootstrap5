@@ -41,7 +41,7 @@ The full chain — skipping a step makes the tests fail, not the compiler:
 3. Generate the `.min` file with the build (`ph-jscompress-maven-plugin` / `ph-csscompress-maven-plugin` run during `mvn install`) and commit it. Both plugins are configured with `forceCreation`/`forceCompress` = `false`, so an already up-to-date `.min` is not rebuilt — delete it to force regeneration.
 4. For a third-party library, register it in that module's `ThirdPartyModuleProvider_*` class (`com.helger.photon.bootstrap5[.uictrls|.stub].config`) with license and version; `SPITest` validates the SPI wiring.
 
-Bumping the Bootstrap version touches four places: the `external/bootstrap/<version>/` folder, the paths in both path provider enums, `CBootstrap.BOOTSTRAP_VERSION_*`, and `ThirdPartyModuleProvider_ph_oton_bootstrap5`.
+Bumping the Bootstrap version touches four places: the `external/bootstrap/<version>/` folder, the paths in both path provider enums, the value of `CBootstrap.BOOTSTRAP_VERSION` (version-neutral name, never rename it; `ThirdPartyModuleProvider_ph_oton_bootstrap5` picks it up), and `CBootstrapCSS` for any classes added or removed (run `MainExtractBootstrap5CSSClasses`).
 
 ## Code style
 

@@ -30,4 +30,4 @@ Auto-generated element IDs (`ensureID ()`) differ per run — assert against `aN
 
 ## Vendored Bootstrap
 
-`src/main/resources/external/bootstrap/5.3.8/` holds the six official dist files (regular + `.min` of `bootstrap.css`, `bootstrap.js`, `bootstrap.bundle.js`), byte-identical to the upstream release. The version also appears in `CBootstrap.BOOTSTRAP_VERSION_538`, in both path provider enums and in `ThirdPartyModuleProvider_ph_oton_bootstrap5` — see the root `CLAUDE.md` for the bump checklist.
+`src/main/resources/external/bootstrap/5.3.9/` holds the six official dist files (regular + `.min` of `bootstrap.css`, `bootstrap.js`, `bootstrap.bundle.js`), byte-identical to the upstream release. The version also appears in `CBootstrap.BOOTSTRAP_VERSION` (used by `ThirdPartyModuleProvider_ph_oton_bootstrap5`) and in both path provider enums — see the root `CLAUDE.md` for the bump checklist.

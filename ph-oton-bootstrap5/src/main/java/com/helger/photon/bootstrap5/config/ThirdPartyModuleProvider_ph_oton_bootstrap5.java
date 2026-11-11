@@ -36,7 +36,7 @@ public final class ThirdPartyModuleProvider_ph_oton_bootstrap5 implements IThird
   public static final IThirdPartyModule BOOTSTRAP5 = new ThirdPartyModule ("Bootstrap",
                                                                            "Bootstrap",
                                                                            ELicense.MIT,
-                                                                           CBootstrap.BOOTSTRAP_VERSION_538,
+                                                                           CBootstrap.BOOTSTRAP_VERSION,
                                                                            "https://getbootstrap.com/docs/5.3");
 
   @Nullable

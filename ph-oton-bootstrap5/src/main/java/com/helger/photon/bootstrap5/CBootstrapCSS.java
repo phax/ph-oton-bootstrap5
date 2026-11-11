@@ -29,7 +29,7 @@ import com.helger.html.css.ICSSClassProvider;
 public final class CBootstrapCSS
 {
   // Note: all CSS classes were created via MainExtractBootstrap5CSSClasses for
-  // 5.3.8
+  // 5.3.9
   public static final ICSSClassProvider ACCORDION = DefaultCSSClassProvider.create ("accordion");
   public static final ICSSClassProvider ACCORDION_BODY = DefaultCSSClassProvider.create ("accordion-body");
   public static final ICSSClassProvider ACCORDION_BUTTON = DefaultCSSClassProvider.create ("accordion-button");
@@ -1120,6 +1120,7 @@ public final class CBootstrapCSS
   public static final ICSSClassProvider MODAL_STATIC = DefaultCSSClassProvider.create ("modal-static");
   public static final ICSSClassProvider MODAL_TITLE = DefaultCSSClassProvider.create ("modal-title");
   public static final ICSSClassProvider MODAL_XL = DefaultCSSClassProvider.create ("modal-xl");
+  public static final ICSSClassProvider MODAL_XXL = DefaultCSSClassProvider.create ("modal-xxl");
   public static final ICSSClassProvider MS_0 = DefaultCSSClassProvider.create ("ms-0");
   public static final ICSSClassProvider MS_1 = DefaultCSSClassProvider.create ("ms-1");
   public static final ICSSClassProvider MS_2 = DefaultCSSClassProvider.create ("ms-2");

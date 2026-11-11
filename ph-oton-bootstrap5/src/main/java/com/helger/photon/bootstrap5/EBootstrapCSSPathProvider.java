@@ -33,7 +33,7 @@ import com.helger.html.resource.css.ICSSPathProvider;
 public enum EBootstrapCSSPathProvider implements ICSSPathProvider
 {
   /** Main Bootstrap CSS */
-  BOOTSTRAP ("external/bootstrap/5.3.8/bootstrap.css"),
+  BOOTSTRAP ("external/bootstrap/5.3.9/bootstrap.css"),
   /** A some of default Bootstrap CSS adoptions etc. */
   BOOTSTRAP_PH ("ph-oton/bootstrap5-ph.css");
 
