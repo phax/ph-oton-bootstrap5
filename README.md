@@ -95,8 +95,9 @@ Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
 
-v1.0.1 - work in progress
+v1.0.1 - 2026-11-11
 * Requires at least ph-oton 10.8.0
+* Requires at least ph-commons 12.6.0
 * **Incompatible change**: `BootstrapPagesMenuConfigurator.addAppInfoItems`, the constructors of `BasePageAppInfoWebSiteResourceBundles` and its method `getResBundleMgr ()` now use `IWebSiteResourceBundleManager` instead of `WebSiteResourceBundleManager`.
   This is source compatible but requires a recompilation.
   See [phax/ph-oton#59](https://github.com/phax/ph-oton/issues/59)
