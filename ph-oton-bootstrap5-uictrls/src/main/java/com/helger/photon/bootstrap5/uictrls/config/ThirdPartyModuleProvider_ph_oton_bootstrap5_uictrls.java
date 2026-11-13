@@ -33,23 +33,29 @@ import com.helger.base.version.Version;
 @IsSPIImplementation
 public final class ThirdPartyModuleProvider_ph_oton_bootstrap5_uictrls implements IThirdPartyModuleProviderSPI
 {
-  public static final IThirdPartyModule TEMPUS_DOMINUS = new ThirdPartyModule ("Tempus Dominus",
-                                                                               "Eonasdan",
-                                                                               ELicense.MIT,
-                                                                               new Version (6, 10, 4),
-                                                                               "https://getdatepicker.com/");
+  public static final IThirdPartyModule TEMPUS_DOMINUS = ThirdPartyModule.builder ()
+                                                                         .displayName ("Tempus Dominus")
+                                                                         .copyrightOwner ("Eonasdan")
+                                                                         .license (ELicense.MIT)
+                                                                         .version (new Version (6, 10, 4))
+                                                                         .webSiteUrl ("https://getdatepicker.com/")
+                                                                         .build ();
 
-  public static final IThirdPartyModule POPPER = new ThirdPartyModule ("Popper",
-                                                                       "Federico Zivolo",
-                                                                       ELicense.MIT,
-                                                                       new Version (2, 11, 8),
-                                                                       "https://popper.js.org/");
+  public static final IThirdPartyModule POPPER = ThirdPartyModule.builder ()
+                                                                 .displayName ("Popper")
+                                                                 .copyrightOwner ("Federico Zivolo")
+                                                                 .license (ELicense.MIT)
+                                                                 .version (new Version (2, 11, 8))
+                                                                 .webSiteUrl ("https://popper.js.org/")
+                                                                 .build ();
 
-  public static final IThirdPartyModule QUERCUS_JS = new ThirdPartyModule ("Quercus.js",
-                                                                           "Diware",
-                                                                           ELicense.MIT,
-                                                                           new Version (0, 3, 1),
-                                                                           "https://github.com/diware/quercus");
+  public static final IThirdPartyModule QUERCUS_JS = ThirdPartyModule.builder ()
+                                                                     .displayName ("Quercus.js")
+                                                                     .copyrightOwner ("Diware")
+                                                                     .license (ELicense.MIT)
+                                                                     .version (new Version (0, 3, 1))
+                                                                     .webSiteUrl ("https://github.com/diware/quercus")
+                                                                     .build ();
 
   @Nullable
   public IThirdPartyModule [] getAllThirdPartyModules ()
