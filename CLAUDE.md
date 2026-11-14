@@ -10,6 +10,8 @@ Modules, in dependency order — each depends on the previous one:
 
 `ph-oton-bootstrap5` (component wrappers) → `-uictrls` (DataTables, DateTimePicker, TreeView, …) → `-pages` (ready-made admin/info pages) → `-stub` (servlet stub + SPI init) → `-demo` (WAR, not deployed to Maven Central)
 
+`ph-oton-bootstrap5-bom` is the Bill of Materials for the published modules. It uses `com.helger:parent-pom` as its parent (not this project's parent POM), so its `<version>` must be kept in sync manually; a new published module must be added to its `<dependencyManagement>`.
+
 ## Build and test
 
 * Build one module plus what it needs: `mvn -pl ph-oton-bootstrap5-uictrls -am install`
@@ -51,4 +53,4 @@ Every Java file starts with the Apache 2.0 header from `src/etc/license-template
 
 ## Release notes
 
-There is no wiki checkout for this repo. Record every public API change as a bullet under `**v1.0.0 - Work in Progress**` in the `## News and Noteworthy` section of `README.md`, matching the existing bullet style.
+There is no wiki checkout for this repo. Record every public API change as a bullet under the `vX.Y.Z - work in progress` entry in the `## News and Noteworthy` section of `README.md`, matching the existing bullet style.

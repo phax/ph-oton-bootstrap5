@@ -15,6 +15,7 @@ This set of Java libraries forms a package to build Java web applications with B
 
 ### Contained Subprojects
 
+* **ph-oton-bootstrap5-bom** - Bill of Materials (BOM) with the versions of all published artifacts of this project
 * **ph-oton-bootstrap5** - Java Wrapper for the Bootstrap 5 controls
 * **ph-oton-bootstrap5-uictrls** - Special UI controls for Bootstrap 5
 * **ph-oton-bootstrap5-pages** - Predefined UI pages with Bootstrap 5 styling
@@ -32,12 +33,14 @@ This set of Java libraries forms a package to build Java web applications with B
 
 Replace `x.y.z` with the effective version number.
 
+Import the BOM to manage the versions of all ph-oton-bootstrap5 artifacts (available since v1.0.3):
+
 ```xml
 <dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>com.helger.photon</groupId>
-      <artifactId>ph-oton-bootstrap5-parent-pom</artifactId>
+      <artifactId>ph-oton-bootstrap5-bom</artifactId>
       <version>x.y.z</version>
       <type>pom</type>
       <scope>import</scope>
@@ -94,6 +97,11 @@ See [migration-plan.md](migration-plan.md) for detailed migration steps from ph-
 Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
+
+v1.0.3 - 2026-11-14
+* Added the new module `ph-oton-bootstrap5-bom` - a Bill of Materials that manages the versions of all published ph-oton-bootstrap5 artifacts.
+  Import it instead of `ph-oton-bootstrap5-parent-pom` in the `<dependencyManagement>` section
+* The parent POM now imports the BOMs of ph-commons, ph-schedule, ph-web, ph-oton and ph-oton-icon instead of their parent POMs
 
 v1.0.2 - 2026-11-11
 * Updated to Bootstrap 5.3.9

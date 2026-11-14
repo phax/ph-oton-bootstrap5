@@ -64,9 +64,7 @@
   </developers>
   
   <properties>
-    <m2e.jaxrs.activation>false</m2e.jaxrs.activation>
-    <m2e.jpa.activation>false</m2e.jpa.activation>
-    <m2e.jsf.activation>false</m2e.jsf.activation>
+    <log4j.version>2.26.1</log4j.version>
   </properties>
 
   <repositories>
@@ -86,38 +84,57 @@
     <dependencies>
       <dependency>
         <groupId>com.helger.commons</groupId>
-        <artifactId>ph-commons-parent-pom</artifactId>
-        <version>12.6.0</version>
+        <artifactId>ph-commons-bom</artifactId>
+        <version>12.7.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.helger.schedule</groupId>
-        <artifactId>ph-schedule-parent-pom</artifactId>
-        <version>6.2.1</version>
+        <artifactId>ph-schedule-bom</artifactId>
+        <version>6.2.2</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.helger.web</groupId>
-        <artifactId>ph-web-parent-pom</artifactId>
-        <version>11.5.0</version>
+        <artifactId>ph-web-bom</artifactId>
+        <version>11.5.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.helger.photon</groupId>
-        <artifactId>ph-oton-parent-pom</artifactId>
-        <version>10.8.0</version>
+        <artifactId>ph-oton-bom</artifactId>
+        <version>10.8.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.helger.photon.icon</groupId>
-        <artifactId>ph-oton-icon-parent-pom</artifactId>
-        <version>1.0.1</version>
+        <artifactId>ph-oton-icon-bom</artifactId>
+        <version>1.0.2</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-bom</artifactId>
+        <version>${log4j.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit4.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.servlet</groupId>
+        <artifactId>jakarta.servlet-api</artifactId>
+        <version>${jakarta.servlet-api.version}</version>
       </dependency>
 
       <dependency>
@@ -163,6 +180,7 @@
   </dependencies>
   
   <modules>
+    <module>ph-oton-bootstrap5-bom</module>
     <module>ph-oton-bootstrap5</module>
     <module>ph-oton-bootstrap5-uictrls</module>
     <module>ph-oton-bootstrap5-pages</module>
@@ -181,7 +199,7 @@
         <plugin>
           <groupId>com.helger.maven</groupId>
           <artifactId>ph-csscompress-maven-plugin</artifactId>
-          <version>8.4.0</version>
+          <version>8.4.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
