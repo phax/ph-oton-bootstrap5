@@ -98,7 +98,7 @@ Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
 
-v1.0.4 - work in progress
+v1.0.4 - 2026-11-18
 * The servlets registered by `PhotonStubServletInitializer` can now be disabled individually via the servlet context init parameter `ph-oton.stub.disabled-servlets` (comma separated servlet names, see the new `SERVLET_NAME_*` constants)
 
 v1.0.3 - 2026-11-14
