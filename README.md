@@ -98,6 +98,9 @@ Licensed under the Apache License, Version 2.0.
 
 ## News and Noteworthy
 
+v1.0.4 - work in progress
+* The servlets registered by `PhotonStubServletInitializer` can now be disabled individually via the servlet context init parameter `ph-oton.stub.disabled-servlets` (comma separated servlet names, see the new `SERVLET_NAME_*` constants)
+
 v1.0.3 - 2026-11-14
 * Added the new module `ph-oton-bootstrap5-bom` - a Bill of Materials that manages the versions of all published ph-oton-bootstrap5 artifacts.
   Import it instead of `ph-oton-bootstrap5-parent-pom` in the `<dependencyManagement>` section
