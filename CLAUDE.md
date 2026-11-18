@@ -18,6 +18,10 @@ Modules, in dependency order — each depends on the previous one:
 * Run the demo app: `main()` in `RunInJettyPHOTONDEMO_BS5` (test scope of `-demo`) → http://localhost:8080/ ; stop it with `JettyStopPHOTONDEMO_BS5`
 * Single test: `mvn -pl <module> test -Dtest=BootstrapVanillaJSTest`
 
+## Servlet stub
+
+`PhotonStubServletContainerInitializer` (SCI) calls `PhotonStubServletInitializer.registerServlets` in every web application that has `-stub` on its classpath. It registers `CharacterEncodingFilter` and the servlets named by the `SERVLET_NAME_*` constants. A servlet is skipped if its name is listed in the context init parameter `ph-oton.stub.disabled-servlets` (`INIT_PARAMETER_DISABLED_SERVLETS`), or if `web.xml` already declares a servlet with the same name (`addServlet` then returns `null`). The SCI runs before any `ServletContextListener`, so only the `web.xml` can influence it.
+
 ## Imports (ph-commons 12 layout)
 
 Getting these wrong is the most common build break:
